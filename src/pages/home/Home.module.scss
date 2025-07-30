@@ -1,0 +1,111 @@
+
+.container{
+   max-width:400px;
+    height: 100vh;
+}
+
+.bg{
+background-image:url("../../assets/images/BG.png");
+background-size:100%100%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.logo .imagelogo img{
+    width: 20%;
+}
+
+.imagelist{
+padding-top: 10px; 
+display: flex;
+justify-content: end;
+padding-right: 10px;
+}
+.onaCircle{
+    position: relative;
+    top: -1rem;
+}
+.imageOnaCircle img{
+width: 45%;
+}
+
+.ticketSection{
+    .ticketBanner{
+        position: relative;
+        top: -2rem;
+    }
+img{
+    width: 40%;
+}
+}
+
+
+
+.itemSection{
+    .itemBanner{
+        position: relative;
+        top: -1rem;
+    }
+
+}
+
+.buttonSection{
+    .buttonBottom{
+          position: relative;
+        top: -2rem;
+        button{
+            padding: 10px 40px;
+            background-color: #DA251D;
+        }
+    }
+}
+
+
+
+@media only screen and (max-width: 414px) {
+  /* iPhone XR*/
+
+}
+
+
+@media only screen and (width: 390px) and (height: 844px) {
+  /* iPhone 12 & iPhone 14 */
+}
+
+
+@media screen and (max-width: 768px) {
+
+.logo .imagelogo img{
+    width: 40%;
+}
+
+.imageOnaCircle img{
+width: 80%;
+}
+
+.ticketSection{
+img{
+    width: 70%;
+}
+}
+
+.itemSection{
+    .itemBanner{
+        position: relative;
+        top: 0rem;
+        img{
+            width: 100%;
+        }
+    }
+
+}
+
+.buttonSection{
+    .buttonBottom{
+          position: relative;
+        top: 0rem;
+      
+    }
+}
+
+}

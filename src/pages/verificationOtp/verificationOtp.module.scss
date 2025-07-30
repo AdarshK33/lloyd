@@ -1,0 +1,77 @@
+.otpForm {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  top: -4rem;
+}
+
+.otpInputs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.otpInput {
+  width: 40px;
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s;
+
+//   &:focus {
+//     border-color: #007bff;
+//   }
+}
+
+.otpInputs{
+    input{
+    background: white;
+    color: black;
+    }
+}
+
+.verificationHeadline{
+
+    font-size: 22px;
+    color: black;
+    margin: 0px  !important;
+    padding-bottom: 1rem;
+    font-style: bold;
+
+}
+
+.buttonSection{
+    .buttonBottom{
+          position: relative;
+        top: 1rem;
+        button{
+            padding: 10px 40px;
+            background-color: #DA251D;
+        }
+    }
+}
+
+    .conditionsNormal {
+    font-weight: normal;
+    color: #333;
+  }
+
+  .conditionsBold {
+    font-weight: bold;
+    // text-decoration: underline;
+    color: #010101;
+  }
+
+  .resendOtp{
+    padding-bottom: .5rem;
+  }
+
+
+@media screen and (max-width: 768px) {
+
+
+}

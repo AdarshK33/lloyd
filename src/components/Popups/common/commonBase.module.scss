@@ -1,0 +1,335 @@
+
+.container{
+    max-width: 400px;
+    height: 100vh;
+}
+
+.bg{
+background-image:url("../../../assets/images/BG.png");
+background-size:100%100%;
+background-repeat: no-repeat;
+height: 100vh;
+}
+
+.logo  img{
+    width: 60%;
+}
+.header{
+    display: flex;
+justify-content:space-between;
+padding-top: .5rem;
+}
+.leftImage .imagelist{
+padding-top: 0px; 
+display: block;
+justify-content: end;
+padding-right: 10px;
+}
+
+.imageOnaCircle img{
+width: 35%;
+}
+
+.ticketSection{
+    .ticketBanner{
+        position: relative;
+        top: -2rem;
+    }
+img{
+    width: 40%;
+}
+}
+
+
+
+.itemSection{
+    .itemBanner{
+        position: relative;
+        top: -3rem;
+        img{
+            width: 50%;
+        }
+    }
+
+}
+
+.buttonSection{
+    .buttonBottom{
+          position: relative;
+        top: 1rem;
+        button{
+            padding: 10px 40px;
+            background-color: #DA251D;
+        }
+    }
+}
+form{
+    text-align: -webkit-center
+}
+
+.formSection{
+     position: relative;
+        top: -3rem;
+}
+.checkboxInputGroup{
+    display: flex;
+    /* justify-content: space-around; */
+    justify-content: center;
+
+    .checkboxInputBox{
+        padding-right: 1rem;
+    }
+    label{
+        color: black;
+    
+    }
+  .TermsConditionsNormal {
+  font-weight: normal;
+  color: #333; // or your default text color
+  font-size: 14px;
+}
+
+.TermsConditionsBold {
+  font-weight: bold;
+  color: #000; // or your highlight color like #DEA3B7
+  font-size: 14px;
+//   margin-left: 4px;
+    text-decoration: underline;
+}
+
+}
+.inputGroup{
+    input{
+          background: white;
+           color: #010101;
+        border-radius: 12px !important;
+    }
+    padding-bottom: 10px;
+  input::placeholder {
+  
+  color: #010101;
+ 
+}
+
+}
+
+
+select{
+
+  color: #010101 !important;
+  background: white !important;
+
+}
+
+input,select{
+    width: 90% !important;
+    font-size: 12px !important;
+      color: 010101;
+}
+
+// .selectSection{
+//     display: flex;
+//     justify-content: center;
+// }
+
+
+// checkbox
+
+
+
+.checkboxInputGroup {
+  .checkboxLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    position: relative;
+    font-size: 14px;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+    margin: 0;
+    z-index: 2; // Keeps it clickable
+  }
+
+  .customCheckbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    position: relative;
+    z-index: 1;
+  }
+
+  input[type="checkbox"]:checked + .customCheckbox {
+    border-color: #000;
+    background-color: transparent;
+
+    &::after {
+      content: "✔";
+      position: absolute;
+      top: 0px;
+      left: 3px;
+      color: #010101;
+      font-size: 12px;
+    }
+  }
+    .TermsConditionsNormal {
+    font-weight: normal;
+    color: #333;
+  }
+
+  .TermsConditionsBold {
+    font-weight: bold;
+    text-decoration: underline;
+    color: #010101;
+  }
+}
+
+
+/* end checkbox */
+
+// select start
+
+.customSelect {
+  background-color: white;
+  color: black;
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  // transition: border-color 0.3s ease;
+  //
+  //
+}
+
+
+// .customSelect:focus {
+//   border-color: #007bff;
+// }
+
+.customSelect option {
+  background-color: white;
+  color: black;
+}
+
+// select end
+@media screen and (max-width: 768px) {
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo,
+  .leftImage {
+    width: 50%; 
+    display: flex;
+    // align-items: center;
+  }
+
+  .leftImage {
+    justify-content: flex-end;
+     padding-right: .5rem;
+  }
+
+}
+
+
+
+.logo {
+ justify-content: flex-start;
+    padding-left: .5rem;
+
+img{
+    width: 60%;
+}
+}
+
+
+.onaCircle{
+
+.imageOnaCircle{
+        position: relative;
+    top: -3rem;
+     img{
+width:55%;
+    }
+}
+}
+.ticketSection{
+    .ticketBanner{
+        position: relative;
+        top: -2rem;
+    }
+img{
+    width: 40%;
+}
+}
+
+
+
+.itemSection{
+    .itemBanner{
+        position: relative;
+        top: -5rem;
+        img{
+            width: 90%;
+        }
+    }
+
+}
+
+.buttonSection{
+    .buttonBottom{
+          position: relative;
+        top: 1rem;
+     
+    }
+}
+.formSection{
+     position: relative;
+        top: -6rem;
+}
+form{
+    text-align: -webkit-center
+}
+
+
+.formHeadline{
+        padding-bottom: .5rem;
+
+.registration{
+    font-size: 22px;
+    color: black;
+    margin: 0px  !important;
+    padding-bottom: .5rem;
+    font-style: bold;
+
+}
+.step{
+    color: black;
+    font-size: 10px;
+}
+}
+
+.inputSelectState
+{
+    width: 80%;
+}
+
+
+
+}
