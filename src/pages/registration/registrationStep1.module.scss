@@ -1,57 +1,4 @@
 
-.container{
-    max-width: 400px;
-    height: 100vh;
-}
-
-.bg{
-background-image:url("../../assets/images/BG.png");
-background-size:100%100%;
-background-repeat: no-repeat;
-height: 100vh;
-}
-
-.logo  img{
-    width: 60%;
-}
-.header{
-    display: flex;
-justify-content:space-between;
-padding-top: .5rem;
-}
-.leftImage .imagelist{
-padding-top: 0px; 
-display: block;
-justify-content: end;
-padding-right: 10px;
-}
-
-.imageOnaCircle img{
-width: 35%;
-}
-
-.ticketSection{
-    .ticketBanner{
-        position: relative;
-        top: -2rem;
-    }
-img{
-    width: 40%;
-}
-}
-
-
-
-.itemSection{
-    .itemBanner{
-        position: relative;
-        top: -3rem;
-        img{
-            width: 50%;
-        }
-    }
-
-}
 
 .buttonSection{
     .buttonBottom{
@@ -69,7 +16,7 @@ form{
 
 .formSection{
      position: relative;
-        top: -3rem;
+    bottom: 6rem;
 }
 .checkboxInputGroup{
     display: flex;
@@ -106,13 +53,18 @@ form{
     }
     padding-bottom: 10px;
   input::placeholder {
-  
+  text-align: start;
   color: #797979;
  
 }
 
 }
-
+.reactSelect{
+  width: 90%;
+    background: white;
+           color:#797979;
+        border-radius: 12px !important;
+}
 
 select{
 
@@ -125,6 +77,15 @@ input,select{
     width: 90% !important;
     font-size: 12px !important;
       color: 010101;
+       border: 1px solid #57C732 !important;
+       text-align: start;
+       
+}
+.customSelect {
+  text-align: left;          /* align selected value */
+  text-align-last: left;     /* align placeholder and selected value */
+  direction: ltr;            /* make sure it's not overridden by RTL */
+  padding: 8px;
 }
 
 // .selectSection{
@@ -211,6 +172,7 @@ input,select{
   width: 100%;
   cursor: pointer;
   outline: none;
+  text-align: start;
   // transition: border-color 0.3s ease;
   //
   //
@@ -224,84 +186,153 @@ input,select{
 .customSelect option {
   background-color: white;
   color: black;
+  text-align: start !important;
+}
+
+.optionStart{
+  text-align: end !important;
 }
 
 // select end
-@media screen and (max-width: 768px) {
-.header {
+
+
+// dropzone start
+/* This class mimics an input field */
+.inputLike {
+   width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  .logo,
-  .leftImage {
-    width: 50%; 
-    display: flex;
-    // align-items: center;
-  }
-
-  .leftImage {
-    justify-content: flex-end;
-     padding-right: .5rem;
-  }
-
+  padding: 10px 10px;
+  background: white;
+           color:#797979;
+        border-radius: 12px !important;
+  cursor: pointer;
+  overflow: hidden;   /* Prevents overflow */
+  position: relative; /* Avoid z-index issues */
+  z-index: 1;          /* Keep it within normal flow */
+ 
 }
 
-
-
-.logo {
- justify-content: flex-start;
-    padding-left: .5rem;
-
-img{
-    width: 60%;
-}
+.activeDrop {
+   border-color: #57C732 !important;
+  background-color: #f5fdfd;
 }
 
-
-.onaCircle{
-
-.imageOnaCircle{
-        position: relative;
-    top: -3rem;
-     img{
-width:55%;
-    }
+.uploadIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
 }
-}
-.ticketSection{
-    .ticketBanner{
-        position: relative;
-        top: -2rem;
-    }
-img{
-    width: 40%;
+
+.dropzoneContent {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    font-weight: 400 !important;
+  .text_bulk_upload {
+ color:#797979;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 400 !important;
 }
 }
 
 
-
-.itemSection{
-    .itemBanner{
-        position: relative;
-        top: -5rem;
-        img{
-            width: 90%;
-        }
-    }
-
+.inputGroup span{
+   color: #DA251D !important;
+font-size: 10px;
+font-weight: 200;
+position: relative;
+top: .2rem;
 }
+
+
+
+
+//dropzone end
+
+
+// modal start
+.model {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000000ad;
+    z-index: 999;
+    text-align: center;
+}
+
+
+.show {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000000ad;
+    background-image:url("../../assets/images/congratulation_Modal.png");
+    background-size:100%50%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 999;
+    text-align: center;
+}
+.show .notice {
+    width: 80%;
+    margin:0 auto;
+    margin-top: 230px;
+  background-image:
+  repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.08) 10px,
+    rgba(255, 255, 255, 0.08) 20px
+  ),
+  linear-gradient(
+    to bottom,
+    #fff89c,
+    #fef082,
+    #f7e18c,
+    #f3ce70,
+    #e6b750,
+    #dfa53e,
+    #c28525,
+    #a56319
+  );
+    color: #000;
+    padding: 20px;
+}
+
+#close,
+#check {
+    cursor: pointer;
+}
+.close{
+  display: flex;
+  justify-content: end;
+}
+//moddal end
+@media screen and (max-width: 768px) {
+
 
 .buttonSection{
     .buttonBottom{
           position: relative;
-        top: 1rem;
      
     }
+  span{
+   color: #DA251D !important;
+
+position: relative;
+top: .2rem;
+}
 }
 .formSection{
      position: relative;
-        top: -6rem;
+    
 }
 form{
     text-align: -webkit-center

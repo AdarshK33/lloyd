@@ -1,14 +1,15 @@
 
 .container{
    max-width:400px;
-    height: 100vh;
+    height: auto;
 }
 
 .bg{
 background-image:url("../../assets/images/BG.png");
 background-size:100%100%;
 background-repeat: no-repeat;
-height: 100vh;
+background-position: center;
+height:auto;
 }
 
 .logo .imagelogo img{
@@ -23,17 +24,16 @@ padding-right: 10px;
 }
 .onaCircle{
     position: relative;
-    top: -1rem;
+   bottom: 1rem;
 }
 .imageOnaCircle img{
 width: 45%;
 }
 
 .ticketSection{
-    .ticketBanner{
         position: relative;
-        top: -2rem;
-    }
+        bottom: 2rem;
+  
 img{
     width: 40%;
 }
@@ -41,18 +41,11 @@ img{
 
 
 
-.itemSection{
-    .itemBanner{
-        position: relative;
-        top: -1rem;
-    }
-
-}
 
 .buttonSection{
     .buttonBottom{
           position: relative;
-        top: -2rem;
+       
         button{
             padding: 10px 40px;
             background-color: #DA251D;
@@ -103,9 +96,23 @@ img{
 .buttonSection{
     .buttonBottom{
           position: relative;
-        top: 0rem;
+      bottom: .5rem;
       
     }
 }
 
 }
+
+
+// @media only screen and (min-width: 375px) and (min-height: 667px) {
+// .logo .imagelogo img{
+//     width: 30%;
+// }
+// .imageOnaCircle img{
+// width: 45%;
+// }
+// .bg{
+// height:auto !important
+// }
+// }
+

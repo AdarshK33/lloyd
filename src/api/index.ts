@@ -98,7 +98,7 @@ class APIS {
       console.log(error);
     }
     this.showLoader("Starting session...");
-    return fetch(`${import.meta.env.VITE_API_BASE_URL}collect`, {
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
       method: "POST",
       headers,
       body: JSON.stringify(payload),
@@ -148,7 +148,7 @@ class APIS {
   }
 
   authorisedApi(): Promise<BaseResponse> {
-    // console.log(payload);
+    console.log("hello ");
     this.showLoader();
     return authorisedEncrytedApiCall("users/path/")
       .then(fetchHandlerText)

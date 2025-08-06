@@ -38,7 +38,9 @@ export const ROUTES = {
   RegistrationStep2:"/registrationStep2",
   VerificationOtp:"/verificationOtp",
 Redemption:"/redemption",
-CashBack:"/cashBack"
+CashBack:"/cashBack",
+KYC:"/kyc"
+
 
 };
 

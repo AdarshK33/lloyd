@@ -10,6 +10,8 @@ import RegistrationStep2 from "./pages/registration/RegistrationStep2";
 import VerificationOtp from "./pages/verificationOtp/VerificationOtp";
 import Redemption from "./pages/redemption/Redemption";
 import CashBack from "./pages/cashBack/CashBack";
+import KYC from "./pages/kyc/kyc";
+
 
 
 
@@ -48,6 +50,8 @@ function App() {
         <Route path={ROUTES.VerificationOtp} element={<VerificationOtp />} />
         <Route path={ROUTES.Redemption} element={<Redemption />} />
         <Route path={ROUTES.CashBack} element={<CashBack />} />
+        <Route path={ROUTES.KYC} element={<KYC />} />
+
 
 
 

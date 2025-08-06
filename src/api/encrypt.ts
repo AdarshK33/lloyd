@@ -14,6 +14,8 @@ export async function sendEncrytedData(
   method = "POST",
   headers = defaultHeaders
 ) {
+
+  console.log(url,data,method,headers,"hello 1")
   const accessDetails: any = await store.getState().auth;
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;

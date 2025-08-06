@@ -1,0 +1,288 @@
+import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useAppDispatch } from "../../store/hooks";
+
+// imageOnaCircle
+import styles from "./kyc.module.scss";
+import { toast } from "react-toastify";
+import CommonBase from "../../components/Popups/common/CommonBase";
+import rewardBundle from "../../assets/images/rewardBundle.png";
+import Claro from "../../assets/images/Claro 3 JAR 1.svg";
+import sucessTickMark from "../../assets/images/sucessTickMark.svg";
+import close from "../../assets/images/close.svg";
+
+
+function KYC() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+   const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    add1: "",
+    add2: "",
+    pinCode: "",
+    state: "",
+    city: "",
+  });
+
+   const [errors, setErrors] = useState<any>({});
+
+
+  const [activeTab, setActiveTab] = useState('cashback');
+ const [showTerms, setShowTerms] = useState(false);
+
+  const [agreedToTerms, setAgreedToTerms] = useState(false);
+
+ const validate = (): any => {
+    const newErrors: any = {};
+
+    if (!formData.name.trim() || formData.name.length < 3) {
+      newErrors.name = "**Please enter a valid name";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "**Please enter email";
+    } else if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
+    ) {
+      newErrors.email = "**Invalid email format";
+    }
+
+    if (!formData.add1.trim()) {
+      newErrors.add1 = "**Address Line 1 is required";
+    }
+
+    if (!formData.add2.trim()) {
+      newErrors.add2 = "**Address Line 2 is required";
+    }
+
+    if (!formData.pinCode.trim()) {
+      newErrors.pinCode = "**Pincode is required";
+    } else if (!/^\d{6}$/.test(formData.pinCode)) {
+      newErrors.pinCode = "**Pincode must be 6 digits";
+    }
+
+    if (!formData.state.trim()) {
+      newErrors.state = "**State is required";
+    }
+
+    if (!formData.city.trim()) {
+      newErrors.city = "**City is required";
+    }
+
+    return newErrors;
+  };
+
+
+    const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormData((prev: any) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev: any) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
+const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Submitted:", formData);
+      //  navigate("/");
+      // API call or navigation to next step here
+    } else {
+      setErrors(validationErrors);
+    }
+  };
+
+
+
+  const handleClickVerificatonOtp = () => {
+    // navigate("/verificationOtp"); // replace with your actual path
+  };
+  return (
+    <>
+
+      <CommonBase>
+      <div className={styles.selected_section}>
+    <div className="offer-toggle-wrapper">
+      <div className="offer-toggle">
+        {/* Cashback tab */}
+        <div
+          className={`offer-tab ${activeTab === 'cashback' ? 'active cashback' : ''}`}
+          onClick={() => setActiveTab('cashback')}
+        >
+            <div className={`offer-title ${styles.offer_title}`}>You’ve won a Havells Product </div>
+             <div className={styles.imageAssured}>
+              <img src={Claro} alt="claro"></img>
+            </div>
+        
+          <div className={styles.amount}>Claro JMG 3 Jar 600W REF</div>
+        </div>
+
+        {/* Reward bundle tab */}
+        <div
+          className={`offer-tab ${activeTab === 'reward' ? 'active reward' : ''}`}
+          // onClick={() => setActiveTab('reward')}
+        >
+          <div className={styles.imageReward}>
+              <img src={rewardBundle} alt="money"></img>
+            </div>
+          <div className="offer-title">Reward Bundle of</div>
+          <div  className={styles.amount}>₹25,000</div>
+        </div>
+      </div>
+
+    </div>
+</div>
+        <div className={styles.formSection}>
+          <form onSubmit={handleSubmit} className="form">
+      <div className={styles.formHeadline}>
+        <h2 className={styles.kyc_details}>KYC Details</h2>
+      </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter Name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        {errors.name && <span className={styles.validation}>{errors.name}</span>}
+      </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="email"
+          placeholder="Enter Mail Id"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        {errors.email && <span className={styles.validation}>{errors.email}</span>}
+      </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="add1"
+          placeholder="Enter Address Line 1"
+          value={formData.add1}
+          onChange={handleChange}
+        />
+        {errors.add1 && <span className={styles.validation}>{errors.add1}</span>}
+      </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="add2"
+          placeholder="Enter Address Line 2"
+          value={formData.add2}
+          onChange={handleChange}
+        />
+        {errors.add2 && <span className={styles.validation}>{errors.add2}</span>}
+      </div>
+
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="pinCode"
+          placeholder="Enter Pincode"
+          value={formData.pinCode}
+          onChange={handleChange}
+        />
+        {errors.pinCode && (
+          <span className={styles.validation}>{errors.pinCode}</span>
+        )}
+      </div>
+
+      <div className={styles.twoInputGroup}>
+        <div className={styles.inputGroup}>
+          <input
+            type="text"
+            name="state"
+            placeholder="Enter State"
+            value={formData.state}
+            onChange={handleChange}
+          />
+         
+        </div>
+
+        <div className={styles.inputGroup}>
+          <input
+            type="text"
+            name="city"
+            placeholder="Enter City"
+            value={formData.city}
+            onChange={handleChange}
+          />
+        
+        </div>
+      </div>
+
+       <div className={styles.twoInputGroup}>
+        <div className={styles.inputGroup}>
+          {errors.state && <span className={styles.validation}>{errors.state}</span>}
+         
+        </div>
+
+        <div className={styles.inputGroup}>
+  {errors.city && <span className={styles.validation}>{errors.city}</span>}
+        
+        
+        </div>
+      </div>
+      
+      <div className={styles.buttonSection}>
+        <div className={styles.buttonBottom}>
+          <button type="submit">Get OTP</button>
+        </div>
+      </div>
+    </form>
+        </div>
+      </CommonBase>
+    </>
+  );
+}
+
+
+
+type TermsModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  type: 'cashback' | 'reward';
+};
+
+const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className={isOpen ? styles.show : styles.model}>
+      <div className={styles.notice}>
+        <span id="close"  className={styles.close} onClick={onClose}>
+          <img src={close} alt="Close" />
+        </span>
+        <div>
+            <img src={sucessTickMark} alt="sucessTickMark" />
+        </div>
+        <h2>
+         Thank you for your Submission!
+        </h2>
+        {type === 'cashback' ? (
+          <p>Your cashback will be credited to the selected payout mode within 24-48 business hours.</p>
+        ) : (
+          <p>You will receive your Reward shortly</p>
+        )}
+      </div>
+    </div>
+  );
+};
+export default KYC;

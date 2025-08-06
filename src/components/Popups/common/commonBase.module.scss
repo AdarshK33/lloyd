@@ -1,31 +1,52 @@
 
 .container{
-    max-width: 400px;
-    height: 100vh;
+ width: 100%;         
+  max-width: 450px;     
+ height: auto;
+}
+
+
+.bg,
+.bg_kyc {
+  position: relative;
+  z-index: 1; // Ensure it stays below the sidenav
 }
 
 .bg{
 background-image:url("../../../assets/images/BG.png");
-background-size:100%100%;
+ background-size:100%100%;
+background-position: center;
 background-repeat: no-repeat;
-height: 100vh;
+height: auto;
+}
+
+.bg_kyc{
+  background-image:url("../../../assets/images/BG.png");
+background-size:100%100%;
+background-position: center;
+background-repeat: no-repeat;
+height: 105vh;
 }
 
 .logo  img{
     width: 60%;
 }
 .header{
-    display: flex;
+display: flex;
 justify-content:space-between;
 padding-top: .5rem;
 }
-.leftImage .imagelist{
+.leftImage {
+      position: relative; 
+    z-index: 99;
+.imagelist{
 padding-top: 0px; 
 display: block;
 justify-content: end;
 padding-right: 10px;
 }
 
+}
 .imageOnaCircle img{
 width: 35%;
 }
@@ -42,16 +63,16 @@ img{
 
 
 
-.itemSection{
-    .itemBanner{
-        position: relative;
-        top: -3rem;
-        img{
-            width: 50%;
-        }
-    }
+// .itemSection{
+//     .itemBanner{
+//         position: relative;
+//         top: -3rem;
+//         img{
+//             width: 50%;
+//         }
+//     }
 
-}
+// }
 
 .buttonSection{
     .buttonBottom{
@@ -263,28 +284,28 @@ img{
 
 .imageOnaCircle{
         position: relative;
-    top: -3rem;
+   bottom: 3rem;
      img{
 width:55%;
     }
 }
 }
-.ticketSection{
-    .ticketBanner{
-        position: relative;
-        top: -2rem;
-    }
-img{
-    width: 40%;
-}
-}
+// .ticketSection{
+//     .ticketBanner{
+//         position: relative;
+//         top: -2rem;
+//     }
+// img{
+//     width: 40%;
+// }
+// }
 
 
 
 .itemSection{
     .itemBanner{
         position: relative;
-        top: -5rem;
+      bottom: 5rem;
         img{
             width: 90%;
         }
@@ -333,3 +354,16 @@ form{
 
 
 }
+
+
+// @media only screen and (min-width: 375px) and (min-height: 667px) {
+// .logo .imagelogo img{
+//     width: 30%;
+// }
+// .imageOnaCircle img{
+// width: 45%;
+// }
+// .bg{
+// height:auto !important
+// }
+// }

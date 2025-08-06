@@ -1,9 +1,7 @@
-.formSection{
+.tabSection{
 position: relative;
-top: -4rem
+bottom:6rem
 }
-
-
 
 .formHeadline{
         padding-bottom: .5rem;
@@ -18,7 +16,6 @@ top: -4rem
 }
 }
 
-
 .inputGroup{
     input{
           background: white;
@@ -31,7 +28,6 @@ top: -4rem
   color: #797979;
  
 }
-
 }
 
 .buttonSection{
@@ -44,6 +40,162 @@ top: -4rem
         }
     }
 }
+
+.amount{
+    color: #F2B322;
+}
+
+.upiFormSection{
+    position: relative;
+   top: 1.5rem;
+}
+
+.inputGroup {
+  input {
+    text-align: left;
+    padding: 17px 20px !important;
+    font-size: 14px !important;
+
+    &::placeholder {
+      text-align: left;
+    }
+  }
+}
+// modal start
+
+.model {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000000ad;
+    z-index: 999;
+    text-align: center;
+}
+
+
+.show {
+    display: block;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #000000ad;
+    background-image:url("../../assets/images/congratulation_Modal.png");
+    background-size:100%50%;
+    background-repeat: no-repeat;
+    height: 100vh;
+    z-index: 999;
+    text-align: center;
+}
+.show .notice {
+    width: 80%;
+    margin:0 auto;
+    margin-top: 230px;
+  background-image:
+  repeating-linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0px,
+    rgba(255, 255, 255, 0.05) 10px,
+    rgba(255, 255, 255, 0.08) 10px,
+    rgba(255, 255, 255, 0.08) 20px
+  ),
+  linear-gradient(
+    to bottom,
+    #fff89c,
+    #fef082,
+    #f7e18c,
+    #f3ce70,
+    #e6b750,
+    #dfa53e,
+    #c28525,
+    #a56319
+  );
+    color: #000;
+    padding: 20px;
+}
+
+#close,
+#check {
+    cursor: pointer;
+}
+.close{
+  display: flex;
+  justify-content: end;
+}
+
+
+
+//modal end
+
+
+// voucher list menu
+.voucherMenuContainer {
+width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.voucherMenuCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: #000;
+  margin-top: 1rem;
+}
+
+.voucherMenuInfo {
+  display: flex;
+  align-items: center;
+ 
+}
+
+.voucherMenuLogo {
+  width:30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.voucherMenuDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+}
+
+.voucherMenuName {
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.voucherMenuValue {
+  font-size: 12px;
+  color: #333;
+}
+
+.redeemButton {
+  background-color: #DA251D;
+  color: white;
+  border: none;
+  outline:none ;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.redeemButton:hover {
+  background-color:#DA251D;
+  border: none;
+  outline:none ;
+}
+
+
+
+// end list voucher
 
 @media screen and (max-width: 768px) {
 

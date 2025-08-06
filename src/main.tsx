@@ -12,16 +12,18 @@ import { BrowserRouter } from "react-router-dom";
 import "./i18n/config"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
+  <>
+   {/* <React.StrictMode> */}
     <Provider store={store}>
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <GlobalLoader>
           <GlobalModal>
             <App />
-            <ToastContainer position="top-center" hideProgressBar={true} />
+            <ToastContainer position="bottom-center" hideProgressBar={true} />
           </GlobalModal>
         </GlobalLoader>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>
+   {/* </React.StrictMode> */}
+  </>
 );

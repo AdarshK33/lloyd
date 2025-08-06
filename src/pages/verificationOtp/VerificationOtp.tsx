@@ -42,6 +42,7 @@ function OtpVerification() {
   };
 
   return (
+    <>
         <CommonBase>
     <form onSubmit={handleSubmit} className={styles.otpForm}>
       <h2  className={styles.verificationHeadline}>Verification</h2>
@@ -76,6 +77,7 @@ function OtpVerification() {
               </div>
     </form>
     </CommonBase>
+    </>
   );
 }
 

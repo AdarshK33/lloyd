@@ -1,213 +1,233 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 // import { useAppDispatch } from "../../store/hooks";
-import listIcon from "../../assets/images/List.png";
-import logo from "../../assets/images/logo.svg";
-import imageOnaCircle from "../../assets/images/CircleOna.png";
-import buyUnlock from "../../assets/images/buyUnlock.png";
-import PersonWithItem from "../../assets/images/PersonWithItem.png";
-import Select from "react-select";
+import Select, { components, PlaceholderProps } from "react-select";
 
 // imageOnaCircle
 import styles from "./registrationStep1.module.scss";
 import { STATES } from "../../lib/consts";
 import { toast } from "react-toastify";
+import close from "../../assets/images/close.svg";
+import down from "../../assets/images/chevron-down.svg";
+
+import CommonBase from "../../components/Popups/common/CommonBase";
+
 
 function RegistrationStep1() {
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   number: "",
-  //   checkbox: false,
-  // });
+  const [formData, setFormData] = useState({
+    name: "",
+    phoneNumber: "",
+    voucher: "",
+    state: "",
+    district: "",
+    agreedToTerms: false,
+  });
 
-    const [name, setName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
+   const [errors, setErrors] = useState<any>({});
+  const [showTerms, setShowTerms] = useState(false);
 
-  // const [nameError, setNameError] = useState(false);
-  // const [phoneError, setPhoneError] = useState(false);
-
-  
-
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-
-
-    const nameValidations = () => {
-
-    if (name !== "" && name !== null && name !== undefined) {
-      return true;
-    } else {
-      return false;
+  const validate = () => {
+    const newErrors: any= {};
+    if (!formData.name || formData.name.trim().length < 3) {
+      newErrors.name = "**Please enter a valid name ";
     }
+
+    if (!formData.phoneNumber) {
+      newErrors.phoneNumber = "**Mobile number is required";
+    } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber = "**Mobile number must be 10 digits";
+    }
+
+
+    if (!formData.district) {
+      newErrors.district = "**Please select a district";
+    }
+
+    if (!formData.state) {
+      newErrors.state = "**Please select a state";
+    }
+
+    if (!formData.agreedToTerms) {
+      newErrors.agreedToTerms = "**You must agree to the terms and conditions";
+    }
+
+    return newErrors;
+  };
+  const handleChange = (e: any) => {
+    const { name, value, type, checked } = e.target;
+    const val = type === "checkbox" ? checked : value;
+
+    setFormData((prev: any) => ({
+      ...prev,
+      [name]: val,
+    }));
+
+   
+
+    setErrors((prev:any) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
-     const phoneValidations = () => {
-  const phonePattern = /^[0-9]{10}$/;
-    if (phoneNumber !== "" && phoneNumber !== null && phoneNumber !== undefined &&    phonePattern.test(phoneNumber)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
-const checkValidations = () => {
-  let isValid = true;
-
-  if (!nameValidations()) {
-    toast.error("Please enter a valid name");
-    isValid = false;
-  }
-
-  if (!phoneValidations()) {
-    toast.error("Please Enter a valid phone number.");
-    isValid = false;
-  }
-
-  return isValid;
-};
-
-
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e:any) => {
     e.preventDefault();
-     handleClickStep2 ();
-  
-    const value = checkValidations();
-  };
-  // const stateOptions = STATES.map((state) => ({
-  //   label: state,
-  //   value: state,
-  // }));
+    const validationErrors = validate();
 
-  const handleSelect = (selectedOption: any) => {
-    console.log("Selected state:", selectedOption?.value);
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Submitted:", formData);
+       navigate("/registrationStep2");
+      // API call or navigation to next step here
+    } else {
+      setErrors(validationErrors);
+    }
   };
 
-
-  const [selectedState, setSelectedState] = useState("");
-
-  const [selectedSD, setSelectedSD] = useState("");
-
-  const handleSelectState = (event:any) => {
-    setSelectedState(event.target.value);
-    console.log("Selected:", event.target.value);
+  const handleClickStep2 = () => {
+    navigate("/registrationStep2"); // replace with your actual path
   };
 
-    const handleSelectSD = (event:any) => {
-    setSelectedSD(event.target.value);
-  
-  };
-
-
-    const handleClickStep2 = () => {
-
-    navigate('/registrationStep2'); // replace with your actual path
-  };
   return (
     <>
-      <div className={styles.container}>
-        <div className={styles.bg}>
-          <div className={styles.header}>
-            <div className={styles.logo}>
-              <img src={logo} alt="logo"></img>
+      <TermsModal isOpen={showTerms} onClose={() => setShowTerms(false)} />
+      <CommonBase>
+        <div className={styles.formSection}>
+          <form onSubmit={handleSubmit} className="form">
+            <div className={styles.formHeadline}>
+              <h2 className={styles.registration}>Registration</h2>
+              <span className={styles.step}>STEP 1 / 2</span>
             </div>
-            <div className={styles.leftImage}>
-              <img src={listIcon} alt="listIcon"></img>
+
+            <div className={styles.inputGroup}>
+              <input
+   
+                type="text"
+                name="name"
+                placeholder="Enter Name"
+                value={formData.name}
+              onChange={handleChange}
+              
+              />
+                {errors.name && <span className={styles.validation}>{errors.name}</span>}
             </div>
-          </div>
-          <div className={styles.onaCircle}>
-            <div className={styles.imageOnaCircle}>
-              <img src={imageOnaCircle} alt="imageOnaCircle"></img>
+
+
+
+            <div className={styles.inputGroup}>
+              <input
+                type="number"
+                name="phoneNumber"
+                placeholder="Enter Mobile Number"
+                 value={formData.phoneNumber}
+                   onChange={handleChange}
+              />
+                {errors.phoneNumber && <span className={styles.validation}>{errors.phoneNumber}</span>}
             </div>
-          </div>
 
-          <div className={styles.itemSection}>
-            <div className={styles.itemBanner}>
-              <img src={PersonWithItem} alt="PersonWithItem"></img>
+            <div className={styles.inputGroup}>
+              <input
+                type="text"
+                name="voucher"
+                placeholder="Voucher Code"
+                 value={formData.voucher}
+                   onChange={handleChange}
+              />
+                {errors.voucher && <span className={styles.validation}>{errors.voucher}</span>}
+              
             </div>
-          </div>
-          <div className={styles.formSection}>
-            <form onSubmit={handleSubmit} className="form">
-              <div className={styles.formHeadline}>
-                <h2 className={styles.registration}>Registration</h2>
-                <span className={styles.step}>STEP 1 / 2</span>
-              </div>
 
-              <div className={styles.inputGroup}>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Enter Name"
-                  value={name}
-                  // onChange={handleChange}
-                   onChange={(e) =>  setName(e.target.value)}
-                />
-              </div>
-
-              <div className={styles.inputGroup}>
-                <input
-                  type="number"
-                  name="number"
-                  placeholder="Enter Mobile Number"
-                  // value={number}
-                  onChange={(e)=> setPhoneNumber(e.target.value)}
-                  
-                />
-              </div>
-
-              <div className={styles.inputGroup}>
-                <input
-                  type="text"
-                  name="Voucher"
-                  placeholder="Voucher Code"
-                  // value={number}
-                  // onChange={handleChange}
-                />
-              </div>
-
-              <div className={`${styles.inputGroup}`}>
-                <select name="SD" id="SD" className={styles.customSelect}  onChange={handleSelectSD}>
-                  <option value="" disabled selected>
-                    Select District
+            <div className={`${styles.inputGroup}`}>
+              <img
+                src={down}
+                alt={"select"}
+                style={{
+                  position: "absolute",
+                  right: "2rem",
+                  paddingTop: ".5rem",
+                }}
+              />
+              <select
+                   name="district"
+              value={formData.district}
+              onChange={handleChange}
+                id="SD"
+                className={styles.customSelect}
+             
+              >
+                <option value="" disabled selected hidden>
+                  Select District
+                </option>
+                {STATES.map((name, i) => (
+                  <option key={i} value={name}>
+                    {name}
                   </option>
+                ))}
+              </select>
+                {errors.district && (
+            <span className={styles.validation}>{errors.district}</span>
+          )}
+            </div>
 
-                  {STATES.map((name,i)=>{
-                  return   <option key={i} value={name}>{name}</option>
-                  })}
-                
-                </select>
-              </div>
+            <div className={`${styles.inputGroup}`}>
+              <img
+                src={down}
+                alt={"select"}
+                style={{
+                  position: "absolute",
+                  right: "2rem",
+                  paddingTop: ".5rem",
+                }}
+              />
+              <select
+               name="state"
+               value={formData.state}
+               onChange={handleChange}
+                className={styles.customSelect}
+              >
+                <option value="" selected>
+                  Select State
+                </option>
+                {STATES.map((name, i) => {
+                  return (
+                    <option key={i} value={name}>
+                      {name}
+                    </option>
+                  );
+                })}
+              </select>
+                {errors.state && (
+            <span className={styles.validation}>{errors.state}</span>
+          )}
+            </div>
 
-              <div className={`${styles.inputGroup}`}>
-                <select name="select state" id="cars"  className={styles.customSelect}  onChange={handleSelectState}>
-                  <option value="" disabled selected>
-                    Select State
-                  </option>
-                   {STATES.map((name,i)=>{
-                  return   <option key={i} value={name}>{name}</option>
-                  })}
-                </select>
-              </div>
+            <div className={styles.checkboxInputGroup}>
+              <label className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                   name="agreedToTerms"
+              checked={formData.agreedToTerms}
+              onChange={handleChange}
+                  onClick={() => {
+                    setShowTerms(true);
+                  }}
+                />
+                <span className={styles.customCheckbox}></span>
+                <span className={styles.TermsConditionsNormal}>
+                  I agree to the
+                </span>
+                <span className={styles.TermsConditionsBold}>
+                  {" "}
+                  Terms & Conditions
+                </span>
+              </label>
 
-              <div className={styles.checkboxInputGroup}>
-                <label className={styles.checkboxLabel}>
-                  <input
-                    type="checkbox"
-                    checked={agreedToTerms}
-                    onChange={(e) => setAgreedToTerms(e.target.checked)}
-                  />
-                  <span className={styles.customCheckbox}></span>
-                  <span className={styles.TermsConditionsNormal}>
-                    I agree to the
-                  </span>
-                  <span className={styles.TermsConditionsBold}>
-                    {" "}
-                    Terms & Conditions
-                  </span>
-                </label>
-              </div>
-{/* 
+               
+            </div>
+            {/* 
               {errorMessages.length > 0 && (
   <div style={{ color: "red", marginBottom: "10px" }}>
     {errorMessages.map((msg, index) => (
@@ -215,23 +235,52 @@ const checkValidations = () => {
     ))}
   </div>
 )} */}
-              <div className={styles.buttonSection}>
-                <div className={styles.buttonBottom}>
-                  <button type="submit">Next</button>
-                </div>
+            <div className={styles.buttonSection}>
+                {errors.agreedToTerms && (
+            <span className={styles.validation}  style={{
+                            color: "#ea0c0cff",
+                            fontSize: "10px",
+                            fontWeight: 200,
+                          }}>{errors.agreedToTerms}</span>
+          )}
+              <div className={styles.buttonBottom}>
+                <button type="submit">Next</button>
               </div>
-            </form>
-          </div>
-
-          {/* <div className="button-section">
-            <div className="button-bottom">
-              <button>Next</button>
             </div>
-          </div> */}
+          </form>
         </div>
-      </div>
+      </CommonBase>
     </>
   );
 }
+
+type TermsModalProps = {
+  isOpen: boolean;
+  onClose: () => void;
+};
+
+const TermsModal = ({ isOpen, onClose }: TermsModalProps) => {
+  if (!isOpen) return null;
+
+  return (
+    <div className={isOpen ? styles.show : styles.model}>
+      <div className={styles.notice}>
+        <span id="close" className={styles.close} onClick={onClose}>
+          <img src={close} alt="Close" />
+        </span>
+        <div>{/* <img src={sucessTickMark} alt="sucessTickMark" /> */}</div>
+        <h4> Terms & conditions</h4>
+        {/*  style="text-align: justify" */}
+        <ol>
+          <li>
+            This promotion is in no way sponsored, endorsed or administered by,
+            or associated with, Facebook
+          </li>
+          <li>You are providing information on facebook.</li>
+        </ol>
+      </div>
+    </div>
+  );
+};
 
 export default RegistrationStep1;
