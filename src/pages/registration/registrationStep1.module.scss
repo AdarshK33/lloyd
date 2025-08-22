@@ -362,5 +362,47 @@ form{
 }
 
 
+.checkboxInputGroup {
+  display: flex;
+  align-items: center;
+}
+
+.checkboxWrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* spacing between "I agree to" and button */
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* space between checkbox and text */
+  cursor: pointer;
+}
+
+.customCheckbox {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.TermsConditionsNormal {
+  font-size: 14px;
+  color: #333;
+}
+
+.TermsConditionsBold {
+  all: unset; /* remove button default style */
+  font-size: 14px;
+  font-weight: bold;
+  color: #010101;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 
 }

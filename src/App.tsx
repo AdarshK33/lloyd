@@ -11,6 +11,9 @@ import VerificationOtp from "./pages/verificationOtp/VerificationOtp";
 import Redemption from "./pages/redemption/Redemption";
 import CashBack from "./pages/cashBack/CashBack";
 import KYC from "./pages/kyc/kyc";
+import RewardScreen from "./pages/congrats/RewardScreen";
+
+import OtpRedeemVerification from "./pages/verificationRedeemOtp/VerificationRedeemOtp";
 
 
 
@@ -51,6 +54,10 @@ function App() {
         <Route path={ROUTES.Redemption} element={<Redemption />} />
         <Route path={ROUTES.CashBack} element={<CashBack />} />
         <Route path={ROUTES.KYC} element={<KYC />} />
+        <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen/>} />
+        <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification/>} />
+
+
 
 
 

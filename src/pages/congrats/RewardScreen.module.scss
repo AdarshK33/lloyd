@@ -1,0 +1,78 @@
+.reward-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #d6f5d6, #fff3b0);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.logo {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+
+.logo img {
+  height: 40px;
+}
+
+.title {
+  margin-top: 70px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.subtitle {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #fff;
+  font-weight: 500;
+  max-width: 300px;
+}
+
+.prizes {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.juicer {
+  height: 130px;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+.reward {
+  height: 120px;
+  filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.4));
+}
+
+.reward-card {
+  margin-top: 30px;
+  width: 280px;
+  background: #c62828;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.reward-card .left {
+  text-align: left;
+}
+
+.reward-card .right {
+  text-align: right;
+}
+
+

@@ -10,17 +10,22 @@ import PersonWithItem from "../../assets/images/PersonWithItem.png";
 
 import styles from "./Home.module.scss";
 import API from "../../api";
+import { useAppDispatch } from "../../store/hooks";
+import { setUserKey } from "../../store/slices/authSlice";
 
 function Home() {
   const navigate = useNavigate();
+const dispatch=  useAppDispatch();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-   const [response, setResponse] = useState(null);
-
+   const [response, setResponse] = useState(null)
   const handleAuthorisedApiCall = async () => {
     try {
       const res: any = await API.createUser();
       console.log("hello API Response:", res);
+
+      
+      dispatch(setUserKey(res))
       setResponse(res); // You can display it or handle it however you need
     } catch (error) {
       console.error("Error calling authorised API:", error);

@@ -15,8 +15,9 @@ export async function sendEncrytedData(
   headers = defaultHeaders
 ) {
 
-  console.log(url,data,method,headers,"hello 1")
+
   const accessDetails: any = await store.getState().auth;
+    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;
     const dataKey = accessDetails.dataKey;
@@ -61,14 +62,17 @@ export async function sendEncrytedData(
       options.body = new URLSearchParams(obj);
     }
     let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
+     console.log(url,"hello url")
     if (
       url.includes("users") ||
       url.includes("video/") ||
       url.includes("outlet/")
-    ) {
+    )
+    {
       fullUrl += userKey;
     }
     fullUrl += "?t=" + new Date().getTime().toString();
+     console.log(fullUrl,"hello fullurl 2")
     return fetch(fullUrl, options);
   }
   return Promise.reject({
@@ -76,6 +80,83 @@ export async function sendEncrytedData(
     message: "Session not found! Please refresh",
   });
 }
+
+export async function sendGETEncrytedData(
+  url: string,
+  data?: any,
+  method : any= "GET",
+  headers: any = defaultHeaders
+) {
+
+
+  const accessDetails: any = await store.getState().auth;
+    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
+  if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
+    const userKey = accessDetails.userKey;
+    const dataKey = accessDetails.dataKey;
+    data = data || {};
+    data.userKey = userKey;
+    // fun = fun || function() {};
+
+    const t = new Date().getTime();
+    data.t = t;
+    const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
+    const dr = CryptoJS.enc.Base64.stringify(dAr);
+    const hd = CryptoJS.enc.Base64.stringify(
+      CryptoJS.enc.Utf8.parse(t.toString())
+    );
+
+    const shaObj = new jsSHA("SHA-256", "TEXT");
+    shaObj.setHMACKey(dataKey.substr(4, 14), "TEXT");
+    shaObj.update(hd + "." + dr);
+    const hmac = shaObj.getHMAC("HEX");
+    const k1 = CryptoJS.enc.Utf8.parse(hmac);
+    const k2 = CryptoJS.enc.Base64.stringify(k1);
+    let text = "";
+    const possible =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    const r1 = Math.floor(Math.random() * 6) + 1;
+    const r2 = Math.floor(Math.random() * 7) + 2;
+    for (let i = 0; i < r2; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    const f_str =
+      String(r2) + String(r1) + k2.slice(0, r1) + text + k2.slice(r1);
+    const out = hd + "." + dr + "." + f_str;
+    const obj = {
+      userKey: userKey,
+      data: out,
+    };
+    const options: any = {
+      method,
+      headers: headers,
+    };
+    // console.log(obj);
+    if (method !== "GET") {
+      options.body = new URLSearchParams(obj);
+    }
+    let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
+     console.log(url,"hello url")
+    if (
+      url.includes("users") ||
+      url.includes("video/") ||
+      url.includes("redeem/")
+    )
+    {
+      fullUrl += userKey;
+    }
+    fullUrl += "?t=" + new Date().getTime().toString();
+     console.log(fullUrl,"hello fullurl 2")
+    return fetch(fullUrl, options);
+  }
+  return Promise.reject({
+    code: 401,
+    message: "Session not found! Please refresh",
+  });
+}
+
+
+
+
 
 export function decryptData(response: any) {
   try {

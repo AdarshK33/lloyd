@@ -37,8 +37,16 @@ function KYC() {
  const validate = (): any => {
     const newErrors: any = {};
 
-    if (!formData.name.trim() || formData.name.length < 3) {
-      newErrors.name = "**Please enter a valid name";
+
+
+
+      const nameRegex =/^[A-Za-z][A-Za-z0-9\s]*$/
+
+    if (!formData.name || formData.name.trim().length < 3) {
+      newErrors.name = "**Please enter a valid name ";
+    }
+     else if (!nameRegex.test(formData.name)) {
+      newErrors.name ="**Name must start with a letter";
     }
 
     if (!formData.email.trim()) {
@@ -154,6 +162,8 @@ const handleSubmit = (e: any) => {
           placeholder="Enter Name"
           value={formData.name}
           onChange={handleChange}
+        
+              autoComplete="off"
         />
         {errors.name && <span className={styles.validation}>{errors.name}</span>}
       </div>
@@ -165,6 +175,8 @@ const handleSubmit = (e: any) => {
           placeholder="Enter Mail Id"
           value={formData.email}
           onChange={handleChange}
+        
+              autoComplete="off"
         />
         {errors.email && <span className={styles.validation}>{errors.email}</span>}
       </div>
@@ -176,6 +188,8 @@ const handleSubmit = (e: any) => {
           placeholder="Enter Address Line 1"
           value={formData.add1}
           onChange={handleChange}
+        
+          autoComplete="off"
         />
         {errors.add1 && <span className={styles.validation}>{errors.add1}</span>}
       </div>
@@ -187,6 +201,8 @@ const handleSubmit = (e: any) => {
           placeholder="Enter Address Line 2"
           value={formData.add2}
           onChange={handleChange}
+        
+          autoComplete="off"
         />
         {errors.add2 && <span className={styles.validation}>{errors.add2}</span>}
       </div>
@@ -198,6 +214,8 @@ const handleSubmit = (e: any) => {
           placeholder="Enter Pincode"
           value={formData.pinCode}
           onChange={handleChange}
+        
+          autoComplete="off"
         />
         {errors.pinCode && (
           <span className={styles.validation}>{errors.pinCode}</span>
@@ -212,6 +230,8 @@ const handleSubmit = (e: any) => {
             placeholder="Enter State"
             value={formData.state}
             onChange={handleChange}
+           
+              autoComplete="off"
           />
          
         </div>
@@ -223,6 +243,8 @@ const handleSubmit = (e: any) => {
             placeholder="Enter City"
             value={formData.city}
             onChange={handleChange}
+          
+              autoComplete="off"
           />
         
         </div>

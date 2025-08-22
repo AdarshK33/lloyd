@@ -5,19 +5,25 @@ import Select, { components, PlaceholderProps } from "react-select";
 
 // imageOnaCircle
 import styles from "./registrationStep1.module.scss";
-import { STATES } from "../../lib/consts";
+import { DISTRICT, STATES } from "../../lib/consts";
 import { toast } from "react-toastify";
 import close from "../../assets/images/close.svg";
 import down from "../../assets/images/chevron-down.svg";
 
 import CommonBase from "../../components/Popups/common/CommonBase";
+import { getCookie } from "../../lib/utils";
+import { store } from "../../store/store";
+import { useAppDispatch } from "../../store/hooks";
+import API from "../../api";
+import { setMobile } from "../../store/slices/authSlice";
+import DynamicForm from "../../helpers/form";
 
 
 function RegistrationStep1() {
-  // const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const navigate = useNavigate();
+const dispatch=  useAppDispatch();
+  const [formData, setFormData] = useState<any>({
     name: "",
     phoneNumber: "",
     voucher: "",
@@ -30,18 +36,21 @@ function RegistrationStep1() {
   const [showTerms, setShowTerms] = useState(false);
 
   const validate = () => {
+      const nameRegex =/^[A-Za-z][A-Za-z0-9\s]*$/
     const newErrors: any= {};
     if (!formData.name || formData.name.trim().length < 3) {
       newErrors.name = "**Please enter a valid name ";
     }
+     else if (!nameRegex.test(formData.name)) {
+      newErrors.name ="**Name must start with a letter";
+    }
 
     if (!formData.phoneNumber) {
       newErrors.phoneNumber = "**Mobile number is required";
-    } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
-      newErrors.phoneNumber = "**Mobile number must be 10 digits";
+    } 
+ else if (!/^[6-9]\d{9}$/.test(formData.phoneNumber)) {
+      newErrors.phoneNumber = "**Please enter a valid 10-digit mobile number";
     }
-
-
     if (!formData.district) {
       newErrors.district = "**Please select a district";
     }
@@ -58,8 +67,14 @@ function RegistrationStep1() {
   };
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
-    const val = type === "checkbox" ? checked : value;
+    let val: any = type === "checkbox" ? checked : value;
 
+
+    
+    // ✅ Special handling for phoneNumber
+    if (name === "phoneNumber") {
+      val= val.replace(/\D/g, "").slice(0, 10); // only digits, max 10
+    }
     setFormData((prev: any) => ({
       ...prev,
       [name]: val,
@@ -74,22 +89,37 @@ function RegistrationStep1() {
   };
 
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async(e:any) => {
     e.preventDefault();
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length === 0) {
       console.log("Submitted:", formData);
-       navigate("/registrationStep2");
-      // API call or navigation to next step here
+      
+
+      const info: any= {
+          name: formData.name,
+          mobile: formData.phoneNumber,
+          code: formData.voucher,
+          state: formData.state,
+          district: formData.  district
+      };
+      // console.log("hello API payload", info);
+
+    // api calling.......
+ 
+      dispatch(setMobile(formData.phoneNumber))
+           const res: any = await API.register(info);
+      console.log("hello API Response: r1", res);
+      if(res){
+         navigate("/registrationStep2");
+      }
     } else {
       setErrors(validationErrors);
     }
   };
 
-  const handleClickStep2 = () => {
-    navigate("/registrationStep2"); // replace with your actual path
-  };
+
 
   return (
     <>
@@ -110,23 +140,64 @@ function RegistrationStep1() {
                 placeholder="Enter Name"
                 value={formData.name}
               onChange={handleChange}
-              
+            
+              autoComplete="off"
               />
                 {errors.name && <span className={styles.validation}>{errors.name}</span>}
             </div>
 
 
-
+{/* 
             <div className={styles.inputGroup}>
               <input
-                type="number"
+              inputMode="numeric"
+                type="text"
                 name="phoneNumber"
                 placeholder="Enter Mobile Number"
                  value={formData.phoneNumber}
                    onChange={handleChange}
+                  maxLength={10} 
+              autoComplete="off"
               />
+            
                 {errors.phoneNumber && <span className={styles.validation}>{errors.phoneNumber}</span>}
-            </div>
+            </div> */}
+
+              <div className={styles.inputGroup}>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  inputMode="numeric"
+                  pattern="\d*"
+                  value={formData.phoneNumber}
+                  onChange={handleChange}
+                  onKeyDown={(e) => {
+                    // block non-numeric keys (allow Backspace, Delete, Arrow keys, Tab)
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      e.key !== "Backspace" &&
+                      e.key !== "Delete" &&
+                      e.key !== "ArrowLeft" &&
+                      e.key !== "ArrowRight" &&
+                      e.key !== "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onPaste={(e) => {
+                    const paste = e.clipboardData.getData("text");
+                    if (!/^\d+$/.test(paste)) {
+                      e.preventDefault(); // block if pasted content is not digits
+                    }
+                  }}
+                  maxLength={10}
+                  placeholder="Enter Mobile Number"
+                  autoComplete="off"
+                />
+                {errors.phoneNumber && (
+                  <span className={styles.validation}>{errors.phoneNumber}</span>
+                )}
+              </div>
 
             <div className={styles.inputGroup}>
               <input
@@ -135,42 +206,14 @@ function RegistrationStep1() {
                 placeholder="Voucher Code"
                  value={formData.voucher}
                    onChange={handleChange}
+                  
+              autoComplete="off"
               />
                 {errors.voucher && <span className={styles.validation}>{errors.voucher}</span>}
               
             </div>
 
-            <div className={`${styles.inputGroup}`}>
-              <img
-                src={down}
-                alt={"select"}
-                style={{
-                  position: "absolute",
-                  right: "2rem",
-                  paddingTop: ".5rem",
-                }}
-              />
-              <select
-                   name="district"
-              value={formData.district}
-              onChange={handleChange}
-                id="SD"
-                className={styles.customSelect}
-             
-              >
-                <option value="" disabled selected hidden>
-                  Select District
-                </option>
-                {STATES.map((name, i) => (
-                  <option key={i} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
-                {errors.district && (
-            <span className={styles.validation}>{errors.district}</span>
-          )}
-            </div>
+      
 
             <div className={`${styles.inputGroup}`}>
               <img
@@ -203,17 +246,47 @@ function RegistrationStep1() {
             <span className={styles.validation}>{errors.state}</span>
           )}
             </div>
+      <div className={`${styles.inputGroup}`}>
+              <img
+                src={down}
+                alt={"select"}
+                style={{
+                  position: "absolute",
+                  right: "2rem",
+                  paddingTop: ".5rem",
+                }}
+              />
+            <select
+              name="district"
+              value={formData.district}
+              onChange={handleChange}
+              id="SD"
+              className={styles.customSelect}
+              >
+                <option value="" disabled selected hidden>
+                  Select District
+                </option>
 
-            <div className={styles.checkboxInputGroup}>
+                {DISTRICT.map((name, i) => (
+                  <option key={i} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+                {errors.district && (
+            <span className={styles.validation}>{errors.district}</span>
+          )}
+            </div>
+            {/* <div className={styles.checkboxInputGroup}>
               <label className={styles.checkboxLabel}>
                 <input
                   type="checkbox"
                    name="agreedToTerms"
               checked={formData.agreedToTerms}
               onChange={handleChange}
-                  onClick={() => {
-                    setShowTerms(true);
-                  }}
+                  // onClick={() => {
+                  //   setShowTerms(true);
+                  // }}
                 />
                 <span className={styles.customCheckbox}></span>
                 <span className={styles.TermsConditionsNormal}>
@@ -226,15 +299,33 @@ function RegistrationStep1() {
               </label>
 
                
-            </div>
-            {/* 
-              {errorMessages.length > 0 && (
-  <div style={{ color: "red", marginBottom: "10px" }}>
-    {errorMessages.map((msg, index) => (
-      <p key={index} style={{ margin: "4px 0" }}>** {msg}</p>
-    ))}
+            </div> */}
+            <div className={styles.checkboxInputGroup}>
+  <div className={styles.checkboxWrapper}>
+    {/* Checkbox + label */}
+    <label className={styles.checkboxLabel}>
+      <input
+        type="checkbox"
+        name="agreedToTerms"
+        checked={formData.agreedToTerms}
+        onChange={handleChange}
+      />
+      <span className={styles.customCheckbox}></span>
+      <span className={styles.TermsConditionsNormal}>
+        I agree to the
+      </span>
+    </label>
+
+    {/* Terms & Conditions button */}
+    <button
+      type="button"
+      onClick={() => setShowTerms(true)}
+      className={styles.TermsConditionsBold}
+    >
+      Terms & Conditions
+    </button>
   </div>
-)} */}
+</div>
             <div className={styles.buttonSection}>
                 {errors.agreedToTerms && (
             <span className={styles.validation}  style={{
@@ -249,6 +340,17 @@ function RegistrationStep1() {
             </div>
           </form>
         </div>
+         {/* <DynamicForm
+      type="registrationStep1"
+      formData={formData}
+      errors={errors}
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+      extraOptions={{
+        state: STATES,
+        district:DISTRICT,
+      }}
+    /> */}
       </CommonBase>
     </>
   );
@@ -268,7 +370,7 @@ const TermsModal = ({ isOpen, onClose }: TermsModalProps) => {
         <span id="close" className={styles.close} onClick={onClose}>
           <img src={close} alt="Close" />
         </span>
-        <div>{/* <img src={sucessTickMark} alt="sucessTickMark" /> */}</div>
+        <div>{/* <Image src={sucessTickMark} alt="sucessTickMark" /> */}</div>
         <h4> Terms & conditions</h4>
         {/*  style="text-align: justify" */}
         <ol>

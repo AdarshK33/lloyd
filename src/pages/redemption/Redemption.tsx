@@ -1,141 +1,160 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 
 // imageOnaCircle
 import styles from "./resemption.module.scss";
 import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
+import API from "../../api";
+import { setUserKey } from "../../store/slices/authSlice";
+import { store } from "../../store/store";
 
 function Redemption() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   number: "",
-  //   checkbox: false,
-  // });
+   const state = store.getState();
+    const {mobile} = state.auth;
 
-    const [name, setName] = useState("");
-    const [phoneNumber, setPhoneNumber] = useState("");
-
-  // const [nameError, setNameError] = useState(false);
-  // const [phoneError, setPhoneError] = useState(false);
-
-  
-
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+    console.log(mobile,"mmmmmmmmmmm")
+const [formData, setFormData] = useState({
+    mobile: mobile,
+    code: "",
+  });
 
 
-    const nameValidations = () => {
+const [errors, setErrors] = useState<any>({});
 
-    if (name !== "" && name !== null && name !== undefined) {
-      return true;
-    } else {
-      return false;
+  const validate = () => {
+    const newErrors:any = {};
+
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = "**Mobile number is required";
+    } 
+
+     else if (!/^[6-9]\d{9}$/.test(formData.mobile)) {
+      newErrors.mobile= "**Please enter a valid 10-digit mobile number";
     }
+
+    if (!formData.code.trim()) {
+      newErrors.code = "**Code is required";
+    } else if (!/^\d{4,}$/.test(formData.code)) {
+      newErrors.code = "**Code must be at least 4 digits";
+    }
+
+    return newErrors;
+  };
+   const handleChange = (e: any) => {
+    const { name, value } = e.target;
+
+    setFormData((prev: any) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setErrors((prev: any) => ({
+      ...prev,
+      [name]: "",
+    }));
   };
 
-     const phoneValidations = () => {
-  const phonePattern = /^[0-9]{10}$/;
-    if (phoneNumber !== "" && phoneNumber !== null && phoneNumber !== undefined &&    phonePattern.test(phoneNumber)) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
-const checkValidations = () => {
-  let isValid = true;
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault();
+  //   handleClickVerificatonOtp();
+  //   const value = checkValidations();
+  // };
 
-  if (!nameValidations()) {
-    toast.error("Please enter a valid mobile number.");
-    isValid = false;
-  }
-
-  if (!phoneValidations()) {
-    toast.error("Please Enter a valid code");
-    isValid = false;
-  }
-
-  return isValid;
-};
-
-
-  const handleSubmit = (e: any) => {
+   const handleSubmit = async(e: any) => {
     e.preventDefault();
-    handleClickVerificatonOtp();
-    const value = checkValidations();
+    const validationErrors = validate();
+
+    if (Object.keys(validationErrors).length === 0) {
+      console.log("Redemption submitted:", formData);
+
+         const info: any= {
+        
+          mobile: formData.mobile,
+          code: formData.code,
+
+      };
+      // console.log("hello API payload", info);
+ const res: any = await API.sendOTP(info);
+      console.log("hello API Response:", res);
+      
+      //  navigate("/verificationOtp");
+      // Proceed with API or next step
+    } else {
+      setErrors(validationErrors);
+    }
   };
-  // const stateOptions = STATES.map((state) => ({
-  //   label: state,
-  //   value: state,
-  // }));
 
-  const handleSelect = (selectedOption: any) => {
-    console.log("Selected state:", selectedOption?.value);
+  // 
+
+
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      const res: any = await API.createUserRedeem();
+      console.log("hello API Response:", res);
+        
+            dispatch(setUserKey(res))
+
+
+      //       if(res){
+      //       // const res: any = await API.getAllReward();
+      // // console.log("hello API Response:", res);
+      //       }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
 
+  fetchData();
+}, []);
 
-  const [selectedState, setSelectedState] = useState("");
-
-  const [selectedSD, setSelectedSD] = useState("");
-
-  const handleSelectState = (event:any) => {
-    setSelectedState(event.target.value);
-    console.log("Selected:", event.target.value);
-  };
-
-    const handleSelectSD = (event:any) => {
-    setSelectedSD(event.target.value);
-  
-  };
-  
-    const handleClickVerificatonOtp = () => {
-    navigate("/verificationOtp"); // replace with your actual path
-  };
   return (
     <>
        <CommonBase>
           <div className={styles.formSection}>
-            <form onSubmit={handleSubmit} className={styles.redemptionForm}>
-              <div className={styles.formHeadline}>
-                <h2 className={styles.redemptionHeadline}>Redemption</h2>
-              </div>
+        <form onSubmit={handleSubmit} className={styles.redemptionForm}>
+      <div className={styles.formHeadline}>
+        <h2 className={styles.redemptionHeadline}>Redemption</h2>
+      </div>
 
-              <div className={styles.inputGroup}>
-                <input
-                  type="text"
-                  name="username"
-                  placeholder="Enter Mobile Number"
-                  value={name}
-                
-                   onChange={(e) =>  setName(e.target.value)}
-                />
-              </div>
+      <div className={styles.inputGroup}>
+        <input
+          type="text"
+          name="mobile"
+          placeholder="Enter Mobile Number"
+          value={formData.mobile}
+          onChange={handleChange}
+        />
+        {errors.mobile && (
+          <span className={styles.validation}>{errors.mobile}</span>
+        )}
+      </div>
 
-              <div className={styles.inputGroup}>
-                <input
-                  type="number"
-                  name="number"
-                  placeholder="Enter Code"
-                  // value={number}
-                  onChange={(e)=> setPhoneNumber(e.target.value)}
-                  
-                />
-              </div>
+      <div className={styles.inputGroup}>
+        <input
+          type="number"
+          name="code"
+          placeholder="Enter Code"
+          value={formData.code}
+          onChange={handleChange}
+        />
+        {errors.code && (
+          <span className={styles.validation}>{errors.code}</span>
+        )}
+      </div>
 
-
-        
-           
-
-              <div className={styles.buttonSection}>
-                <div className={styles.buttonBottom}>
-                  <button type="submit">Submit</button>
-                </div>
-              </div>
-            </form>
+      <div className={styles.buttonSection}>
+        <div className={styles.buttonBottom}>
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
           </div>
           </CommonBase>
        

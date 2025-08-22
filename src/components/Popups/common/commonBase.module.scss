@@ -7,7 +7,7 @@
 
 
 .bg,
-.bg_kyc {
+.bg_custom {
   position: relative;
   z-index: 1; // Ensure it stays below the sidenav
 }
@@ -20,7 +20,7 @@ background-repeat: no-repeat;
 height: auto;
 }
 
-.bg_kyc{
+.bg_custom{
   background-image:url("../../../assets/images/BG.png");
 background-size:100%100%;
 background-position: center;

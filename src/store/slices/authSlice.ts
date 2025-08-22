@@ -5,12 +5,14 @@ export interface AuthSliceState {
   userKey: string;
   dataKey: string;
   accessToken: string;
+  mobile:any;
 }
 
 const initialState: AuthSliceState = {
   userKey: "",
   dataKey: "",
   accessToken: "",
+  mobile:"",
 };
 
 // If you are not using async thunks you can use the standalone `createSlice`.
@@ -33,6 +35,10 @@ export const authSlice = createSlice({
       state.accessToken = action.payload;
       return state;
     }),
+      setMobile: create.reducer((state, action: PayloadAction<string>) => {
+      state.mobile = action.payload;
+      return state;
+    }),
     clearAccessDetails: create.reducer(() => {
       return { ...initialState };
     }),
@@ -41,13 +47,15 @@ export const authSlice = createSlice({
   // state as their first argument.
   selectors: {
     getAccessToken: (state) => state.accessToken,
+    getMobile: (state) => state.mobile,
+
     getAccessDetails: (state) => state,
   },
 });
 
 // Action creators are generated for each case reducer function.
-export const { setAccessToken, clearAccessDetails, setUserKey } =
+export const { setAccessToken, clearAccessDetails, setUserKey , setMobile} =
   authSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
-export const { getAccessDetails, getAccessToken } = authSlice.selectors;
+export const { getAccessDetails, getAccessToken,  getMobile} = authSlice.selectors;

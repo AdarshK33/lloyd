@@ -25,11 +25,20 @@ export interface CreateUserResponse extends BaseResponse {
 
 export interface RegisterPayload {
   name: string;
-  mobile: string;
+  mobile: any;
   email: string;
-  city: number;
+  code:any;
+  state:  string;
+  district: string;
 }
 
+
+export interface Register2Payload {
+    outlet:any;
+    invoiceNumber:any;
+    file: any;
+
+}
 export interface VerifyOtpResponse extends BaseResponse {
   accessToken: string;
 }

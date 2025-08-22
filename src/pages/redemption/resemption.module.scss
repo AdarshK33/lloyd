@@ -1,6 +1,6 @@
 .formSection{
 position: relative;
-top: -4rem
+bottom: 4rem
 }
 
 
@@ -44,6 +44,13 @@ top: -4rem
             background-color: #DA251D;
         }
     }
+}
+
+.validation {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  display: block;
 }
 
 @media screen and (max-width: 768px) {

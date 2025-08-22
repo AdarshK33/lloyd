@@ -31,7 +31,16 @@ function CommonBase({ children }: Props) {
     <>
   
       <div className={styles.container}>
-       <div className={location.pathname === "/verificationOtp" ? styles.bg_kyc : styles.bg}>
+       {/* <div className={location.pathname === "/verificationOtp" ||"/redemption"  ? styles.bg_custom : styles.bg}> */}
+       <div
+  className={
+    location.pathname === "/verificationOtp" || location.pathname === "/redemption"
+      ? styles.bg_custom
+      : location.pathname === "/kyc" ||location.pathname === "/RegistrationStep1"
+      ? styles.bg
+      : styles.bg_custom
+  }
+>
           <div className={styles.header}>
             <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
               <a href="/" className="closebtn" onClick={closeNav}>

@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import Dropzone from "react-dropzone";
 import uploadIcon from "../../assets/images/UploadSimple.svg";
+import API from "../../api";
 
 function RegistrationStep2() {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ function RegistrationStep2() {
     invoiceNumber: "",
     // checkbox: false,
   });
+const [fileName1, setFileName1] = useState(""); // store selected file name
 
   const [newErrors, setError] = useState<any>({});
   // const [phoneError, setPhoneError] = useState(false);
@@ -27,7 +29,6 @@ function RegistrationStep2() {
   const handleChange = (e: any) => {
     const { name, type, value } = e.target;
 
-    console.log(e, "eeeeeeeeee");
     const newValue = type === "file" ? e.target.files?.[0] : value;
 
     setFormData((prev: any) => ({
@@ -58,7 +59,7 @@ function RegistrationStep2() {
     return errors;
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     //
     // const value = checkValidations();
@@ -71,11 +72,43 @@ function RegistrationStep2() {
       setError(validationErrors);
     } else {
       console.log("Form submitted", formData);
-      navigate("/verificationOtp");
+
+      //   const info: any= {
+      //     outlet: formData.outletName,
+      //     invoiceNumber: formData.invoiceNumber,
+      //     invoice1: formData.file1,
+      //  invoice2: ""
+      // };
+      // console.log("hello API payload", info);
+
+    // api calling.......
+
+ 
+           const res: any = await API.registerStep2(
+                {
+                  outlet: formData?.outletName,
+                  invoiceNumber: formData?.invoiceNumber,
+                  file: formData.file1?.[0],
+               
+                }
+           );
+          //  
+
+           
+      console.log("hello API Response: r1", res);
+
+      //  registerStep2
+      if(res){
+ navigate("/verificationOtp");
+      }
+     
     }
   };
 
   const onDrop = async (acceptedFiles: any) => {
+      if (acceptedFiles.length > 0) {
+    setFileName1(acceptedFiles[0].name); // store file name
+  }
     const formData = new FormData();
     acceptedFiles.forEach((file: any) => {
       formData.append("file", file);
@@ -88,7 +121,7 @@ function RegistrationStep2() {
       ...prev,
       ["file1"]: "",
     }));
-    // dispatch(mediaUploadApi(formData));
+  
   };
   return (
     <>
@@ -107,6 +140,8 @@ function RegistrationStep2() {
                 placeholder="Outlet Name"
                 value={formData.outletName}
                 onChange={handleChange}
+                // required
+              autoComplete="off"
               />
               {newErrors.outletName && (
                 <span className="validation">{newErrors.outletName}</span>
@@ -120,6 +155,8 @@ function RegistrationStep2() {
                 placeholder="Invoice number"
                 value={formData.invoiceNumber}
                 onChange={handleChange}
+                // required
+              autoComplete="off"
               />
               {newErrors.invoiceNumber && (
                 <span className="validation">{newErrors.invoiceNumber}</span>
@@ -148,7 +185,7 @@ function RegistrationStep2() {
                             fontWeight: 200,
                           }}
                         >
-                          Upload Invoice 1
+                          {fileName1 || "Upload Invoice 1"}
                         </div>
                       </>
                       <>
@@ -169,7 +206,7 @@ function RegistrationStep2() {
 
             <div className={styles.inputGroup}>
               <Dropzone
-                onDrop={onDrop}
+                // onDrop={onDrop}
                 accept={{ "image/*": [] }}
                 maxFiles={1}
                 maxSize={2 * 1024 * 1024}

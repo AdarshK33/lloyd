@@ -2,6 +2,7 @@ import {
   BaseResponse,
   CreateUserPayload,
   CreateUserResponse,
+  Register2Payload,
   RegisterPayload,
   RegisterResponse,
   VerifyOtpResponse,
@@ -10,6 +11,7 @@ import {
   authorisedEncrytedApiCall,
   decryptData,
   sendEncrytedData,
+  sendGETEncrytedData,
 } from "./encrypt";
 import {
   defaultCatch,
@@ -21,6 +23,7 @@ import { getCookie } from "../lib/utils";
 import { store } from "../store/store";
 import { setIpDetails } from "../store/slices/ipInfoSlice";
 import { IpLookupData } from "../interface";
+import { sendMultipartEncryptedData } from "./formEncrypt";
 
 const jsonHeaders: { [key: string]: string } = {
   Accept: "application/json",
@@ -98,7 +101,7 @@ class APIS {
       console.log(error);
     }
     this.showLoader("Starting session...");
-    return fetch(`${import.meta.env.VITE_API_BASE_URL}/users`, {
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}collect`, {
       method: "POST",
       headers,
       body: JSON.stringify(payload),
@@ -126,9 +129,29 @@ class APIS {
       .catch(defaultCatch)
       .finally(this.hideLoader);
   }
-  verifyOTP(otp: string, token: string): Promise<VerifyOtpResponse> {
+  // verifyOTP(otp: string, token: string): Promise<VerifyOtpResponse> {
+  //   this.showLoader("Verifying OTP...");
+  //   return sendEncrytedData("users/verifyOTP/", { otp, token })
+  //     .then(fetchHandlerText)
+  //     .then(decryptData)
+  //     .then(responseHelper)
+  //     .catch(defaultCatch)
+  //     .finally(this.hideLoader);
+  // }
+
+    verifyOTP(otp: string): Promise<VerifyOtpResponse> {
     this.showLoader("Verifying OTP...");
-    return sendEncrytedData("users/verifyOTP/", { otp, token })
+    return sendEncrytedData("users/verifyOTP/", { otp })
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
+
+     verifyRedeemOTP(otp: string): Promise<VerifyOtpResponse> {
+    this.showLoader("Verifying OTP...");
+    return sendEncrytedData("redeem/verifyOTP/", { otp })
       .then(fetchHandlerText)
       .then(decryptData)
       .then(responseHelper)
@@ -146,6 +169,90 @@ class APIS {
       .catch(defaultCatch)
       .finally(this.hideLoader);
   }
+
+    registerStep2(payload: Register2Payload): Promise<RegisterResponse> {
+    // console.log(payload);
+    this.showLoader("Saving details...");
+    return sendMultipartEncryptedData("users/enterDetails/", payload)
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
+
+  
+    async createUserRedeem(): Promise<CreateUserResponse> {
+    const payload: CreateUserPayload = {};
+    const state = store.getState();
+    const { accessToken } = state.auth;
+    const masterKey = getCookie("thumsup_and_sprite-id");
+    if (masterKey) {
+      payload.masterKey = masterKey;
+    }
+    const headers = jsonHeaders;
+    if (accessToken) {
+      headers.Authorization = `Bearer ${accessToken}`;
+    }
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get("utm_source")) {
+      payload.utm_source = urlParams.get("utm_source");
+    }
+    if (urlParams.get("utm_medium")) {
+      payload.utm_medium = urlParams.get("utm_medium");
+    }
+    if (urlParams.get("utm_campaign")) {
+      payload.utm_campaign = urlParams.get("utm_campaign");
+    }
+    if (urlParams.get("utm_content")) {
+      payload.utm_content = urlParams.get("utm_content");
+    }
+    if (urlParams.get("utm_term")) {
+      payload.utm_term = urlParams.get("utm_term");
+    }
+
+    try {
+      const ipInfo = await this.ipLookup();
+      if (ipInfo) {
+        payload.ipInfo = ipInfo;
+        store.dispatch(setIpDetails(ipInfo));
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    this.showLoader("Starting session...");
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}redeem/collect`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload),
+    })
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
+
+
+    async getReward(): Promise<CreateUserResponse> {
+   
+const accessDetails: any = await store.getState().auth;
+    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
+     const userKey = accessDetails.userKey;
+    const dataKey = accessDetails.dataKey;
+  const headers = jsonHeaders;
+    this.showLoader("Starting session...");
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}/users/getReward/${userKey}`, {
+      method: "GET",
+      headers,
+    })
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
+
 
   authorisedApi(): Promise<BaseResponse> {
     console.log("hello ");
