@@ -4,6 +4,8 @@ import {
   CreateUserResponse,
   kycPayload,
   kycResponse,
+  PinCodePayload,
+  PinCodeResponse,
   Register2Payload,
   RegisterPayload,
   RegisterResponse,
@@ -285,6 +287,17 @@ const accessDetails: any = await store.getState().auth;
       .finally(this.hideLoader);
   }
 
+  //   pinCodeApi(payload: PinCodePayload): Promise<PinCodeResponse> {
+  //   // console.log(payload);
+  //   this.showLoader("Saving details...");
+  //   return sendEncrytedData("redeem/pincode/", payload)
+  //     .then(fetchHandlerText)
+  //     .then(decryptData)
+  //     .then(responseHelper)
+  //     .catch(defaultCatch)
+  //     .finally(this.hideLoader);
+  // }
+
 
     addKYC(payload: kycPayload): Promise<kycResponse> {
     // console.log(payload);
@@ -300,6 +313,17 @@ const accessDetails: any = await store.getState().auth;
     console.log("hello ");
     this.showLoader();
     return authorisedEncrytedApiCall("users/path/")
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
+
+   allTokenApi( url: any,payload: any): Promise<BaseResponse> {
+    console.log("hello ");
+    this.showLoader();
+    return authorisedEncrytedApiCall(url,payload)
       .then(fetchHandlerText)
       .then(decryptData)
       .then(responseHelper)

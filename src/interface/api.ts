@@ -57,6 +57,11 @@ export interface kycPayload {
   nocForm: any;
   image: any
 }
+
+export interface PinCodePayload {
+   pinCode: any
+
+}
 export interface VerifyOtpResponse extends BaseResponse {
   accessToken: string;
 }
@@ -75,3 +80,9 @@ export interface UpiResponse extends BaseResponse {
 export interface kycResponse extends BaseResponse {
   accessToken: string;
 }
+
+
+export interface PinCodeResponse extends BaseResponse {
+  accessToken: string;
+}
+
