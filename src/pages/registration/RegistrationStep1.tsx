@@ -262,6 +262,7 @@ const dispatch=  useAppDispatch();
               onChange={handleChange}
               id="SD"
               className={styles.customSelect}
+                disabled={!formData.state}
               >
                 <option value="" disabled selected hidden>
                   Select District

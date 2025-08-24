@@ -149,8 +149,8 @@ const handleSubmit = (e: any) => {
           pincode: formData.  pinCode,
              state: formData.state,
           city: formData.city,
-          panNumber: formData.panCard,
-          pan:formData.file3
+          selfieImage: formData.file1,
+          nocForm: formData.file2,
       };
     
 
