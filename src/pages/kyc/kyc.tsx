@@ -10,7 +10,8 @@ import rewardBundle from "../../assets/images/rewardBundle.png";
 import Claro from "../../assets/images/Claro 3 JAR 1.svg";
 import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 import close from "../../assets/images/close.svg";
-
+import Dropzone from "react-dropzone";
+import uploadIcon from "../../assets/images/UploadSimple.svg";
 
 function KYC() {
   const dispatch = useAppDispatch();
@@ -24,10 +25,19 @@ function KYC() {
     pinCode: "",
     state: "",
     city: "",
+    file1:"",
+    panCard:"",
+    file2:"",
+    file3:""
   });
 
    const [errors, setErrors] = useState<any>({});
+const [fileName1, setFileName1] = useState(""); 
+const [fileName2, setFileName2] = useState(""); // store selected file name
+const [fileName3, setFileName3] = useState(""); // store selected file name
+// store selected file name
 
+const [panForm, setPanForm] = useState(true); 
 
   const [activeTab, setActiveTab] = useState('cashback');
  const [showTerms, setShowTerms] = useState(false);
@@ -78,17 +88,32 @@ function KYC() {
     if (!formData.city.trim()) {
       newErrors.city = "**City is required";
     }
+       if (!formData.file1) {
+       newErrors.file1 = "**Selfie image  is required";
+    }
+
+    if (!formData.panCard.trim()) {
+      newErrors.panCard = "**Pancard is required";
+    } 
+        if (!formData.file2) {
+       newErrors.file2 = "**Noc form  is required";
+    }
+        if (!formData.file3) {
+       newErrors.file3 = "**Pan card image  is required";
+    }
+   
 
     return newErrors;
   };
 
 
     const handleChange = (e: any) => {
-    const { name, value } = e.target;
+ const { name, type, value } = e.target;
 
+    const newValue = type === "file" ? e.target.files?.[0] : value;
     setFormData((prev: any) => ({
       ...prev,
-      [name]: value,
+      [name]: newValue,
     }));
 
     setErrors((prev: any) => ({
@@ -102,8 +127,34 @@ const handleSubmit = (e: any) => {
 
     if (Object.keys(validationErrors).length === 0) {
       console.log("Submitted:", formData);
-      //  navigate("/");
-      // API call or navigation to next step here
+    if(panForm){
+
+ const info: any= {
+          name: formData.name,
+          email: formData.email,
+          address1: formData.add1,
+          address2: formData.add2,
+          pincode: formData.  pinCode,
+             state: formData.state,
+          city: formData.city,
+          panNumber: formData.panCard,
+          pan:formData.file3
+      };
+    }
+    if(!panForm){ const info: any= {
+          name: formData.name,
+          email: formData.email,
+          address1: formData.add1,
+          address2: formData.add2,
+          pincode: formData.  pinCode,
+             state: formData.state,
+          city: formData.city,
+          panNumber: formData.panCard,
+          pan:formData.file3
+      };
+    
+
+    }
     } else {
       setErrors(validationErrors);
     }
@@ -111,9 +162,23 @@ const handleSubmit = (e: any) => {
 
 
 
-  const handleClickVerificatonOtp = () => {
-    // navigate("/verificationOtp"); // replace with your actual path
-  };
+const onDrop = (field: string, setFileName: (name: string) => void) => 
+  (acceptedFiles: any) => {
+    if (acceptedFiles.length > 0) {
+      setFileName(acceptedFiles[0].name); // set correct file name
+    }
+
+    setFormData((prev: any) => ({
+      ...prev,
+      [field]: acceptedFiles, // store file(s) in formData
+    }));
+
+    setErrors((prev: any) => ({
+      ...prev,
+      [field]: "",
+    }));
+};
+
   return (
     <>
 
@@ -208,15 +273,38 @@ const handleSubmit = (e: any) => {
       </div>
 
       <div className={styles.inputGroup}>
-        <input
-          type="text"
-          name="pinCode"
-          placeholder="Enter Pincode"
-          value={formData.pinCode}
-          onChange={handleChange}
-        
-          autoComplete="off"
-        />
+       
+                <input
+                  type="text"
+                  name="pinCode"
+                  placeholder="Enter Pincode"
+                  value={formData.pinCode}
+                  onChange={handleChange}
+                  inputMode="numeric"
+                  pattern="\d*"
+                  onKeyDown={(e) => {
+                    // block non-numeric keys (allow Backspace, Delete, Arrow keys, Tab)
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      e.key !== "Backspace" &&
+                      e.key !== "Delete" &&
+                      e.key !== "ArrowLeft" &&
+                      e.key !== "ArrowRight" &&
+                      e.key !== "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onPaste={(e) => {
+                    const paste = e.clipboardData.getData("text");
+                    if (!/^\d+$/.test(paste)) {
+                      e.preventDefault(); // block if pasted content is not digits
+                    }
+                  }}
+                  maxLength={6}
+                  autoComplete="off"
+                />
+         
         {errors.pinCode && (
           <span className={styles.validation}>{errors.pinCode}</span>
         )}
@@ -259,13 +347,171 @@ const handleSubmit = (e: any) => {
         <div className={styles.inputGroup}>
   {errors.city && <span className={styles.validation}>{errors.city}</span>}
         
-        
         </div>
       </div>
+
+      {!panForm?(<>
+          <div className={styles.inputGroup}>
+                <input
+                  type="text"
+                  name="panCard"
+                  inputMode="numeric"
+                  pattern="\d*"
+                  value={formData.panCard}
+                  onChange={handleChange}
+                  onKeyDown={(e) => {
+                    // block non-numeric keys (allow Backspace, Delete, Arrow keys, Tab)
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      e.key !== "Backspace" &&
+                      e.key !== "Delete" &&
+                      e.key !== "ArrowLeft" &&
+                      e.key !== "ArrowRight" &&
+                      e.key !== "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onPaste={(e) => {
+                    const paste = e.clipboardData.getData("text");
+                    if (!/^\d+$/.test(paste)) {
+                      e.preventDefault(); // block if pasted content is not digits
+                    }
+                  }}
+                  maxLength={10}
+                  placeholder="Enter pan card number"
+                  autoComplete="off"
+                />
+                {errors.panCard && (
+                  <span className={styles.validation}>{errors.panCard}</span>
+                )}
+              </div>
+         <div className={styles.inputGroup}>
+              <Dropzone
+                // onDrop={onDrop}
+                 onDrop={onDrop("file3", setFileName3)}
+                accept={{ "image/*": [] }}
+                maxFiles={1}
+                maxSize={2 * 1024 * 1024}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps()}
+                    className={`${styles.inputLike} ${styles.upload_placeholder}`}
+                  >
+                    <input {...getInputProps()} />
+                    <div className={styles.dropzoneContent}>
+                      <>
+                        <div
+                          style={{
+                            color: "#797979",
+                            fontSize: "10px",
+                            fontWeight: 200,
+                          }}
+                        >
+                          {fileName3 || "Upload PANCARD image"}
+                        </div>
+                      </>
+                      <>
+                        <img
+                          src={uploadIcon}
+                          alt="upld"
+                          className={styles.uploadIcon}
+                        />
+                      </>
+                    </div>
+                  </div>
+                )}
+              </Dropzone>
+             {errors.file3 && (
+                <span className="validation">{errors.file3}</span>
+              )}
+            </div>
+   
+
+      </>):(<>
+      
+      </>)}
+               <div className={styles.inputGroup}>
+              <Dropzone
+               onDrop={onDrop("file1", setFileName1)}
+                accept={{ "image/*": [] }}
+                maxFiles={1}
+                maxSize={2 * 1024 * 1024}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps()}
+                    className={`${styles.inputLike} ${styles.upload_placeholder}`}
+                  >
+                    <input {...getInputProps()} />
+                    <div className={styles.dropzoneContent}>
+                      <>
+                        <div
+                          style={{
+                            color: "#797979",
+                            fontSize: "10px",
+                            fontWeight: 200,
+                          }}
+                        >
+                          {fileName1 || "Upload selfie image"}
+                        </div>
+                      </>
+                      <>
+                        <img
+                          src={uploadIcon}
+                          alt="upld"
+                          className={styles.uploadIcon}
+                        />
+                      </>
+                    </div>
+                  </div>
+                )}
+              </Dropzone>
+             {errors.file1 && (
+                <span className="validation">{errors.file1}</span>
+              )}
+            </div>
+
+            <div className={styles.inputGroup}>
+              <Dropzone
+                // onDrop={onDrop}
+                 onDrop={onDrop("file2", setFileName2)}
+                accept={{ "image/*": [] }}
+                maxFiles={1}
+                maxSize={2 * 1024 * 1024}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps()}
+                    className={`${styles.inputLike} ${styles.upload_placeholder}`}
+                  >
+                    <input {...getInputProps()} />
+                    <div className={styles.dropzoneContent}>
+                      <>
+                        <div className={styles.text_bulk_upload}>
+                        {fileName2||  " Upload Noc form"}
+                        </div>
+                      </>
+                      <>
+                        <img
+                          src={uploadIcon}
+                          alt="upld"
+                          className={styles.uploadIcon}
+                        />
+                      </>
+                    </div>
+                  </div>
+                )}
+              </Dropzone>
+             {errors.file2 && (
+                <span className="validation">{errors.file2}</span>
+              )}
+            </div>
       
       <div className={styles.buttonSection}>
         <div className={styles.buttonBottom}>
-          <button type="submit">Get OTP</button>
+          <button type="submit">Submit</button>
         </div>
       </div>
     </form>

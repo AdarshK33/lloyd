@@ -2,9 +2,13 @@ import {
   BaseResponse,
   CreateUserPayload,
   CreateUserResponse,
+  kycPayload,
+  kycResponse,
   Register2Payload,
   RegisterPayload,
   RegisterResponse,
+  UpiPayload,
+  UpiResponse,
   VerifyOtpResponse,
 } from "../interface/api";
 import {
@@ -270,8 +274,28 @@ const accessDetails: any = await store.getState().auth;
       .catch(defaultCatch)
       .finally(this.hideLoader);
   }
+  upiIdApi(payload: UpiPayload): Promise<UpiResponse> {
+    // console.log(payload);
+    this.showLoader("Saving details...");
+    return sendEncrytedData("redeem/submitUpiDetails/", payload)
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
 
 
+    addKYC(payload: kycPayload): Promise<kycResponse> {
+    // console.log(payload);
+    this.showLoader("Saving details...");
+    return sendEncrytedData("redeem/kyc/", payload)
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
   authorisedApi(): Promise<BaseResponse> {
     console.log("hello ");
     this.showLoader();

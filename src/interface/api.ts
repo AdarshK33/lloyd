@@ -31,6 +31,10 @@ export interface RegisterPayload {
   state:  string;
   district: string;
 }
+export interface UpiPayload {
+  upiId: string;
+
+}
 
 
 export interface Register2Payload {
@@ -39,10 +43,35 @@ export interface Register2Payload {
     file: any;
 
 }
+
+
+export interface kycPayload {
+  name: string;
+  email: string;
+  address1:any;
+   address2:any;
+   panNumber: any;
+   pincode: any
+  state:  string;
+  city: string;
+  nocForm: any;
+  image: any
+}
 export interface VerifyOtpResponse extends BaseResponse {
   accessToken: string;
 }
 
 export interface RegisterResponse extends BaseResponse {
+  accessToken: string;
+}
+
+
+export interface UpiResponse extends BaseResponse {
+  accessToken: string;
+
+
+}
+
+export interface kycResponse extends BaseResponse {
   accessToken: string;
 }

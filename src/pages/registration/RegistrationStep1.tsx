@@ -191,7 +191,7 @@ const dispatch=  useAppDispatch();
                     }
                   }}
                   maxLength={10}
-                  placeholder="Enter Mobile Number"
+                  placeholder="Enter mobile number"
                   autoComplete="off"
                 />
                 {errors.phoneNumber && (

@@ -20,6 +20,7 @@ import flipcart from "../../assets/images/flipcart.svg";
 import styles from "./cashBack.module.scss";
 import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
+import API from "../../api";
 
 function CashBack() {
   const dispatch = useAppDispatch();
@@ -76,12 +77,22 @@ function CashBack() {
     return isValid;
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    setModalType("cashback");
-    setShowTerms(true);
     const value = checkValidations();
+    if(value==true){
+
+       const info: any= {
+          upiId:name
+      };
+const res: any = await API.upiIdApi(info);
+      //  save accesstoken authorisedApi
+      if(res){
+         setModalType("cashback");
+    setShowTerms(true);
+      }
+    }
   };
 
   const options = [
