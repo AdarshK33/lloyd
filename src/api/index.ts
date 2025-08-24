@@ -252,6 +252,24 @@ const accessDetails: any = await store.getState().auth;
       .catch(defaultCatch)
       .finally(this.hideLoader);
   }
+      async getAllReward(): Promise<CreateUserResponse> {
+   
+const accessDetails: any = await store.getState().auth;
+    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
+     const userKey = accessDetails.userKey;
+    const dataKey = accessDetails.dataKey;
+  const headers = jsonHeaders;
+    this.showLoader("Starting session...");
+    return fetch(`${import.meta.env.VITE_API_BASE_URL}/redeem/getRewardDetails/${userKey}`, {
+      method: "GET",
+      headers,
+    })
+      .then(fetchHandlerText)
+      .then(decryptData)
+      .then(responseHelper)
+      .catch(defaultCatch)
+      .finally(this.hideLoader);
+  }
 
 
   authorisedApi(): Promise<BaseResponse> {

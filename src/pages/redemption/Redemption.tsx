@@ -82,8 +82,9 @@ const [errors, setErrors] = useState<any>({});
       // console.log("hello API payload", info);
  const res: any = await API.sendOTP(info);
       console.log("hello API Response:", res);
-      
-      //  navigate("/verificationOtp");
+      if(res.statusCode===200){
+       navigate("/verificationRedeemOtp");
+      }
       // Proceed with API or next step
     } else {
       setErrors(validationErrors);
@@ -99,7 +100,7 @@ useEffect(() => {
       const res: any = await API.createUserRedeem();
       console.log("hello API Response:", res);
         
-            dispatch(setUserKey(res))
+            dispatch(setUserKey(res)) //update userkey
 
 
       //       if(res){

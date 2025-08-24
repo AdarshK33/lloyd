@@ -65,6 +65,7 @@ export async function sendEncrytedData(
      console.log(url,"hello url")
     if (
       url.includes("users") ||
+      url.includes("redeem") ||
       url.includes("video/") ||
       url.includes("outlet/")
     )
