@@ -49,7 +49,7 @@ function KYC() {
     const newErrors: any = {};
 
     const nameRegex = /^[A-Za-z][A-Za-z0-9\s]*$/;
-
+const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
     if (!formData.name || formData.name.trim().length < 3) {
       newErrors.name = "**Please enter a valid name ";
     } else if (!nameRegex.test(formData.name)) {
@@ -85,19 +85,32 @@ function KYC() {
     if (!formData.city.trim()) {
       newErrors.city = "**City is required";
     }
-    if (!formData.file1) {
-      newErrors.file1 = "**Selfie image  is required";
-    }
+ 
+  
+    if (panForm&&panForm===true) {
+
+      
 
     if (!formData.panCard.trim()) {
       newErrors.panCard = "**Pancard is required";
     }
+     else if (!panRegex.test(formData.panCard)) {
+      newErrors.panCard = "**Invalid PAN format";
+    }
+     if (!formData.file3) {
+      newErrors.file3 = "**Pan card image  is required";
+    }
+  } 
+
+      if (!formData.file1) {
+      newErrors.file1 = "**Selfie image  is required";
+    }
+
+   
     if (!formData.file2) {
       newErrors.file2 = "**Noc form  is required";
     }
-    if (!formData.file3) {
-      newErrors.file3 = "**Pan card image  is required";
-    }
+  
 
     return newErrors;
   };
@@ -116,37 +129,64 @@ function KYC() {
       [name]: "",
     }));
   };
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async(e: any) => {
     e.preventDefault();
+  
     const validationErrors = validate();
-
+  console.log("Submitted: pan", formData);
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Submitted:", formData);
+    
       if (panForm) {
-        const info: any = {
-          name: formData.name,
-          email: formData.email,
-          address1: formData.add1,
-          address2: formData.add2,
-          pincode: formData.pinCode,
-          state: formData.state,
-          city: formData.city,
-          panNumber: formData.panCard,
-          pan: formData.file3,
-        };
+        // const info: any = {
+        //   name: formData.name,
+        //   email: formData.email,
+        //   address1: formData.add1,
+        //   address2: formData.add2,
+        //   pincode: formData.pinCode,
+        //   state: formData.state,
+        //   city: formData.city,
+        //     selfieImage: formData?.file1?.[0],
+        // nocForm: formData?.file2?.[0],
+        //   panNumber: formData.panCard,
+        //   pan: formData.file3,
+        // };
+
+   
+const res: any = await API.addKYC({
+  name: formData.name,
+  email: formData.email,
+  address1: formData.add1,
+  address2: formData.add2,
+  pincode: formData.pinCode,
+  state: formData.state,
+  city: formData.city,
+  selfieImage: formData?.file1?.[0],
+  nocForm: formData?.file2?.[0],
+  panNumber: formData.panCard,
+  pan: formData?.file3?.[0], 
+});
+
+if(res){
+    setShowTerms(true)
+}
+
+     
       }
-      if (!panForm) {
-        const info: any = {
-          name: formData?.name,
-          email: formData?.email,
-          address1: formData?.add1,
-          address2: formData?.add2,
-          pincode: formData?.pinCode,
-          state: formData?.state,
-          city: formData?.city,
-          selfieImage: formData?.file1,
-          nocForm: formData?.file2,
-        };
+    else {
+         
+        // const info: any = {
+        //   name: formData?.name,
+        //   email: formData?.email,
+        //   address1: formData?.add1,
+        //   address2: formData?.add2,
+        //   pincode: formData?.pinCode,
+        //   state: formData?.state,
+        //   city: formData?.city,
+        //   selfieImage: formData?.file1,
+        //   nocForm: formData?.file2,
+        // };
+       
+
       }
     } else {
       setErrors(validationErrors);
@@ -181,6 +221,13 @@ function KYC() {
 
         const res: any = await API.allTokenApi("redeem/pincode/",info);
         // dispatch(setMobile(formData.phoneNumber))
+         if (res?.statusCode === 200) {
+        setFormData((prev: any) => ({
+          ...prev,
+          state: res.state ??"",
+          city: res.city ?? "",
+        }));
+      }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -192,6 +239,10 @@ function KYC() {
 
   return (
     <>
+    <TermsModal
+        isOpen={showTerms}
+        onClose={() => setShowTerms(false)}
+      />
       <CommonBase>
         <div className={styles.selected_section}>
           <div className="offer-toggle-wrapper">
@@ -366,35 +417,16 @@ function KYC() {
               </div>
             </div>
 
-            {!panForm ? (
+            {panForm ? (
               <>
                 <div className={styles.inputGroup}>
                   <input
                     type="text"
                     name="panCard"
-                    inputMode="numeric"
-                    pattern="\d*"
+              
                     value={formData.panCard}
                     onChange={handleChange}
-                    onKeyDown={(e) => {
-                      // block non-numeric keys (allow Backspace, Delete, Arrow keys, Tab)
-                      if (
-                        !/[0-9]/.test(e.key) &&
-                        e.key !== "Backspace" &&
-                        e.key !== "Delete" &&
-                        e.key !== "ArrowLeft" &&
-                        e.key !== "ArrowRight" &&
-                        e.key !== "Tab"
-                      ) {
-                        e.preventDefault();
-                      }
-                    }}
-                    onPaste={(e) => {
-                      const paste = e.clipboardData.getData("text");
-                      if (!/^\d+$/.test(paste)) {
-                        e.preventDefault(); // block if pasted content is not digits
-                      }
-                    }}
+                  
                     maxLength={10}
                     placeholder="Enter pan card number"
                     autoComplete="off"
@@ -540,30 +572,30 @@ function KYC() {
 type TermsModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  type: "cashback" | "reward";
 };
 
-const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
+const TermsModal = ({ isOpen, onClose, }: TermsModalProps) => {
   if (!isOpen) return null;
 
   return (
     <div className={isOpen ? styles.show : styles.model}>
       <div className={styles.notice}>
-        <span id="close" className={styles.close} onClick={onClose}>
+        {/* <span id="close" className={styles.close} onClick={onClose}>
           <img src={close} alt="Close" />
-        </span>
+        </span> */}
         <div>
           <img src={sucessTickMark} alt="sucessTickMark" />
         </div>
-        <h2>Thank you for your Submission!</h2>
-        {type === "cashback" ? (
+        <h3>Thank you for your </h3>
+        <h3>  Submission! </h3>
+
+      
+       
           <p>
-            Your cashback will be credited to the selected payout mode within
-            24-48 business hours.
+           You will receive your Reward shortly
           </p>
-        ) : (
-          <p>You will receive your Reward shortly</p>
-        )}
+        
+        
       </div>
     </div>
   );

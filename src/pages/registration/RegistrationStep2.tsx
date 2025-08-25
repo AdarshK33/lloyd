@@ -80,10 +80,7 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
       //  invoice2: ""
       // };
       // console.log("hello API payload", info);
-
     // api calling.......
-
- 
            const res: any = await API.registerStep2(
                 {
                   outlet: formData?.outletName,
@@ -92,16 +89,12 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
                
                 }
            );
-          //  
-
-           
+          //   
       console.log("hello API Response: r1", res);
-
       //  registerStep2
       if(res){
  navigate("/verificationOtp");
       }
-     
     }
   };
 
@@ -215,8 +208,9 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
                   <div
                     {...getRootProps()}
                     className={`${styles.inputLike} ${styles.upload_placeholder}`}
+                     style={{ cursor: "not-allowed",opacity:"0.6" }}
                   >
-                    <input {...getInputProps()} />
+                    <input {...getInputProps()}    disabled={true}/>
                     <div className={styles.dropzoneContent}>
                       <>
                         <div className={styles.text_bulk_upload}>

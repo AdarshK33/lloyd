@@ -10,8 +10,9 @@ import v1 from "../../assets/images/Voucher 1.png";
 import envp from "../../assets/images/envelop.png";
 
 import API from "../../api";
-import { setAccessToken } from "../../store/slices/authSlice";
+import { clearAccessDetails, setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
+import { store } from "../../store/store";
 function OtpVerification() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -52,26 +53,28 @@ function OtpVerification() {
 
     if (finalOtp.length === 6) {
       setError("");
+        setShowTerms(true);
       // Perform verification
       // navigate("/cashBack");
-
+ 
       const res: any = await API.verifyOTP(finalOtp);
       //  save accesstoken authorisedApi
-      dispatch(setAccessToken(res.accessToken));
-      let login = await API.authorisedApi(); //user login api
+  
+  dispatch(setAccessToken(res?.accessToken))
+      // let login = await API.authorisedApi(); //user login api
+      
       console.log("hello API Response: r1", res);
       if (res) {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
+            dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
         }
       }
+     
     } else {
-      let resGet: any = await API.getReward();
-      if (resGet) {
-        setShowTerms(true);
-      }
+   
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
     }
@@ -142,7 +145,12 @@ type TermsModalProps = {
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   const [currentType, setCurrentType] = useState<"cashback" | "reward">(type);
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
+  
+     const state = store.getState();
+      const {reward} = state.auth;
+  
+    
   useEffect(() => {
     if (!isOpen) return;
 
@@ -155,6 +163,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
 
       // Step 2: After 5 seconds of cashback → navigate
       const cashbackTimer = setTimeout(() => {
+     
         navigate("/redemption"); // 👈 replace with your route
       }, 5000);
 

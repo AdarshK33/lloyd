@@ -12,6 +12,8 @@ import AAV from "../../assets/images/AAV.svg";
 import close from "../../assets/images/close.svg";
 import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 import Amazon_logo from "../../assets/images/Amazon_logo 3.svg";
+import Zomato_logo from "../../assets/images/AZV.svg";
+
 import gift from "../../assets/images/gift.svg";
 
 import flipcart from "../../assets/images/flipcart.svg";
@@ -21,10 +23,52 @@ import styles from "./cashBack.module.scss";
 import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import API from "../../api";
+import { store } from "../../store/store";
+
+   const reward=  
+    {
+  "statusCode": 200,
+  "message": "Success",
+  "rewardDetails": {
+    "normalRewards": {
+      "rewardName": "CASHBACK",
+      "isClaimed": 0
+    },
+    "bundleRewards": [
+      {
+        "rewardName": "AMAZON",
+        "isClaimed": 0
+      },
+      {
+        "rewardName": "BIGBASKET",
+        "isClaimed": 0
+      },
+      {
+        "rewardName": "RELIANCE",
+        "isClaimed": 0
+      },
+      {
+        "rewardName": "ZOMATO",
+        "isClaimed": 0
+      },
+      {
+        "rewardName": "FLIPKART",
+        "isClaimed": 0
+      },
+      {
+        "rewardName": "SWIGGY",
+        "isClaimed": 0
+      }
+    ]
+  }
+}
+
 
 function CashBack() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const state = store.getState();
+      // const {reward} = state.auth;
 
   // const [formData, setFormData] = useState({
   //   username: "",
@@ -86,9 +130,9 @@ function CashBack() {
        const info: any= {
           upiId:name
       };
-const res: any = await API.upiIdApi(info);
+const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
       //  save accesstoken authorisedApi
-      if(res){
+      if(res?.statusCode==200){
          setModalType("cashback");
     setShowTerms(true);
       }
@@ -125,7 +169,8 @@ const res: any = await API.upiIdApi(info);
                   <img src={gift} alt="money"></img>
                 </div>
                 <div className="offer-title">Assured Cashback of</div>
-                <div className={styles.amount}>₹300</div>
+                <div className={styles.amount}>₹  ₹{reward?.rewardDetails?.normalRewards?.isClaimed}</div>
+                
               </div>
 
               {/* Reward bundle tab */}
@@ -299,25 +344,33 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
 
 export default CashBack;
 
+
 const VoucherMenuList = () => {
-  const voucherMenus = [
-    {
-      id: 1,
-      name: "Amazon",
-      value: "1000",
-      logo: Amazon_logo,
-    },
-    {
-      id: 2,
-      name: "Flipkart",
-      value: "$250",
-      logo: flipcart,
-    },
-  ];
+
+    // const state = store.getState();
+    //   const {reward} = state.auth;
+  type RewardName = "AMAZON" | "FLIPKART" | "ZOMATO" | "BIGBASKET" | "RELIANCE" | "SWIGGY";
+
+const logos: Record<string, string> = {
+  AMAZON: Amazon_logo,
+  FLIPKART: flipcart,
+  ZOMATO: Zomato_logo,
+};
+const voucherMenus: any = reward?.rewardDetails.bundleRewards.map(
+  (item: any, index: number) => {
+       const key = item.rewardName as RewardName; 
+    return {
+      id: index + 1,
+      name: item.rewardName,
+      value: `₹${item.isClaimed}`, // or some other value if API has "amount"
+      logo: logos[key], // ✅ type safe
+    };
+  }
+);
   return (
     <>
       <div className={styles.voucherMenuContainer}>
-        {voucherMenus.map((item) => (
+        {voucherMenus.map((item: any) => (
           <div className={styles.voucherMenuCard} key={item.id}>
             <div className={styles.voucherMenuInfo}>
               <img
@@ -326,7 +379,7 @@ const VoucherMenuList = () => {
                 className={styles.voucherMenuLogo}
               />
               <div className={styles.voucherMenuDetails}>
-                <div className={styles.voucherMenuName}>{item.name} Menu</div>
+                <div className={styles.voucherMenuName}>  {item?.name.charAt(0).toUpperCase() + item?.name.slice(1).toLowerCase()} Voucher</div>
                 <div className={styles.voucherMenuValue}>{item.value}</div>
               </div>
             </div>

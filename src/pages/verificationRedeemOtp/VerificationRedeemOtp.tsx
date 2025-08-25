@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../store/hooks";
 import API from "../../api";
-import { setAccessToken } from "../../store/slices/authSlice";
+import { setAccessToken, setReward } from "../../store/slices/authSlice";
 function OtpRedeemVerification() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -50,10 +50,13 @@ function OtpRedeemVerification() {
       // Perform verification
        const res: any = await API.verifyRedeemOTP(finalOtp);
       //  save accesstoken authorisedApi
+        // dispatch(setAccessToken(res?.accessToken));
+        dispatch(setAccessToken(res?.accessToken));
+
       if(res){
-  dispatch(setAccessToken(res.accessToken));
            let resGetAll: any = await API.getAllReward(); //get all rewars api for redeem
-        if (resGetAll) {
+        if (resGetAll?.statusCode==200) {
+              dispatch(setReward(resGetAll?.rewardDetails));
       navigate("/cashBack");
         }
 

@@ -36,7 +36,7 @@ function CommonBase({ children }: Props) {
   className={
     location.pathname === "/verificationOtp" || location.pathname === "/redemption"
       ? styles.bg_custom
-      : location.pathname === "/kyc" ||location.pathname === "/RegistrationStep1"
+      : location.pathname === "/kyc" ||location.pathname === "/registrationStep1"||location.pathname === "/registrationStep2" ||location.pathname === "/cashBack"
       ? styles.bg
       : styles.bg_custom
   }

@@ -74,13 +74,11 @@ const [errors, setErrors] = useState<any>({});
       console.log("Redemption submitted:", formData);
 
          const info: any= {
-        
           mobile: formData.mobile,
           code: formData.code,
-
       };
       // console.log("hello API payload", info);
- const res: any = await API.sendOTP(info);
+ const res: any = await API.sendRedeemOTP(info);
       console.log("hello API Response:", res);
       if(res.statusCode===200){
        navigate("/verificationRedeemOtp");
@@ -124,7 +122,47 @@ useEffect(() => {
         <h2 className={styles.redemptionHeadline}>Redemption</h2>
       </div>
 
-      <div className={styles.inputGroup}>
+
+
+          <div className={styles.inputGroup}>
+                <input
+                  inputMode="numeric"
+                  pattern="\d*"
+                 
+                  type="text"
+          name="mobile"
+          placeholder="Enter Mobile Number"
+          value={formData.mobile}
+          onChange={handleChange}
+                  onKeyDown={(e) => {
+                    // block non-numeric keys (allow Backspace, Delete, Arrow keys, Tab)
+                    if (
+                      !/[0-9]/.test(e.key) &&
+                      e.key !== "Backspace" &&
+                      e.key !== "Delete" &&
+                      e.key !== "ArrowLeft" &&
+                      e.key !== "ArrowRight" &&
+                      e.key !== "Tab"
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
+                  onPaste={(e) => {
+                    const paste = e.clipboardData.getData("text");
+                    if (!/^\d+$/.test(paste)) {
+                      e.preventDefault(); // block if pasted content is not digits
+                    }
+                  }}
+                  maxLength={10}
+                
+                  autoComplete="off"
+                />
+                 {errors.mobile && (
+          <span className={styles.validation}>{errors.mobile}</span>
+        )}
+              </div>
+
+      {/* <div className={styles.inputGroup}>
         <input
           type="text"
           name="mobile"
@@ -135,11 +173,11 @@ useEffect(() => {
         {errors.mobile && (
           <span className={styles.validation}>{errors.mobile}</span>
         )}
-      </div>
+      </div> */}
 
       <div className={styles.inputGroup}>
         <input
-          type="number"
+          type="text"
           name="code"
           placeholder="Enter Code"
           value={formData.code}

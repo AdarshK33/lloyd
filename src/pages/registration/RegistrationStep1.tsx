@@ -65,28 +65,37 @@ const dispatch=  useAppDispatch();
 
     return newErrors;
   };
-  const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
-    let val: any = type === "checkbox" ? checked : value;
+const handleChange = (e: any) => {
+  const { name, value, type, checked } = e.target;
+  let val: any = type === "checkbox" ? checked : value;
 
+  // ✅ Special handling for phoneNumber
+  if (name === "phoneNumber") {
+    val = val.replace(/\D/g, "").slice(0, 10); // only digits, max 10
+  }
 
-    
-    // ✅ Special handling for phoneNumber
-    if (name === "phoneNumber") {
-      val= val.replace(/\D/g, "").slice(0, 10); // only digits, max 10
+  setFormData((prev: any) => {
+    // ✅ Reset district if state changes
+    if (name === "state") {
+      return {
+        ...prev,
+        state: val,
+        district: "", // reset district whenever state changes
+      };
     }
-    setFormData((prev: any) => ({
+
+    return {
       ...prev,
       [name]: val,
-    }));
+    };
+  });
 
-   
-
-    setErrors((prev:any) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
+  // ✅ clear validation error for this field
+  setErrors((prev: any) => ({
+    ...prev,
+    [name]: "",
+  }));
+};
 
 
   const handleSubmit = async(e:any) => {

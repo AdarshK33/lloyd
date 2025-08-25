@@ -18,24 +18,26 @@ function Home() {
 const dispatch=  useAppDispatch();
   const [isNavOpen, setIsNavOpen] = useState(false);
 
-   const [response, setResponse] = useState(null)
+  //  const [response, setResponse] = useState(null)
   const handleAuthorisedApiCall = async () => {
     try {
       const res: any = await API.createUser();
       console.log("hello API Response:", res);
 
-      
-      dispatch(setUserKey(res))
-      setResponse(res); // You can display it or handle it however you need
+
+      if(res?.statusCode===200){
+         navigate("/registrationStep1");
+           dispatch(setUserKey(res))
+      }
     } catch (error) {
-      console.error("Error calling authorised API:", error);
+      console.error("Error calling Home.tsx authorised API:", error);
     }
   };
 
   const handleClick = () => {
    handleAuthorisedApiCall ();
 
-    navigate("/registrationStep1");
+   
   };
 
   const toggleNav = () => {
