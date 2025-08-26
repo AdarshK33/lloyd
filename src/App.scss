@@ -43,7 +43,8 @@
   padding: 10px;
   cursor: pointer;
   border-radius: 16px;
-  transition: none; /* instant switch */
+   transition: opacity 0.2s ease; /* smooth fade */
+  opacity: 0.6; /* default faded look */
 }
 
 /* SAME Gradient for both active tabs */
@@ -52,6 +53,7 @@
   background: linear-gradient(137deg, #1D4F7D 8.14%, #061D32 67.03%);
   color: white;
     transform: translateZ(0);
+      opacity: 1; /* active tab fully visible */
 }
 
 .offer-title {
