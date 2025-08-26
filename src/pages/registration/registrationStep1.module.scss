@@ -131,18 +131,17 @@ input,select{
     z-index: 1;
   }
 
-  input[type="checkbox"]:checked + .customCheckbox {
-    border-color: #000;
-    background-color: transparent;
+input[type="checkbox"]:checked + .customCheckbox {
+  border-color: #000;
+  background-color: transparent;
 
-    &::after {
-      content: "✔";
-      position: absolute;
-      top: 0px;
-      left: 3px;
-      color: #010101;
-      font-size: 12px;
-    }
+  &::after {
+    content: "✔";
+    position: absolute;
+    top: 0.0625rem; /* 1px = 0.0625rem */
+    left: 0.1875rem; /* 3px = 0.1875rem */
+    color: #010101;
+    font-size: 0.75rem; /* 12px = 0.75rem */
   }
 }
 
