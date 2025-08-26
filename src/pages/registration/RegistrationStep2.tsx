@@ -22,9 +22,6 @@ function RegistrationStep2() {
 const [fileName1, setFileName1] = useState(""); // store selected file name
 
   const [newErrors, setError] = useState<any>({});
-  // const [phoneError, setPhoneError] = useState(false);
-
-  // const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, type, value } = e.target;

@@ -1,6 +1,6 @@
 
 .container{
-   max-width:400px;
+   max-width:430px;
     height: auto;
 }
 
@@ -55,64 +55,100 @@ img{
 
 
 
-@media only screen and (max-width: 414px) {
-  /* iPhone XR*/
+// @media only screen and (max-width: 414px) {
+//   /* iPhone XR*/
 
-}
-
-
-@media only screen and (width: 390px) and (height: 844px) {
-  /* iPhone 12 & iPhone 14 */
-}
+// }
 
 
-@media screen and (max-width: 768px) {
-
-.logo .imagelogo img{
-    width: 40%;
-}
-
-.imageOnaCircle img{
-width: 80%;
-}
-
-.ticketSection{
-img{
-    width: 70%;
-}
-}
-
-.itemSection{
-    .itemBanner{
-        position: relative;
-        top: 0rem;
-        img{
-            width: 100%;
-        }
-    }
-
-}
-
-.buttonSection{
-    .buttonBottom{
-          position: relative;
-      bottom: .5rem;
-      
-    }
-}
-
-}
+// @media only screen and (width: 390px) and (height: 844px) {
+//   /* iPhone 12 & iPhone 14 */
+// }
 
 
-// @media only screen and (min-width: 375px) and (min-height: 667px) {
+// @media screen and (max-width: 768px) {
+
 // .logo .imagelogo img{
-//     width: 30%;
+//     width: 40%;
 // }
+
 // .imageOnaCircle img{
-// width: 45%;
+// width: 80%;
 // }
-// .bg{
-// height:auto !important
+
+// .ticketSection{
+// img{
+//     width: 70%;
 // }
 // }
 
+// .itemSection{
+//     .itemBanner{
+//         position: relative;
+//         top: 0rem;
+//         img{
+//             width: 100%;
+//         }
+//     }
+
+// }
+
+// .buttonSection{
+//     .buttonBottom{
+//           position: relative;
+//       bottom: .5rem;
+      
+//     }
+// }
+
+// }
+
+
+// // @media only screen and (min-width: 375px) and (min-height: 667px) {
+// // .logo .imagelogo img{
+// //     width: 30%;
+// // }
+// // .imageOnaCircle img{
+// // width: 45%;
+// // }
+// // .bg{
+// // height:auto !important
+// // }
+// // }
+
+
+
+
+
+
+// start //
+
+/* iPhone 6,7,8, X, 11 Pro (375px wide) */
+@media only screen and (width: 375px) {
+  .logo .imagelogo img { width: 40%; }
+  .imageOnaCircle img { width: 80%; }
+  .ticketSection img { width: 70%; }
+}
+
+/* iPhone 12, 13, 14, 14 Pro (390px wide) */
+@media only screen and (width: 390px) {
+  .logo .imagelogo img { width: 38%; }
+  .imageOnaCircle img { width: 78%; }
+  .ticketSection img { width: 68%; }
+}
+
+/* iPhone 6/7/8 Plus, XR, XS Max, 11, 11 Pro Max (414px wide) */
+@media only screen and (width: 414px) {
+  .logo .imagelogo img { width: 35%; }
+  .imageOnaCircle img { width: 75%; }
+  .ticketSection img { width: 65%; }
+}
+
+/* iPhone 12, 13, 14 Pro Max (430px wide) */
+@media only screen and (width: 430px) {
+  .logo .imagelogo img { width: 33%; }
+  .imageOnaCircle img { width: 72%; }
+  .ticketSection img { width: 62%; }
+}
+
+// end //

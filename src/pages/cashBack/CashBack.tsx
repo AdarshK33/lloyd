@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { useAppDispatch } from "../../store/hooks";
 // import listIcon from "../../assets/images/List.png";
 // import logo from "../../assets/images/logo.svg";
@@ -25,7 +25,7 @@ import CommonBase from "../../components/Popups/common/CommonBase";
 import API from "../../api";
 import { store } from "../../store/store";
 
-//    const reward=  
+//    const reward=
 //     {
 //   "statusCode": 200,
 //   "message": "Success",
@@ -66,76 +66,86 @@ import { store } from "../../store/store";
 function CashBack() {
   // const dispatch = useAppDispatch();
   // const navigate = useNavigate();
-  
-    const state = store.getState();
-      const {reward} = state?.auth;
 
-  const [nameID, setNameID] = useState("");//upi id 
- 
+  const state = store.getState();
+  const { reward } = state?.auth;
+
+  const [formData, setFormData] = useState({
+    usernameID: "",
+  });
+  const [error, setError] = useState<any>({});
 
   const [activeTab, setActiveTab] = useState("cashback");
   const [activeVoucherTab, setActiveVoucherTab] = useState("upi");
   const [showTerms, setShowTerms] = useState(false);
   const [modalType, setModalType] = useState<"cashback" | "reward">("cashback");
 
-  // const phoneValidations = () => {
-  //   const phonePattern = /^[0-9]{10}$/;
-  //   if (
-  //     phoneNumber !== "" &&
-  //     phoneNumber !== null &&
-  //     phoneNumber !== undefined &&
-  //     phonePattern.test(phoneNumber)
-  //   ) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // };
+  const handleChange = (e: any) => {
+    const { name, type, value } = e.target;
+    const newValue = type === "file" ? e.target.files?.[0] : value;
 
-const upiRegex =
-  /^(?=.{3,320}$)(?=.{2,256}@)(?![._-])(?!.*[._-]{2})[A-Za-z0-9._-]+@(?![.-])(?!.*[.-]{2})[A-Za-z0-9.-]+$/;
+    setFormData((prev: any) => ({
+      ...prev,
+      [name]: newValue,
+    }));
 
-// 🔍 Helper to validate UPI
-const nameValidations = (upi: string) => {
-  if (!upi) return false;
-  return upiRegex.test(upi.trim());
-};
+    setError((prev: any) => ({
+      ...prev,
+      [name]: "",
+    }));
+  };
 
-// 🚀 Final checkValidations function
-const checkValidations = () => {
-  let isValid = true;
+  const validateForm = () => {
+    const errors: any = {};
+    const upiRegex = /^[\w.-]{2,}@[a-zA-Z]{3,}$/;
 
-  if (!nameValidations(nameID)) {
-    toast.error("Please enter a valid UPI ID");
-    isValid = false;
-  }
+    if (!formData.usernameID.trim()) {
+      errors.usernameID = "**UPI ID is required";
+    } else if (!upiRegex.test(formData.usernameID)) {
+      errors.usernameID = "**Enter a valid UPI ID (e.g. username@bank)";
+    }
 
-  return isValid;
-};
+    return errors;
+  };
+
+  // 🚀 Final checkValidations function
+  const checkValidations = () => {
+    const errors: any = {};
+    const upiRegex =
+      /^(?=.{3,320}$)(?=.{2,256}@)(?![._-])(?!.*[._-]{2})[A-Za-z0-9._-]+@(?![.-])(?!.*[.-]{2})[A-Za-z0-9.-]+$/;
+
+    if (!formData.usernameID.trim()) {
+      errors.usernameID = "**UPI ID is required";
+    } else if (!upiRegex.test(formData.usernameID)) {
+      errors.usernameID = "**Enter a valid UPI ID (e.g. username@bank)";
+    }
+
+    return errors;
+  };
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const value = checkValidations();
-    if(value==true){
+    const validationErrors = validateForm();
 
-       const info: any= {
-          upiId:nameID
+    if (Object.keys(validationErrors).length > 0) {
+      setError(validationErrors);
+    } else {
+      console.log("Form submitted ✅", formData);
+
+      // Example API call
+
+      const info: any = {
+        upiId: formData?.usernameID,
       };
-const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
+      const res: any = await API.allTokenApi("redeem/submitUpiDetails/", info);
       //  save accesstoken authorisedApi
-      if(res?.statusCode==200){
-         setModalType("cashback");
-    setShowTerms(true);
+      if (res?.statusCode == 200) {
+        setModalType("cashback");
+        setShowTerms(true);
       }
     }
   };
-
-  // const options = [
-  //   { id: "upi", label: "UPI", icon: logo },
-  //   { id: "zomato", label: "Zomato Voucher", icon: logo },
-  //   { id: "amazon", label: "Amazon Voucher", icon: logo },
-  // ];
-
   return (
     <>
       <div>
@@ -160,8 +170,9 @@ const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
                   <img src={gift} alt="money"></img>
                 </div>
                 <div className="offer-title">Assured Cashback of</div>
-                <div className={styles.amount}>₹  ₹{reward?.normalRewards?.isClaimed}</div>
-                
+                <div className={styles.amount}>
+                  ₹ ₹{reward?.normalRewards?.isClaimed}
+                </div>
               </div>
 
               {/* Reward bundle tab */}
@@ -247,9 +258,13 @@ const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
                       type="text"
                       name="usernameID"
                       placeholder="Enter UPI ID"
-                      value={nameID}
-                      onChange={(e) => setNameID(e.target.value)}
+                      value={formData.usernameID}
+                      onChange={handleChange}
+                      className={error.usernameID ? "inputError" : ""}
                     />
+                    {error.usernameID && (
+                      <span className="validation">{error.usernameID}</span>
+                    )}
                   </div>
 
                   <div className={styles.buttonSection}>
@@ -309,20 +324,17 @@ type TermsModalProps = {
 
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   if (!isOpen) return null;
-      const navigate = useNavigate();
-      // const dispatch = useAppDispatch();
-      
+  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+
   useEffect(() => {
     if (!isOpen) return;
 
-
     // Step 1: After 10 seconds → show cashback
     const kycTimer = setTimeout(() => {
-      if(type=="cashback"){
- navigate("/kyc"); //
+      if (type == "cashback") {
+        navigate("/kyc"); //
       }
-     
-     
     }, 10000);
 
     return () => clearTimeout(kycTimer);
@@ -331,13 +343,16 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   return (
     <div className={isOpen ? styles.show : styles.model}>
       <div className={styles.notice}>
+        {type == "cashback" ? (
+          <></>
+        ) : (
+          <>
+            <span id="close" className={styles.close} onClick={onClose}>
+              <img src={close} alt="Close" />
+            </span>
+          </>
+        )}
 
-        {type=="cashback"?<></>:(<>
-         <span id="close" className={styles.close} onClick={onClose}>
-          <img src={close} alt="Close" />
-        </span>
-        </>)}
-       
         <div>
           <img src={sucessTickMark} alt="sucessTickMark" />
         </div>
@@ -357,48 +372,61 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
 
 export default CashBack;
 
-
 const VoucherMenuList = () => {
+  const state = store.getState();
+  const { reward } = state.auth;
+  type RewardName =
+    | "AMAZON"
+    | "FLIPKART"
+    | "ZOMATO"
+    | "BIGBASKET"
+    | "RELIANCE"
+    | "SWIGGY";
 
-    const state = store.getState();
-      const {reward} = state.auth;
-  type RewardName = "AMAZON" | "FLIPKART" | "ZOMATO" | "BIGBASKET" | "RELIANCE" | "SWIGGY";
-
-const logos: Record<string, string> = {
-  AMAZON: Amazon_logo,
-  FLIPKART: flipcart,
-  ZOMATO: Zomato_logo,
-};
-const voucherMenus: any = reward&& reward!==null&&reward?.bundleRewards.map(
-  (item: any, index: number) => {
-       const key = item.rewardName as RewardName; 
-    return {
-      id: index + 1,
-      name: item.rewardName,
-      value: `₹${item.isClaimed}`, // or some other value if API has "amount"
-      logo: logos[key], // ✅ type safe
-    };
-  }
-);
+  const logos: Record<string, string> = {
+    AMAZON: Amazon_logo,
+    FLIPKART: flipcart,
+    ZOMATO: Zomato_logo,
+  };
+  const voucherMenus: any =
+    reward &&
+    reward !== null &&
+    reward?.bundleRewards.map((item: any, index: number) => {
+      const key = item.rewardName as RewardName;
+      return {
+        id: index + 1,
+        name: item.rewardName,
+        value: `₹${item.isClaimed}`, // or some other value if API has "amount"
+        logo: logos[key], // ✅ type safe
+      };
+    });
   return (
     <>
       <div className={styles.voucherMenuContainer}>
-        {voucherMenus&&voucherMenus!==null&&voucherMenus!==undefined&&voucherMenus.map((item: any) => (
-          <div className={styles.voucherMenuCard} key={item.id}>
-            <div className={styles.voucherMenuInfo}>
-              <img
-                src={item.logo}
-                alt={item.name}
-                className={styles.voucherMenuLogo}
-              />
-              <div className={styles.voucherMenuDetails}>
-                <div className={styles.voucherMenuName}>  {item?.name.charAt(0).toUpperCase() + item?.name.slice(1).toLowerCase()} Voucher</div>
-                <div className={styles.voucherMenuValue}>{item.value}</div>
+        {voucherMenus &&
+          voucherMenus !== null &&
+          voucherMenus !== undefined &&
+          voucherMenus.map((item: any) => (
+            <div className={styles.voucherMenuCard} key={item.id}>
+              <div className={styles.voucherMenuInfo}>
+                <img
+                  src={item.logo}
+                  alt={item.name}
+                  className={styles.voucherMenuLogo}
+                />
+                <div className={styles.voucherMenuDetails}>
+                  <div className={styles.voucherMenuName}>
+                    {" "}
+                    {item?.name.charAt(0).toUpperCase() +
+                      item?.name.slice(1).toLowerCase()}{" "}
+                    Voucher
+                  </div>
+                  <div className={styles.voucherMenuValue}>{item.value}</div>
+                </div>
               </div>
+              <button className={styles.redeemButton}>Redeem Now</button>
             </div>
-            <button className={styles.redeemButton}>Redeem Now</button>
-          </div>
-        ))}
+          ))}
       </div>
     </>
   );

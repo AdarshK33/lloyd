@@ -18,6 +18,11 @@ background-image:url("../../../assets/images/BG.png");
 background-position: center;
 background-repeat: no-repeat;
 height: auto;
+height: 100svh; 
+overflow-x: hidden; /* Prevent horizontal scroll */
+overflow-y: auto;   /* Allow vertical scroll */
+position: relative; /* Makes it possible to position child elements absolutely */
+
 }
 
 .bg_custom{
@@ -25,8 +30,16 @@ height: auto;
 background-size:100%100%;
 background-position: center;
 background-repeat: no-repeat;
-height: 105vh;
+// height: 105vh;
+height: 100vh;     /* Full viewport height (browser viewport height) */
+height: 100svh;    /* Safer viewport height (accounts for mobile browser bars) */
+overflow-x: hidden; /* Prevent horizontal scroll */
+overflow-y: auto;   /* Allow vertical scroll */
+position: relative; /* Makes it possible to position child elements absolutely */
+
+
 }
+
 
 .logo  img{
     width: 60%;
