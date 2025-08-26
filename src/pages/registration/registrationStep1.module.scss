@@ -138,8 +138,8 @@ input,select{
   &::after {
     content: "✔";
     position: absolute;
-    top: 0.0625rem;
-     left: 0.25rem;
+    top: 0.0625rem; //working fine on server url
+     left: 0.0625rem;//working fine on server url
     color: #010101;
     font-size: 0.75rem; /* 12px = 0.75rem */
   }
