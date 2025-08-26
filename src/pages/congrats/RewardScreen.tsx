@@ -1,7 +1,7 @@
 // import React from "react";
 import "./RewardScreen.module.scss";
 import CommonBase from "../../components/Popups/common/CommonBase";
-import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
+// import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
 
 const RewardScreen = () => {
   return (

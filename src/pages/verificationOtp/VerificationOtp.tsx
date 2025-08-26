@@ -5,8 +5,8 @@ import CommonBase from "../../components/Popups/common/CommonBase";
 import { useNavigate } from "react-router-dom";
 // import close from "../../assets/images/close.svg";
 import sucessTickMark from "../../assets/images/sucessTickMark.svg";
-import claro from "../../assets/images/Claro 3 JAR 1.png";
-import v1 from "../../assets/images/Voucher 1.png";
+// import claro from "../../assets/images/Claro 3 JAR 1.png";
+// import v1 from "../../assets/images/Voucher 1.png";
 // import envp from "../../assets/images/envelop.png";
 
 import API from "../../api";
