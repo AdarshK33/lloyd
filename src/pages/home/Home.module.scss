@@ -81,22 +81,28 @@ img{
 // width: 80%;
 // }
 
-// .ticketSection{
-// img{
-//     width: 70%;
-// }
-// }
+.ticketSection{
+  .ticketBanner{
+        position: relative;
+       
+    
+img{
+    width: 70%;
+}
+  }
+}
 
-// .itemSection{
-//     .itemBanner{
-//         position: relative;
-//         top: 0rem;
-//         img{
-//             width: 100%;
-//         }
-//     }
+.itemSection{
+    position: relative;
+    .itemBanner{
+        position: relative;
+        top: 0rem;
+        img{
+            width: 100%;
+        }
+    }
 
-// }
+}
 
 // .buttonSection{
 //     .buttonBottom{
