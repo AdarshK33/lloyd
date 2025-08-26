@@ -19,7 +19,7 @@ function RegistrationStep2() {
     invoiceNumber: "",
     // checkbox: false,
   });
-const [fileName1, setFileName1] = useState(""); // store selected file name
+  const [fileName1, setFileName1] = useState(""); // store selected file name
 
   const [newErrors, setError] = useState<any>({});
 
@@ -77,28 +77,25 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
       //  invoice2: ""
       // };
       // console.log("hello API payload", info);
-    // api calling.......
-           const res: any = await API.registerStep2(
-                {
-                  outlet: formData?.outletName,
-                  invoiceNumber: formData?.invoiceNumber,
-                  file: formData.file1?.[0],
-               
-                }
-           );
-          //   
+      // api calling.......
+      const res: any = await API.registerStep2({
+        outlet: formData?.outletName,
+        invoiceNumber: formData?.invoiceNumber,
+        file: formData.file1?.[0],
+      });
+      //
       console.log("hello API Response: r1", res);
       //  registerStep2
-      if(res){
- navigate("/verificationOtp");
+      if (res) {
+        navigate("/verificationOtp");
       }
     }
   };
 
   const onDrop = async (acceptedFiles: any) => {
-      if (acceptedFiles.length > 0) {
-    setFileName1(acceptedFiles[0].name); // store file name
-  }
+    if (acceptedFiles.length > 0) {
+      setFileName1(acceptedFiles[0].name); // store file name
+    }
     const formData = new FormData();
     acceptedFiles.forEach((file: any) => {
       formData.append("file", file);
@@ -111,7 +108,6 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
       ...prev,
       ["file1"]: "",
     }));
-  
   };
   return (
     <>
@@ -130,13 +126,25 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
                 placeholder="Outlet Name"
                 value={formData.outletName}
                 onChange={handleChange}
-                  onKeyDown={(e) => {
-  if (!/^[a-zA-Z\s]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab") {
-    e.preventDefault();
-  }
-}}
+                onKeyDown={(e) => {
+                  // Allow only letters, space, Backspace, Tab, and Arrow keys
+                  if (
+                    !/^[a-zA-Z\s]$/.test(e.key) &&
+                    e.key !== "Backspace" &&
+                    e.key !== "Tab" &&
+                    e.key !== "ArrowLeft" &&
+                    e.key !== "ArrowRight" &&
+                    e.key !== "Delete"
+                  ) {
+                    e.preventDefault();
+                  }
+                }}
                 // required
-              autoComplete="off"
+                onInput={(e: any) => {
+    // Remove special symbols but allow letters, numbers, and spaces
+    e.target.value = e.target.value.replace(/[^a-zA-Z0-9\s]/g, "");
+  }}
+                autoComplete="off"
               />
               {newErrors.outletName && (
                 <span className="validation">{newErrors.outletName}</span>
@@ -145,13 +153,15 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
 
             <div className={styles.inputGroup}>
               <input
-                type="number"
+                type="text"
                 name="invoiceNumber"
                 placeholder="Invoice number"
                 value={formData.invoiceNumber}
                 onChange={handleChange}
-                // required
-              autoComplete="off"
+                onInput={(e: any) => {
+                  e.target.value = e.target.value.replace(/[^0-9]/g, ""); // only numbers
+                }}
+                autoComplete="off"
               />
               {newErrors.invoiceNumber && (
                 <span className="validation">{newErrors.invoiceNumber}</span>
@@ -210,9 +220,9 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
                   <div
                     {...getRootProps()}
                     className={`${styles.inputLike} ${styles.upload_placeholder}`}
-                     style={{ cursor: "not-allowed",opacity:"0.6" }}
+                    style={{ cursor: "not-allowed", opacity: "0.6" }}
                   >
-                    <input {...getInputProps()}    disabled={true}/>
+                    <input {...getInputProps()} disabled={true} />
                     <div className={styles.dropzoneContent}>
                       <>
                         <div className={styles.text_bulk_upload}>
