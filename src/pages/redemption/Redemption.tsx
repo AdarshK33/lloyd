@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 
 // imageOnaCircle
 import styles from "./resemption.module.scss";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import API from "../../api";
 import { setUserKey } from "../../store/slices/authSlice";
@@ -39,9 +39,10 @@ const [errors, setErrors] = useState<any>({});
 
     if (!formData.code.trim()) {
       newErrors.code = "**Code is required";
-    } else if (!/^\d{4,}$/.test(formData.code)) {
-      newErrors.code = "**Code must be at least 4 digits";
     }
+    //  else if (!/^\d{4,}$/.test(formData.code)) {
+    //   newErrors.code = "**Code must be at least 4 digits";
+    // }
 
     return newErrors;
   };
@@ -73,12 +74,13 @@ const [errors, setErrors] = useState<any>({});
     if (Object.keys(validationErrors).length === 0) {
       console.log("Redemption submitted:", formData);
 
-         const info: any= {
-          mobile: formData.mobile,
-          code: formData.code,
-      };
+      //    const info: any= {
+      //     mobile: formData.mobile,
+      //     code: formData.code,
+      // };
       // console.log("hello API payload", info);
- const res: any = await API.sendRedeemOTP(info);
+ const res: any = await API.sendRedeemOTP({mobile: formData.mobile,
+          code: formData.code});
       console.log("hello API Response:", res);
       if(res.statusCode===200){
        navigate("/verificationRedeemOtp");

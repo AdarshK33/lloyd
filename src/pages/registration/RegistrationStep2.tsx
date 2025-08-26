@@ -1,17 +1,17 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
+import { useState } from "react";
+// import { useAppDispatch } from "../../store/hooks";
 
 // imageOnaCircle
 import styles from "./registrationStep1.module.scss";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import Dropzone from "react-dropzone";
 import uploadIcon from "../../assets/images/UploadSimple.svg";
 import API from "../../api";
 
 function RegistrationStep2() {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState<any>({
@@ -24,7 +24,7 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
   const [newErrors, setError] = useState<any>({});
   // const [phoneError, setPhoneError] = useState(false);
 
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  // const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, type, value } = e.target;
@@ -133,6 +133,11 @@ const [fileName1, setFileName1] = useState(""); // store selected file name
                 placeholder="Outlet Name"
                 value={formData.outletName}
                 onChange={handleChange}
+                  onKeyDown={(e) => {
+  if (!/^[a-zA-Z\s]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab") {
+    e.preventDefault();
+  }
+}}
                 // required
               autoComplete="off"
               />

@@ -1,20 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./verificationOtp.module.scss"; // optional styling
 import CommonBase from "../../components/Popups/common/CommonBase";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import close from "../../assets/images/close.svg";
+// import close from "../../assets/images/close.svg";
 import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 import claro from "../../assets/images/Claro 3 JAR 1.png";
 import v1 from "../../assets/images/Voucher 1.png";
-import envp from "../../assets/images/envelop.png";
+// import envp from "../../assets/images/envelop.png";
 
 import API from "../../api";
-import { clearAccessDetails, setAccessToken, setReward } from "../../store/slices/authSlice";
+import {  setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
-import { store } from "../../store/store";
+// import { store } from "../../store/store";
 function OtpVerification() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputsRef = useRef<HTMLInputElement[]>([]);
@@ -53,7 +53,7 @@ function OtpVerification() {
 
     if (finalOtp.length === 6) {
       setError("");
-        setShowTerms(true);
+     
       // Perform verification
       // navigate("/cashBack");
  
@@ -68,6 +68,7 @@ function OtpVerification() {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
+           
             dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
         }
@@ -145,10 +146,10 @@ type TermsModalProps = {
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   const [currentType, setCurrentType] = useState<"cashback" | "reward">(type);
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   
-     const state = store.getState();
-      const {reward} = state.auth;
+    //  const state = store.getState();
+      // const {reward} = state.auth;
   
     
   useEffect(() => {

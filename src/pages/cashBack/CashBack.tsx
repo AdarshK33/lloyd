@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
-import listIcon from "../../assets/images/List.png";
-import logo from "../../assets/images/logo.svg";
+import  { useEffect, useState } from "react";
+// import { useAppDispatch } from "../../store/hooks";
+// import listIcon from "../../assets/images/List.png";
+// import logo from "../../assets/images/logo.svg";
 import rewardBundle from "../../assets/images/rewardBundle.png";
 import UPI from "../../assets/images/UPI.svg";
 import ZV from "../../assets/images/zomatoVoucher.svg";
@@ -25,51 +25,50 @@ import CommonBase from "../../components/Popups/common/CommonBase";
 import API from "../../api";
 import { store } from "../../store/store";
 
-   const reward=  
-    {
-  "statusCode": 200,
-  "message": "Success",
-  "rewardDetails": {
-    "normalRewards": {
-      "rewardName": "CASHBACK",
-      "isClaimed": 0
-    },
-    "bundleRewards": [
-      {
-        "rewardName": "AMAZON",
-        "isClaimed": 0
-      },
-      {
-        "rewardName": "BIGBASKET",
-        "isClaimed": 0
-      },
-      {
-        "rewardName": "RELIANCE",
-        "isClaimed": 0
-      },
-      {
-        "rewardName": "ZOMATO",
-        "isClaimed": 0
-      },
-      {
-        "rewardName": "FLIPKART",
-        "isClaimed": 0
-      },
-      {
-        "rewardName": "SWIGGY",
-        "isClaimed": 0
-      }
-    ]
-  }
-}
-
+//    const reward=  
+//     {
+//   "statusCode": 200,
+//   "message": "Success",
+//   "rewardDetails": {
+//     "normalRewards": {
+//       "rewardName": "CASHBACK",
+//       "isClaimed": 0
+//     },
+//     "bundleRewards": [
+//       {
+//         "rewardName": "AMAZON",
+//         "isClaimed": 0
+//       },
+//       {
+//         "rewardName": "BIGBASKET",
+//         "isClaimed": 0
+//       },
+//       {
+//         "rewardName": "RELIANCE",
+//         "isClaimed": 0
+//       },
+//       {
+//         "rewardName": "ZOMATO",
+//         "isClaimed": 0
+//       },
+//       {
+//         "rewardName": "FLIPKART",
+//         "isClaimed": 0
+//       },
+//       {
+//         "rewardName": "SWIGGY",
+//         "isClaimed": 0
+//       }
+//     ]
+//   }
+// }
 
 function CashBack() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const state = store.getState();
-      // const {reward} = state.auth;
-
+  // const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
+  
+    const state = store.getState();
+      const {reward} = state.auth;
   // const [formData, setFormData] = useState({
   //   username: "",
   //   number: "",
@@ -77,13 +76,13 @@ function CashBack() {
   // });
 
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  // const [phoneNumber, setPhoneNumber] = useState("");
 
   // const [nameError, setNameError] = useState(false);
   // const [phoneError, setPhoneError] = useState(false);
-  const [active, setActive] = useState("upi");
+  // const [active, setActive] = useState("upi");
 
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  // const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const [activeTab, setActiveTab] = useState("cashback");
   const [activeVoucherTab, setActiveVoucherTab] = useState("upi");
@@ -97,19 +96,19 @@ function CashBack() {
     }
   };
 
-  const phoneValidations = () => {
-    const phonePattern = /^[0-9]{10}$/;
-    if (
-      phoneNumber !== "" &&
-      phoneNumber !== null &&
-      phoneNumber !== undefined &&
-      phonePattern.test(phoneNumber)
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  // const phoneValidations = () => {
+  //   const phonePattern = /^[0-9]{10}$/;
+  //   if (
+  //     phoneNumber !== "" &&
+  //     phoneNumber !== null &&
+  //     phoneNumber !== undefined &&
+  //     phonePattern.test(phoneNumber)
+  //   ) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
   const checkValidations = () => {
     let isValid = true;
@@ -139,11 +138,11 @@ const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
     }
   };
 
-  const options = [
-    { id: "upi", label: "UPI", icon: logo },
-    { id: "zomato", label: "Zomato Voucher", icon: logo },
-    { id: "amazon", label: "Amazon Voucher", icon: logo },
-  ];
+  // const options = [
+  //   { id: "upi", label: "UPI", icon: logo },
+  //   { id: "zomato", label: "Zomato Voucher", icon: logo },
+  //   { id: "amazon", label: "Amazon Voucher", icon: logo },
+  // ];
 
   return (
     <>
@@ -169,7 +168,7 @@ const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
                   <img src={gift} alt="money"></img>
                 </div>
                 <div className="offer-title">Assured Cashback of</div>
-                <div className={styles.amount}>₹  ₹{reward?.rewardDetails?.normalRewards?.isClaimed}</div>
+                <div className={styles.amount}>₹  ₹{reward?.normalRewards?.isClaimed}</div>
                 
               </div>
 
@@ -318,13 +317,35 @@ type TermsModalProps = {
 
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   if (!isOpen) return null;
+      const navigate = useNavigate();
+      // const dispatch = useAppDispatch();
+      
+  useEffect(() => {
+    if (!isOpen) return;
+
+
+    // Step 1: After 10 seconds → show cashback
+    const kycTimer = setTimeout(() => {
+      if(type=="cashback"){
+ navigate("/kyc"); //
+      }
+     
+     
+    }, 10000);
+
+    return () => clearTimeout(kycTimer);
+  }, [isOpen, navigate]);
 
   return (
     <div className={isOpen ? styles.show : styles.model}>
       <div className={styles.notice}>
-        <span id="close" className={styles.close} onClick={onClose}>
+
+        {type=="cashback"?<></>:(<>
+         <span id="close" className={styles.close} onClick={onClose}>
           <img src={close} alt="Close" />
         </span>
+        </>)}
+       
         <div>
           <img src={sucessTickMark} alt="sucessTickMark" />
         </div>
@@ -347,8 +368,8 @@ export default CashBack;
 
 const VoucherMenuList = () => {
 
-    // const state = store.getState();
-    //   const {reward} = state.auth;
+    const state = store.getState();
+      const {reward} = state.auth;
   type RewardName = "AMAZON" | "FLIPKART" | "ZOMATO" | "BIGBASKET" | "RELIANCE" | "SWIGGY";
 
 const logos: Record<string, string> = {
@@ -356,7 +377,7 @@ const logos: Record<string, string> = {
   FLIPKART: flipcart,
   ZOMATO: Zomato_logo,
 };
-const voucherMenus: any = reward?.rewardDetails.bundleRewards.map(
+const voucherMenus: any = reward&& reward!==null&&reward?.bundleRewards.map(
   (item: any, index: number) => {
        const key = item.rewardName as RewardName; 
     return {
@@ -370,7 +391,7 @@ const voucherMenus: any = reward?.rewardDetails.bundleRewards.map(
   return (
     <>
       <div className={styles.voucherMenuContainer}>
-        {voucherMenus.map((item: any) => (
+        {voucherMenus&&voucherMenus!==null&&voucherMenus!==undefined&&voucherMenus.map((item: any) => (
           <div className={styles.voucherMenuCard} key={item.id}>
             <div className={styles.voucherMenuInfo}>
               <img

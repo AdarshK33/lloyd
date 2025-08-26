@@ -1,22 +1,22 @@
-import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
+// import { useNavigate } from "react-router-dom";
+import  { useEffect, useState } from "react";
+// import { useAppDispatch } from "../../store/hooks";
 
 // imageOnaCircle
 import styles from "./kyc.module.scss";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import rewardBundle from "../../assets/images/rewardBundle.png";
 import Claro from "../../assets/images/Claro 3 JAR 1.svg";
 import sucessTickMark from "../../assets/images/sucessTickMark.svg";
-import close from "../../assets/images/close.svg";
+// import close from "../../assets/images/close.svg";
 import Dropzone from "react-dropzone";
 import uploadIcon from "../../assets/images/UploadSimple.svg";
 import API from "../../api";
 
 function KYC() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -38,12 +38,13 @@ function KYC() {
   const [fileName3, setFileName3] = useState(""); // store selected file name
   // store selected file name
 
-  const [panForm, setPanForm] = useState(true);
+  // const [panForm, setPanForm] = useState(true);
+  const panForm=true;
 
   const [activeTab, setActiveTab] = useState("cashback");
   const [showTerms, setShowTerms] = useState(false);
 
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
+  // const [agreedToTerms, setAgreedToTerms] = useState(false);
 
   const validate = (): any => {
     const newErrors: any = {};
@@ -216,7 +217,7 @@ if(res){
       try {
         // pin code api call
         const info: any = {
-          pinCode: formData.pinCode,
+          pincode: formData.pinCode,
         };
 
         const res: any = await API.allTokenApi("redeem/pincode/",info);
@@ -227,6 +228,11 @@ if(res){
           state: res.state ??"",
           city: res.city ?? "",
         }));
+         setErrors((prev: any) => ({
+        ...prev,
+          state:"",
+          city: "",
+      }));
       }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -234,6 +240,13 @@ if(res){
     };
     if (formData?.pinCode?.length===6) {
       fetchData();
+    }
+    else{
+      setFormData((prev: any) => ({
+      ...prev,
+      state: "",
+      city: "",
+    }));
     }
   }, [formData?.pinCode]);
 
@@ -293,6 +306,11 @@ if(res){
                 placeholder="Enter Name"
                 value={formData.name}
                 onChange={handleChange}
+                onKeyDown={(e) => {
+  if (!/^[a-zA-Z\s]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab") {
+    e.preventDefault();
+  }
+}}
                 autoComplete="off"
               />
               {errors.name && (
@@ -388,6 +406,7 @@ if(res){
                   value={formData.state}
                   onChange={handleChange}
                   autoComplete="off"
+                  disabled
                 />
               </div>
 
@@ -399,6 +418,7 @@ if(res){
                   value={formData.city}
                   onChange={handleChange}
                   autoComplete="off"
+                   disabled
                 />
               </div>
             </div>
@@ -574,7 +594,7 @@ type TermsModalProps = {
   onClose: () => void;
 };
 
-const TermsModal = ({ isOpen, onClose, }: TermsModalProps) => {
+const TermsModal = ({ isOpen  }: TermsModalProps) => {
   if (!isOpen) return null;
 
   return (

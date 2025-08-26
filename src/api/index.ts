@@ -2,10 +2,10 @@ import {
   BaseResponse,
   CreateUserPayload,
   CreateUserResponse,
-  kycPayload,
-  kycResponse,
-  PinCodePayload,
-  PinCodeResponse,
+  // kycPayload,
+  // kycResponse,
+  // PinCodePayload,
+  // PinCodeResponse,
   Register2Payload,
   RegisterPayload,
   RegisterResponse,
@@ -17,7 +17,7 @@ import {
   authorisedEncrytedApiCall,
   decryptData,
   sendEncrytedData,
-  sendGETEncrytedData,
+  // sendGETEncrytedData,
 } from "./encrypt";
 import {
   defaultCatch,
@@ -156,9 +156,9 @@ class APIS {
       .finally(this.hideLoader);
   }
 
-  sendRedeemOTP(mobile: string): Promise<BaseResponse> {
+  sendRedeemOTP(payload: any): Promise<BaseResponse> {
     this.showLoader("Seding OTP...");
-    return sendEncrytedData("redeem/getOTP/", { mobile })
+    return sendEncrytedData("redeem/getOTP/", {...payload })
       .then(fetchHandlerText)
       .then(decryptData)
       .then(responseHelper)
@@ -252,7 +252,7 @@ class APIS {
     const accessDetails: any = await store.getState().auth;
     console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
     const userKey = accessDetails.userKey;
-    const dataKey = accessDetails.dataKey;
+    // const dataKey = accessDetails.dataKey;
     const headers = {
       ...jsonHeaders, // contains "Content-Type": "application/json"
       Authorization: `Bearer ${accessDetails.accessToken}`,
@@ -275,7 +275,7 @@ class APIS {
     const accessDetails: any = await store.getState().auth;
     console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
     const userKey = accessDetails.userKey;
-    const dataKey = accessDetails.dataKey;
+    // const dataKey = accessDetails.dataKey;
     // ✅ Merge json headers with Authorization
     const headers = {
       ...jsonHeaders, // contains "Content-Type": "application/json"
@@ -284,7 +284,7 @@ class APIS {
 
     this.showLoader("Starting session...");
     return fetch(
-      `${import.meta.env.VITE_API_BASE_URL}/redeem/getRewardDetails/${userKey}`,
+      `${import.meta.env.VITE_API_BASE_URL}redeem/getRewardDetails/${userKey}`,
       {
         method: "GET",
         headers,

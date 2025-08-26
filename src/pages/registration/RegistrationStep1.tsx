@@ -1,22 +1,22 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 // import { useAppDispatch } from "../../store/hooks";
-import Select, { components, PlaceholderProps } from "react-select";
+// import Select, { components, PlaceholderProps } from "react-select";
 
 // imageOnaCircle
 import styles from "./registrationStep1.module.scss";
 import { DISTRICT, STATES } from "../../lib/consts";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import close from "../../assets/images/close.svg";
 import down from "../../assets/images/chevron-down.svg";
 
 import CommonBase from "../../components/Popups/common/CommonBase";
-import { getCookie } from "../../lib/utils";
-import { store } from "../../store/store";
+// import { getCookie } from "../../lib/utils";
+// import { store } from "../../store/store";
 import { useAppDispatch } from "../../store/hooks";
 import API from "../../api";
 import { setMobile } from "../../store/slices/authSlice";
-import DynamicForm from "../../helpers/form";
+// import DynamicForm from "../../helpers/form";
 
 
 function RegistrationStep1() {
@@ -149,6 +149,11 @@ const handleChange = (e: any) => {
                 placeholder="Enter Name"
                 value={formData.name}
               onChange={handleChange}
+                onKeyDown={(e) => {
+  if (!/^[a-zA-Z\s]$/.test(e.key) && e.key !== "Backspace" && e.key !== "Tab") {
+    e.preventDefault();
+  }
+}}
             
               autoComplete="off"
               />

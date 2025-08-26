@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./verificationOtp.module.scss"; // optional styling
 import CommonBase from "../../components/Popups/common/CommonBase";
-import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../store/hooks";
@@ -13,7 +12,6 @@ function OtpRedeemVerification() {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputsRef = useRef<HTMLInputElement[]>([]);
   const [error, setError] = useState("");
-  const [showTerms, setShowTerms] = useState(false);
 
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return; // Only allow digits

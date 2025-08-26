@@ -9,13 +9,15 @@ bottom: 4rem;
   justify-content: center;
   gap: 10px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .otpInput {
   width: 40px;
   height: 50px;
+
   font-size: 24px;
-  text-align: center;
+  text-align: center !important;
   border: 1px solid #57C732;
   border-radius: 8px;
   outline: none;
@@ -30,6 +32,7 @@ bottom: 4rem;
     input{
     background: white;
     color: black;
+    text-align: center !important;
     }
 }
 

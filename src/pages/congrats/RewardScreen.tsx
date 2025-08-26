@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import "./RewardScreen.module.scss";
 import CommonBase from "../../components/Popups/common/CommonBase";
 

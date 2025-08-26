@@ -1,9 +1,9 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import listIcon from "../../../assets/images/List.png";
 import logo from "../../../assets/images/logo.svg";
 import imageOnaCircle from "../../../assets/images/CircleOna.png";
-import buyUnlock from "../../../assets/images/buyUnlock.png";
+// import buyUnlock from "../../../assets/images/buyUnlock.png";
 import PersonWithItem from "../../../assets/images/PersonWithItem.png";
 
 import styles from "./commonBase.module.scss";
