@@ -47,13 +47,13 @@ function CommonBase({ children }: Props) {
         onClick={closeNav}
       ></div>
             <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
-              <a href="/" className="closebtn" onClick={closeNav}>
+              <a href={`${import.meta.env.BASE_URL}`} className="closebtn" onClick={closeNav}>
                 &times;
               </a>
-              <a href="/">About</a>
-              <a href="/">Services</a>
-              <a href="/">Clients</a>
-              <a href="/">Contact</a>
+              <a href={`${import.meta.env.BASE_URL}`}>About</a>
+              <a href={`${import.meta.env.BASE_URL}`}>Services</a>
+              <a href={`${import.meta.env.BASE_URL}`}>Clients</a>
+              <a href={`${import.meta.env.BASE_URL}`}>Contact</a>
 
             </div>
             <div className={styles.logo}>
