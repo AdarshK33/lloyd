@@ -68,33 +68,15 @@ function CashBack() {
   // const navigate = useNavigate();
   
     const state = store.getState();
-      const {reward} = state.auth;
-  // const [formData, setFormData] = useState({
-  //   username: "",
-  //   number: "",
-  //   checkbox: false,
-  // });
+      const {reward} = state?.auth;
 
-  const [name, setName] = useState("");
-  // const [phoneNumber, setPhoneNumber] = useState("");
-
-  // const [nameError, setNameError] = useState(false);
-  // const [phoneError, setPhoneError] = useState(false);
-  // const [active, setActive] = useState("upi");
-
-  // const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [nameID, setNameID] = useState("");//upi id 
+ 
 
   const [activeTab, setActiveTab] = useState("cashback");
   const [activeVoucherTab, setActiveVoucherTab] = useState("upi");
   const [showTerms, setShowTerms] = useState(false);
   const [modalType, setModalType] = useState<"cashback" | "reward">("cashback");
-  const nameValidations = () => {
-    if (name !== "" && name !== null && name !== undefined) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   // const phoneValidations = () => {
   //   const phonePattern = /^[0-9]{10}$/;
@@ -110,16 +92,26 @@ function CashBack() {
   //   }
   // };
 
-  const checkValidations = () => {
-    let isValid = true;
+const upiRegex =
+  /^(?=.{3,320}$)(?=.{2,256}@)(?![._-])(?!.*[._-]{2})[A-Za-z0-9._-]+@(?![.-])(?!.*[.-]{2})[A-Za-z0-9.-]+$/;
 
-    if (!nameValidations()) {
-      toast.error("Please enter a valid UPI ID");
-      isValid = false;
-    }
-    return isValid;
-  };
+// 🔍 Helper to validate UPI
+const nameValidations = (upi: string) => {
+  if (!upi) return false;
+  return upiRegex.test(upi.trim());
+};
 
+// 🚀 Final checkValidations function
+const checkValidations = () => {
+  let isValid = true;
+
+  if (!nameValidations(nameID)) {
+    toast.error("Please enter a valid UPI ID");
+    isValid = false;
+  }
+
+  return isValid;
+};
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -127,7 +119,7 @@ function CashBack() {
     if(value==true){
 
        const info: any= {
-          upiId:name
+          upiId:nameID
       };
 const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
       //  save accesstoken authorisedApi
@@ -253,10 +245,10 @@ const res: any = await API.allTokenApi("redeem/submitUpiDetails/",info);
                   <div className={styles.inputGroup}>
                     <input
                       type="text"
-                      name="username"
+                      name="usernameID"
                       placeholder="Enter UPI ID"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      value={nameID}
+                      onChange={(e) => setNameID(e.target.value)}
                     />
                   </div>
 
