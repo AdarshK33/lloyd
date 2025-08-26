@@ -249,7 +249,7 @@ function CashBack() {
                       className={error.usernameID ? "inputError" : ""}
                     />
                     {error.usernameID && (
-                      <span className="validation">{error.usernameID}</span>
+                      <p className="validation">{error.usernameID}</p>
                     )}
                   </div>
 
