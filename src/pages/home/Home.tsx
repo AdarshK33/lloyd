@@ -52,6 +52,10 @@ const dispatch=  useAppDispatch();
   return (
     <>
       {/* Sidenav */}
+       <div
+        className={` ${isNavOpen ? "overlay active" : ""}`}
+        onClick={closeNav}
+      ></div>
       <div className={`sidenav ${isNavOpen ? "open" : ""}`}>
         <a href="/" className="closebtn" onClick={closeNav}>
           &times;
