@@ -50,6 +50,9 @@ function RegistrationStep1() {
     if (!formData.district) {
       newErrors.district = "**Please select a district";
     }
+    if (!formData.voucher) {
+      newErrors.voucher = "**Please enter a voucher code";
+    }
 
     if (!formData.state) {
       newErrors.state = "**Please select a state";
@@ -296,18 +299,21 @@ function RegistrationStep1() {
             <div className={styles.checkboxInputGroup}>
               <div className={styles.checkboxWrapper}>
                 {/* Checkbox + label */}
-                <label className={styles.checkboxLabel}>
-                  <input
-                    type="checkbox"
-                    name="agreedToTerms"
-                    checked={formData.agreedToTerms}
-                    onChange={handleChange}
-                  />
-                  <span className={styles.customCheckbox}></span>
+                <div className={styles.checkboxLabel}>
+                  <label className={styles.checkboxOnly}>
+                    <input
+                      type="checkbox"
+                      name="agreedToTerms"
+                      checked={formData.agreedToTerms}
+                      onChange={handleChange}
+                    />
+                    <span className={styles.customCheckbox}></span>
+                  </label>
+
                   <span className={styles.TermsConditionsNormal}>
                     I agree to the
                   </span>
-                </label>
+                </div>
 
                 {/* Terms & Conditions button */}
                 <button
