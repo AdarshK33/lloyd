@@ -19,6 +19,9 @@ position: relative; /* Makes it possible to position child elements absolutely *
 .logo .imagelogo img{
     width: 20%;
 }
+.header{
+  position: relative;
+}
 
 .imagelist{
 padding-top: 10px; 
@@ -47,6 +50,8 @@ img{
 
 
 .buttonSection{
+  position: relative;
+       
     .buttonBottom{
           position: relative;
        
