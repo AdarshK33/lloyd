@@ -9,7 +9,11 @@ background-image:url("../../assets/images/BG.png");
 background-size:100%100%;
 background-repeat: no-repeat;
 background-position: center;
-height:100vh;
+height: 100svh; 
+overflow-x: hidden; /* Prevent horizontal scroll */
+overflow-y: auto;   /* Allow vertical scroll */
+position: relative; /* Makes it possible to position child elements absolutely */
+
 }
 
 .logo .imagelogo img{
@@ -132,6 +136,7 @@ img{
 
 /* iPhone 12, 13, 14, 14 Pro (390px wide) */
 @media only screen and (width: 390px) {
+     .bg { background-size: cover; }
   .logo .imagelogo img { width: 38%; }
   .imageOnaCircle img { width: 78%; }
   .ticketSection img { width: 68%; }
@@ -139,6 +144,7 @@ img{
 
 /* iPhone 6/7/8 Plus, XR, XS Max, 11, 11 Pro Max (414px wide) */
 @media only screen and (width: 414px) {
+     .bg { background-size: cover; }
   .logo .imagelogo img { width: 35%; }
   .imageOnaCircle img { width: 75%; }
   .ticketSection img { width: 65%; }
@@ -146,6 +152,7 @@ img{
 
 /* iPhone 12, 13, 14 Pro Max (430px wide) */
 @media only screen and (width: 430px) {
+   .bg { background-size: cover; }
   .logo .imagelogo img { width: 33%; }
   .imageOnaCircle img { width: 72%; }
   .ticketSection img { width: 62%; }

@@ -20,7 +20,7 @@ import flipcart from "../../assets/images/flipcart.svg";
 
 // imageOnaCircle
 import styles from "./cashBack.module.scss";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import CommonBase from "../../components/Popups/common/CommonBase";
 import API from "../../api";
 import { store } from "../../store/store";
@@ -108,20 +108,6 @@ function CashBack() {
     return errors;
   };
 
-  // 🚀 Final checkValidations function
-  const checkValidations = () => {
-    const errors: any = {};
-    const upiRegex =
-      /^(?=.{3,320}$)(?=.{2,256}@)(?![._-])(?!.*[._-]{2})[A-Za-z0-9._-]+@(?![.-])(?!.*[.-]{2})[A-Za-z0-9.-]+$/;
-
-    if (!formData.usernameID.trim()) {
-      errors.usernameID = "**UPI ID is required";
-    } else if (!upiRegex.test(formData.usernameID)) {
-      errors.usernameID = "**Enter a valid UPI ID (e.g. username@bank)";
-    }
-
-    return errors;
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
