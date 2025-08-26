@@ -14,6 +14,7 @@ import KYC from "./pages/kyc/kyc";
 import RewardScreen from "./pages/congrats/RewardScreen";
 
 import OtpRedeemVerification from "./pages/verificationRedeemOtp/VerificationRedeemOtp";
+import EnvelopeAnimation from "./pages/EnvelopeAnimation/EnvelopeAnimation";
 
 
 
@@ -56,6 +57,9 @@ function App() {
         <Route path={ROUTES.KYC} element={<KYC />} />
         <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen/>} />
         <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification/>} />
+        <Route path="/EnvelopeAnimation" element={<EnvelopeAnimation/>} />
+
+      
 
 
 

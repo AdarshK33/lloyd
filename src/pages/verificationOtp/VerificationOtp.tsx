@@ -12,6 +12,7 @@ import v1 from "../../assets/images/Voucher 1.png";
 import API from "../../api";
 import {  setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
+import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
 // import { store } from "../../store/store";
 function OtpVerification() {
   // const navigate = useNavigate();
@@ -183,14 +184,15 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
           <div className={styles.rewardContainer}>
             {/* Heading */}
             <h2 className={styles.title}>Congratulations!</h2>
-            <p className={styles.subtitle}>
-              You have won Havells Juicer Mixer Grinder and a Reward Bundle of
-              ₹25,000
-            </p>
+            <div className={styles.subtitle}>
+  You have won Havells Juicer Mixer Grinder <br />
+  and a Reward Bundle of <br />
+  ₹25,000
+</div>
 
             {/* Reward Card */}
 
-            <div className={styles.prizes}>
+            {/* <div className={styles.prizes}>
               <div className={styles.envelope}>
                 <img
                   src={claro}
@@ -199,7 +201,8 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
                 />
                 <img src={v1} alt="Reward Bundle" className={styles.reward} />
               </div>
-            </div>
+            </div> */}
+            <EnvelopeAnimation /> 
 
             <div className={styles.rewardCard}>
               <div className={styles.left}>

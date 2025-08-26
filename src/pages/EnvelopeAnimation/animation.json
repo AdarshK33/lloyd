@@ -1,0 +1,60 @@
+{
+    "initialState": {
+        "envelope": {
+            "status": "closed",
+            "visible": true
+        },
+        "items": [
+            {
+                "id": "mixer",
+                "visible": false,
+                "position": "offscreen-left"
+            },
+            {
+                "id": "reward_bundle",
+                "visible": false,
+                "position": "offscreen-right"
+            }
+        ]
+    },
+    "animationSequence": [
+        {
+            "time": 0,
+            "action": "show",
+            "target": "envelope",
+            "properties": {
+                "status": "closed"
+            }
+        },
+        {
+            "time": 2000,
+            "action": "animate",
+            "target": "envelope",
+            "properties": {
+                "status": "open"
+            }
+        },
+        {
+            "time": 2500,
+            "action": "animateIn",
+            "target": "mixer",
+            "properties": {
+                "from": "left",
+                "to": "center",
+                "duration": 1000,
+                "visible": true
+            }
+        },
+        {
+            "time": 2500,
+            "action": "animateIn",
+            "target": "reward_bundle",
+            "properties": {
+                "from": "right",
+                "to": "center",
+                "duration": 1000,
+                "visible": true
+            }
+        }
+    ]
+}
