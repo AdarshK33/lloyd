@@ -326,7 +326,8 @@ if (!formData.voucher) {
                 {/* Terms & Conditions button */}
                 <button
                   type="button"
-                  onClick={() => setShowTerms(true)}
+                  // onClick={() => setShowTerms(true)}
+                  onClick={() => navigate(`/termAndCondition`)}
                   className={styles.TermsConditionsBold}
                 >
                   Terms & Conditions

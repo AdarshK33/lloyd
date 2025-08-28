@@ -4,7 +4,7 @@ import { useEffect, Suspense, lazy } from "react";
 import { useGlobalLoaderContext } from "./helpers/GlobalLoader";
 import API from "./api";
 import { ROUTES } from "./lib/consts";
-import ContactUs from "./pages/contact/contactUs";
+
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/home/Home"));
@@ -17,6 +17,10 @@ const KYC = lazy(() => import("./pages/kyc/kyc"));
 const RewardScreen = lazy(() => import("./pages/congrats/RewardScreen"));
 const OtpRedeemVerification = lazy(() => import("./pages/verificationRedeemOtp/VerificationRedeemOtp"));
 const EnvelopeAnimation = lazy(() => import("./pages/EnvelopeAnimation/EnvelopeAnimation"));
+const ContactUs = lazy(() => import("./pages/contact/contactUs"));
+const TermAndCondition  = lazy(() => import("./pages/term&condition/T&C"));
+
+
 
 function App() {
   const { showLoader, hideLoader } = useGlobalLoaderContext();
@@ -46,6 +50,8 @@ function App() {
         <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification />} />
         <Route path="/EnvelopeAnimation" element={<EnvelopeAnimation />} />
         <Route path="/contactUs" element={<ContactUs />} />
+        <Route path="/termAndCondition" element={<TermAndCondition/>} />
+
 
       </Routes>
     </Suspense>

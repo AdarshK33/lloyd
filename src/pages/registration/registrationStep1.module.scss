@@ -37,8 +37,9 @@ form{
 }
 
 .TermsConditionsBold {
+  all: unset; /* remove button default style */
   font-weight: bold;
-  color: #000; // or your highlight color like #DEA3B7
+  color: #000 !important; // or your highlight color like #DEA3B7
   font-size: 14px;
 //   margin-left: 4px;
     text-decoration: underline;
