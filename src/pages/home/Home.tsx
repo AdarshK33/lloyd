@@ -61,8 +61,8 @@ const dispatch=  useAppDispatch();
           &times;
         </a>
         <a href={`${import.meta.env.BASE_URL}`}>Terms & conditions</a>
-        <a href={`${import.meta.env.BASE_URL}`}>Services</a>
-        <a href={`${import.meta.env.BASE_URL}`}>Clients</a>
+        {/* <a href={`${import.meta.env.BASE_URL}`}>Services</a>
+        <a href={`${import.meta.env.BASE_URL}`}>Clients</a> */}
         <a href={`${import.meta.env.BASE_URL}/contactUs`}>Contact Us</a>
       </div>
 
