@@ -7,13 +7,15 @@ import imageOnaCircle from "../../../assets/images/CircleOna.png";
 import PersonWithItem from "../../../assets/images/PersonWithItem.png";
 
 import styles from "./commonBase.module.scss";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type Props = {
   children: React.ReactNode;
 };
 function CommonBase({ children }: Props) {
 
+
+   const navigate = useNavigate();
    const location = useLocation();
 
     const [isNavOpen, setIsNavOpen] = useState(false);
@@ -50,10 +52,9 @@ function CommonBase({ children }: Props) {
               <a href={`${import.meta.env.BASE_URL}`} className="closebtn" onClick={closeNav}>
                 &times;
               </a>
-              <a href={`${import.meta.env.BASE_URL}`}>About</a>
-              <a href={`${import.meta.env.BASE_URL}`}>Services</a>
-              <a href={`${import.meta.env.BASE_URL}`}>Clients</a>
-              <a href={`${import.meta.env.BASE_URL}`}>Contact</a>
+               <a  onClick={() => navigate(`/termAndCondition`)}>Terms & conditions</a>
+
+        <a   onClick={() => navigate(`/contactUs`)}>Contact Us</a>
 
             </div>
             <div className={styles.logo}>
