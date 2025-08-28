@@ -4,6 +4,7 @@ import { useEffect, Suspense, lazy } from "react";
 import { useGlobalLoaderContext } from "./helpers/GlobalLoader";
 import API from "./api";
 import { ROUTES } from "./lib/consts";
+import ContactUs from "./pages/contact/contactUs";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/home/Home"));
@@ -44,6 +45,8 @@ function App() {
         <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen />} />
         <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification />} />
         <Route path="/EnvelopeAnimation" element={<EnvelopeAnimation />} />
+        <Route path="/contactUs" element={<ContactUs />} />
+
       </Routes>
     </Suspense>
   );

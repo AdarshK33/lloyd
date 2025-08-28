@@ -1,17 +1,56 @@
+
+/* global.scss */
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/fonts/MyCustomFont-Light.woff2") format("woff2");
+  font-weight: 300;  
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/font/corda/Corda-Light.otf") format("woff2");
+  font-weight: 400;  
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/font/corda/Corda-Medium.otf") format("woff2");
+  font-weight: 500; 
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/font/corda/Corda-Bold.otf") format("woff2");
+  font-weight: 700; 
+  font-style: normal;
+  font-display: swap;
+}
+
+
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-family: "MyCustomFont" !important;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #10c628;
-
+  background-color: #00833e;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+
+
+
 
 /* a {
   font-weight: 500;
@@ -29,11 +68,11 @@ body {
 
     margin: 0;
     padding: 0;
-    font-family: Poppins;
+      font-family: "MyCustomFont"  !important;
     font-weight: 500;
     line-height: 100%;
     overflow: hidden;
-    background-color: #54f469;
+    background-color: #00833e;
 
 }
 

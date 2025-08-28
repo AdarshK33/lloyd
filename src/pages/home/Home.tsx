@@ -60,10 +60,10 @@ const dispatch=  useAppDispatch();
         <a href={`${import.meta.env.BASE_URL}`} className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <a href={`${import.meta.env.BASE_URL}`}>About</a>
+        <a href={`${import.meta.env.BASE_URL}`}>Terms & conditions</a>
         <a href={`${import.meta.env.BASE_URL}`}>Services</a>
         <a href={`${import.meta.env.BASE_URL}`}>Clients</a>
-        <a href={`${import.meta.env.BASE_URL}`}>Contact</a>
+        <a href={`${import.meta.env.BASE_URL}/contactUs`}>Contact Us</a>
       </div>
 
       {/* Main content */}
