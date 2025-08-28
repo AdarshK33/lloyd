@@ -114,7 +114,7 @@ function OtpVerification() {
               className={styles.validation}
               style={{
                 color: "#ea0c0cff",
-                fontSize: "10px",
+                fontSize: "12px",
                 fontWeight: 200,
               }}
             >
