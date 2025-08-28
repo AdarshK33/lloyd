@@ -50,12 +50,13 @@ function RegistrationStep1() {
     if (!formData.district) {
       newErrors.district = "**Please select a district";
     }
-    if (!formData.voucher) {
-      newErrors.voucher = "**Please enter a voucher code";
-    }else if (!/^[6-9]\d{9}$/.test(formData.voucher)) {
-      newErrors.voucher = "**Please enter a valid 12-digit voucher code";
-    }
-
+if (!formData.voucher) {
+  newErrors.voucher = "**Please enter a voucher code";
+} else if (
+  !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{12}$/.test(formData.voucher)
+) {
+  newErrors.voucher = "**Please enter a valid voucher code ";
+}
     if (!formData.state) {
       newErrors.state = "**Please select a state";
     }
@@ -226,13 +227,11 @@ function RegistrationStep1() {
                 name="voucher"
                 placeholder="Voucher Code"
                 value={formData.voucher}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  // Allow only letters + numbers
-                  if (/^[A-Za-z0-9]*$/.test(value) && value.length <= 12) {
-                    handleChange(e);
-                  }
-                }}
+                // onChange={handleChange}
+                 onChange={(e) => {
+    const upper = e.target.value.toUpperCase();
+    setFormData({ ...formData, voucher: upper });
+  }}
                 maxLength={12}
                 autoComplete="off"
               />
