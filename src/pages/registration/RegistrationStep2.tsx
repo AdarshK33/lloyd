@@ -147,7 +147,7 @@ function RegistrationStep2() {
                 autoComplete="off"
               />
               {newErrors.outletName && (
-                <span className="validation">{newErrors.outletName}</span>
+                <p className="validation">{newErrors.outletName}</p>
               )}
             </div>
 
@@ -164,7 +164,7 @@ function RegistrationStep2() {
                 autoComplete="off"
               />
               {newErrors.invoiceNumber && (
-                <span className="validation">{newErrors.invoiceNumber}</span>
+                <p className="validation">{newErrors.invoiceNumber}</p>
               )}
             </div>
 
@@ -205,7 +205,7 @@ function RegistrationStep2() {
                 )}
               </Dropzone>
               {newErrors.file1 && (
-                <span className="validation">{newErrors.file1}</span>
+                <p className="validation">{newErrors.file1}</p>
               )}
             </div>
 

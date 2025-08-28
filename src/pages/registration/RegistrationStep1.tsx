@@ -165,7 +165,7 @@ if (!formData.voucher) {
                 autoComplete="off"
               />
               {errors.name && (
-                <span className={styles.validation}>{errors.name}</span>
+                <p className={styles.validation}>{errors.name}</p>
               )}
             </div>
 
@@ -217,7 +217,7 @@ if (!formData.voucher) {
                 autoComplete="off"
               />
               {errors.phoneNumber && (
-                <span className={styles.validation}>{errors.phoneNumber}</span>
+                 <p  className={styles.validation}>{errors.phoneNumber}</p>
               )}
             </div>
 
@@ -236,7 +236,7 @@ if (!formData.voucher) {
                 autoComplete="off"
               />
               {errors.voucher && (
-                <span className={styles.validation}>{errors.voucher}</span>
+                <p className={styles.validation}>{errors.voucher}</p>
               )}
             </div>
 
@@ -268,7 +268,7 @@ if (!formData.voucher) {
                 })}
               </select>
               {errors.state && (
-                <span className={styles.validation}>{errors.state}</span>
+                <p className={styles.validation}>{errors.state}</p>
               )}
             </div>
             <div className={`${styles.inputGroup}`}>
@@ -300,7 +300,7 @@ if (!formData.voucher) {
                 ))}
               </select>
               {errors.district && (
-                <span className={styles.validation}>{errors.district}</span>
+                <p className={styles.validation}>{errors.district}</p>
               )}
             </div>
 
@@ -336,7 +336,7 @@ if (!formData.voucher) {
             </div>
             <div className={styles.buttonSection}>
               {errors.agreedToTerms && (
-                <span
+                <p
                   className={styles.validation}
                   style={{
                     color: "#ea0c0cff",
@@ -345,7 +345,7 @@ if (!formData.voucher) {
                   }}
                 >
                   {errors.agreedToTerms}
-                </span>
+                </p>
               )}
               <div className={styles.buttonBottom}>
                 <button type="submit">Next</button>
