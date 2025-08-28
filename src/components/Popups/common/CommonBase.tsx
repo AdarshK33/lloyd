@@ -7,7 +7,7 @@ import imageOnaCircle from "../../../assets/images/CircleOna.png";
 import PersonWithItem from "../../../assets/images/PersonWithItem.png";
 
 import styles from "./commonBase.module.scss";
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { MODAL_TYPES, useGlobalModalContext } from "../../../helpers/GlobalModal";
 
 type Props = {
@@ -17,7 +17,7 @@ function CommonBase({ children }: Props) {
     const { showModal } = useGlobalModalContext();
 
 
-   const navigate = useNavigate();
+  //  const navigate = useNavigate();
    const location = useLocation();
 
     const [isNavOpen, setIsNavOpen] = useState(false);

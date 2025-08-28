@@ -49,8 +49,12 @@ function App() {
         <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen />} />
         <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification />} />
         <Route path="/EnvelopeAnimation" element={<EnvelopeAnimation />} />
-        <Route path="/contactUs" element={<ContactUs />} />
-        <Route path="/termAndCondition" element={<TermAndCondition/>} />
+        <Route path="/contactUs" element={<ContactUs hideModal={function (): void {
+          throw new Error("Function not implemented.");
+        } } />} />
+        <Route path="/termAndCondition" element={<TermAndCondition hideModal={function (): void {
+          throw new Error("Function not implemented.");
+        } }/>} />
 
 
       </Routes>

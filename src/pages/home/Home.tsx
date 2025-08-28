@@ -12,7 +12,7 @@ import styles from "./Home.module.scss";
 import API from "../../api";
 import { useAppDispatch } from "../../store/hooks";
 import { setUserKey } from "../../store/slices/authSlice";
-import { GlobalModal, MODAL_TYPES, useGlobalModalContext } from "../../helpers/GlobalModal";
+import {  MODAL_TYPES, useGlobalModalContext } from "../../helpers/GlobalModal";
 
 function Home() {
   const navigate = useNavigate();
