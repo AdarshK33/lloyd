@@ -25,10 +25,12 @@
 /* Circle Timer */
 .circleTimer {
   position: relative;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
-
+.hidden {
+  visibility: hidden; /* keeps space reserved, no layout shift */
+}
 .progressRing {
   transform: rotate(-90deg); /* make progress start at top */
 }
