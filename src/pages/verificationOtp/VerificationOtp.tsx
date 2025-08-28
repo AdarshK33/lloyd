@@ -13,6 +13,7 @@ import API from "../../api";
 import {  setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
 import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
+import ResendOtp from "./reSend";
 // import { store } from "../../store/store";
 function OtpVerification() {
   // const navigate = useNavigate();
@@ -122,10 +123,11 @@ function OtpVerification() {
           )}
 
           <div className={styles.resendOtp}>
-            <span className={styles.conditionsNormal}>
+            {/* <span className={styles.conditionsNormal}>
               Didn’t receive OTP Yet?
             </span>
-            <span className={styles.conditionsBold}> Resend OTP</span>
+            <span className={styles.conditionsBold}> Resend OTP</span> */}
+            <ResendOtp />
           </div>
           <div className={styles.buttonSection}>
             <div className={styles.buttonBottom}>

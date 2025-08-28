@@ -1,13 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, createContext, useContext } from "react";
-import popups from "../components/Popups";
+// import popups from "../components/Popups";
+import TermsConditionsPopup from "../pages/term&condition/T&C";
+import ContactUs from "../pages/contact/contactUs";
+
+
+
+
+
+
 
 export const MODAL_TYPES = {
   CONTACT_US: "CONTACT_US",
+  TERMS_CONDITIONS: "TERMS_CONDITIONS",
+
 };
 
 const MODAL_COMPONENTS = {
-  [MODAL_TYPES.CONTACT_US]: popups.ContactUsPopup,
+  // [MODAL_TYPES.CONTACT_US]: popups.ContactUsPopup,
+  [MODAL_TYPES.TERMS_CONDITIONS]: TermsConditionsPopup,
+  [MODAL_TYPES.CONTACT_US]: ContactUs,
+
 };
 
 type ContextType = {

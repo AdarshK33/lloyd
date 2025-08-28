@@ -1,13 +1,17 @@
 import React from "react";
 import "./T&C.scss";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
-const ContactUs: React.FC = () => {
-    const navigate = useNavigate();
+interface TermsConditionsPopupProps {
+  hideModal: () => void;
+}
+
+const TermsConditionsPopup: React.FC<TermsConditionsPopupProps> = ({ hideModal }) => {
+   
   return (
     <div className="contact-container">
       {/* Back Arrow */}
-      <div className="back-arrow"onClick={() => navigate(-1)}>←</div>
+      <div className="back-arrow"       onClick={() => hideModal()}>←</div>
 
       {/* Title */}
       <h1 className="title">Terms & conditions</h1>
@@ -205,4 +209,4 @@ const ContactUs: React.FC = () => {
   );
 };
 
-export default ContactUs;
+export default  TermsConditionsPopup;

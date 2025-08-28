@@ -1,0 +1,53 @@
+.resendOtp {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.conditionsNormal {
+  color: #555;
+}
+
+.conditionsBold {
+  font-weight: 600;
+  color: #000000;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+//   &:hover {
+//     color: darken(#dea3b7, 10%);
+//   }
+}
+
+/* Circle Timer */
+.circleTimer {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.progressRing {
+  transform: rotate(-90deg); /* make progress start at top */
+}
+
+.backgroundCircle {
+  opacity: 0.2;
+}
+
+.progressCircle {
+  transition: stroke-dashoffset 1s linear; /* smooth animation */
+}
+
+.timeText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-family: "Courier New", monospace;
+  font-weight: bold;
+  color: #333;
+}

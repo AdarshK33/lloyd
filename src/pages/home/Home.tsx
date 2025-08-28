@@ -12,11 +12,14 @@ import styles from "./Home.module.scss";
 import API from "../../api";
 import { useAppDispatch } from "../../store/hooks";
 import { setUserKey } from "../../store/slices/authSlice";
+import { GlobalModal, MODAL_TYPES, useGlobalModalContext } from "../../helpers/GlobalModal";
 
 function Home() {
   const navigate = useNavigate();
 const dispatch=  useAppDispatch();
   const [isNavOpen, setIsNavOpen] = useState(false);
+  
+    const { showModal } = useGlobalModalContext();
 
   //  const [response, setResponse] = useState(null)
   const handleAuthorisedApiCall = async () => {
@@ -49,6 +52,14 @@ const dispatch=  useAppDispatch();
     setIsNavOpen(false);
   };
 
+
+
+  const openModal = (type: string, props: any = {}) => {
+  showModal(type, props, () => {
+    console.log(`${type} modal closed ✅`);
+  });
+};
+
   return (
     <>
       {/* Sidenav */}
@@ -60,12 +71,18 @@ const dispatch=  useAppDispatch();
         <a href={`${import.meta.env.BASE_URL}`} className="closebtn" onClick={closeNav}>
           &times;
         </a>
-        <a  onClick={() => navigate(`/termAndCondition`)}>Terms & conditions</a>
+        <a  onClick={(e) => {
+  openModal(MODAL_TYPES.TERMS_CONDITIONS)
+    closeNav(e);
+  }}>Terms & conditions</a>
         {/* <a href={`${import.meta.env.BASE_URL}`}>Services</a>
         <a href={`${import.meta.env.BASE_URL}`}>Clients</a> */}
-        <a   onClick={() => navigate(`/contactUs`)}>Contact Us</a>
-      
-      </div>
+        <a    onClick={(e) => {
+   openModal(MODAL_TYPES.CONTACT_US, { name: "Adarsh" })
+    closeNav(e);
+  }}>Contact Us</a>
+  
+     </div>
 
       {/* Main content */}
       <div className={styles.container}>

@@ -8,11 +8,13 @@ import PersonWithItem from "../../../assets/images/PersonWithItem.png";
 
 import styles from "./commonBase.module.scss";
 import { useLocation, useNavigate } from 'react-router-dom';
+import { MODAL_TYPES, useGlobalModalContext } from "../../../helpers/GlobalModal";
 
 type Props = {
   children: React.ReactNode;
 };
 function CommonBase({ children }: Props) {
+    const { showModal } = useGlobalModalContext();
 
 
    const navigate = useNavigate();
@@ -28,6 +30,12 @@ function CommonBase({ children }: Props) {
     e.preventDefault();
     setIsNavOpen(false);
   };
+  
+  const openModal = (type: string, props: any = {}) => {
+  showModal(type, props, () => {
+    console.log(`${type} modal closed ✅`);
+  });
+};
 
   return (
     <>
@@ -52,9 +60,15 @@ function CommonBase({ children }: Props) {
               <a href={`${import.meta.env.BASE_URL}`} className="closebtn" onClick={closeNav}>
                 &times;
               </a>
-               <a  onClick={() => navigate(`/termAndCondition`)}>Terms & conditions</a>
+               <a  onClick={(e) => {
+                 openModal(MODAL_TYPES.TERMS_CONDITIONS);
+                  closeNav(e);
+                 }}>Terms & conditions</a>
 
-        <a   onClick={() => navigate(`/contactUs`)}>Contact Us</a>
+        <a  onClick={(e) => {
+  openModal(MODAL_TYPES.CONTACT_US);
+   closeNav(e);
+  }}>Contact Us</a>
 
             </div>
             <div className={styles.logo}>
@@ -64,7 +78,6 @@ function CommonBase({ children }: Props) {
             <div className={styles.leftImage}  onClick={toggleNav}>
               <img src={listIcon} alt="listIcon"  onClick={toggleNav}
               />
-
             </div>
           </div>
           <div className={styles.onaCircle}>

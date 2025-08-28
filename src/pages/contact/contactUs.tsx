@@ -1,13 +1,16 @@
 import React from "react";
 import "./contactUs.scss";
-import { useNavigate } from "react-router-dom";
 
-const ContactUs: React.FC = () => {
-    const navigate = useNavigate();
+interface ContactUsPopupProps {
+  hideModal: () => void;
+}
+
+const ContactUs: React.FC<ContactUsPopupProps> = ({ hideModal }) => {
+   
   return (
     <div className="contact-container">
       {/* Back Arrow */}
-      <div className="back-arrow"onClick={() => navigate(-1)}>←</div>
+      <div className="back-arrow" onClick={() => hideModal()}>←</div>
 
       {/* Title */}
       <h1 className="title">Contact Us</h1>
