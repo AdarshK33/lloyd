@@ -70,13 +70,13 @@ function OtpVerification() {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
-           
-            dispatch(setReward(resGet?.rewardType));
+          dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
         }
       }
      
     } else {
+      //  setShowTerms(true);
    
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
@@ -130,9 +130,9 @@ function OtpVerification() {
             <ResendOtp />
           </div>
           <div className={styles.buttonSection}>
-            <div className={styles.buttonBottom}>
+       
               <button type="submit">Verify Otp</button>
-            </div>
+           
           </div>
         </form>
       </CommonBase>

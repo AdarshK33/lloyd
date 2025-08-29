@@ -246,9 +246,8 @@ function RegistrationStep2() {
             </div>
 
             <div className={styles.buttonSection}>
-              <div className={styles.buttonBottom}>
                 <button type="submit">Get Otp</button>
-              </div>
+             
             </div>
           </form>
         </div>

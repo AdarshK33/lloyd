@@ -94,33 +94,33 @@ const dispatch=  useAppDispatch();
           </div>
 
           <div className={styles.logo}>
-            <div className={styles.imagelogo}>
+          
               <img src={logo} alt="logo" />
-            </div>
+         
           </div>
 
           <div className={styles.onaCircle}>
-            <div className={styles.imageOnaCircle}>
+           
               <img src={imageOnaCircle} alt="imageOnaCircle" />
-            </div>
+            
           </div>
 
           <div className={styles.ticketSection}>
-            <div className={styles.ticketBanner}>
+         
               <img src={buyUnlock} alt="buyUnlock" />
-            </div>
+        
           </div>
 
           <div className={styles.itemSection}>
-            <div className={styles.itemBanner}>
+        
               <img src={PersonWithItem} alt="PersonWithItem" />
-            </div>
+           
           </div>
 
           <div className={styles.buttonSection}>
-            <div className={styles.buttonBottom}>
+           
               <button onClick={handleClick}>Get Started</button>
-            </div>
+          
           </div>
         </div>
       </div>

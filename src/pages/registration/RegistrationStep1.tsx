@@ -335,8 +335,6 @@ if (!formData.voucher) {
                 {/* Terms & Conditions button */}
                 <button
                   type="button"
-                  // onClick={() => setShowTerms(true)}
-                  // onClick={() => navigate(`/termAndCondition`)}
                   onClick={() => {
                     openModal(MODAL_TYPES.TERMS_CONDITIONS)
                      
@@ -347,7 +345,7 @@ if (!formData.voucher) {
                 </button>
               </div>
             </div>
-            <div className={styles.buttonSection}>
+         
               {errors.agreedToTerms && (
                 <p
                   className={styles.validation}
@@ -360,10 +358,10 @@ if (!formData.voucher) {
                   {errors.agreedToTerms}
                 </p>
               )}
-              <div className={styles.buttonBottom}>
+            <div className={styles.buttonSection}>
                 <button type="submit">Next</button>
               </div>
-            </div>
+          
           </form>
         </div>
         {/* <DynamicForm

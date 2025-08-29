@@ -1,14 +1,13 @@
 
 
 .buttonSection{
-    .buttonBottom{
           position: relative;
         top: 1rem;
         button{
             padding: 10px 40px;
             background-color: #DA251D;
         }
-    }
+    
 }
 form{
     text-align: -webkit-center
@@ -328,20 +327,12 @@ top: .2rem;
 
 .buttonSection{
      position: relative;
-    .buttonBottom{
-          position: relative;
-     
-    }
-  span{
-   color: #DA251D !important;
+    
+}
 
-position: relative;
-top: .2rem;
-}
-}
 .formSection{
      position: relative;
-    
+    bottom: 3rem;
 }
 form{
     text-align: -webkit-center

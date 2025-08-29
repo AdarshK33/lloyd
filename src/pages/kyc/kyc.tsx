@@ -578,9 +578,9 @@ if(res){
             </div>
 
             <div className={styles.buttonSection}>
-              <div className={styles.buttonBottom}>
+            
                 <button type="submit">Submit</button>
-              </div>
+            
             </div>
           </form>
         </div>

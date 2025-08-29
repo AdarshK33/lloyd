@@ -16,7 +16,7 @@ position: relative; /* Makes it possible to position child elements absolutely *
 
 }
 
-.logo .imagelogo img{
+.logo  img{
     width: 20%;
 }
 .header{
@@ -32,9 +32,9 @@ padding-right: 10px;
 .onaCircle{
     position: relative;
    bottom: 1rem;
-}
-.imageOnaCircle img{
+   img{
 width: 45%;
+}
 }
 
 .ticketSection{
@@ -52,15 +52,13 @@ img{
 .buttonSection{
   position: relative;
        
-    .buttonBottom{
-          position: relative;
        
         button{
             padding: 10px 40px;
             background-color: #DA251D;
             color: #ffff;
         }
-    }
+    
 }
 
 
@@ -87,25 +85,23 @@ img{
 // }
 
 .ticketSection{
-  .ticketBanner{
+  
         position: relative;
-       
-    
+      
 img{
     width: 70%;
-}
+
   }
 }
 
 .itemSection{
-    position: relative;
-    .itemBanner{
+   
         position: relative;
         top: 0rem;
         img{
             width: 100%;
         }
-    }
+    
 
 }
 
@@ -141,40 +137,40 @@ img{
 /* iPhone 6,7,8, X, 11 Pro (375px wide) */
 @media only screen and (width: 375px) {
   .bg { background-size: cover; }
-  .logo .imagelogo img { width: 40%; }
-  .imageOnaCircle img { width: 80%; }
+  .logo img { width: 40%; }
+  .onaCircle img { width: 80%; }
   .ticketSection img { width: 70%; }
 }
 
 /* iPhone 12, 13, 14 (390px wide) */
 @media only screen and (width: 390px) {
   .bg { background-size: cover; }
-  .logo .imagelogo img { width: 38%; }
-  .imageOnaCircle img { width: 78%; }
+  .logo  img { width: 38%; }
+  .onaCircle img { width: 78%; }
   .ticketSection img { width: 68%; }
 }
 
 /* iPhone 14 Pro (393px wide) */
 @media only screen and (width: 393px) {
   .bg { background-size: cover; }
-  .logo .imagelogo img { width: 37%; }
-  .imageOnaCircle img { width: 66%; }
+  .logo  img { width: 37%; }
+  .onaCircle img { width: 66%; }
   .ticketSection img { width: 50%; }
 }
 
 /* iPhone 6/7/8 Plus, XR, XS Max, 11, 11 Pro Max (414px wide) */
 @media only screen and (width: 414px) {
   .bg { background-size: cover; }
-  .logo .imagelogo img { width: 35%; }
-  .imageOnaCircle img { width: 60%; }
+  .logo  img { width: 35%; }
+  .onaCircle img { width: 60%; }
   .ticketSection img { width: 50%; }
 }
 
 /* iPhone 12, 13, 14 Pro Max (430px wide) */
 @media only screen and (width: 430px) {
   .bg { background-size: cover; }
-  .logo .imagelogo img { width: 33%; }
-  .imageOnaCircle img { width: 50%; }
+  .logo img { width: 33%; }
+  .onaCircle img { width: 50%; }
   .ticketSection img { width: 50%; }
 }
 
