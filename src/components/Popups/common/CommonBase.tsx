@@ -81,17 +81,17 @@ function CommonBase({ children }: Props) {
             </div>
           </div>
           <div className={styles.onaCircle}>
-            <div className={styles.imageOnaCircle}>
+           
               <img src={imageOnaCircle} alt="imageOnaCircle"></img>
-            </div>
+          
           </div>
           <div className={styles.itemSection}>
-            <div className={styles.itemBanner}>
+        
               <img src={PersonWithItem} alt="PersonWithItem"></img>
-            </div>
+         
           </div>
        {/* {children} */}
- <main className={styles.content}>{children}</main>
+ <>{children}</>
         </div>
       </div>
     </>

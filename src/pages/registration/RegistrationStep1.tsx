@@ -16,6 +16,7 @@ import CommonBase from "../../components/Popups/common/CommonBase";
 import { useAppDispatch } from "../../store/hooks";
 import API from "../../api";
 import { setMobile } from "../../store/slices/authSlice";
+import { MODAL_TYPES, useGlobalModalContext } from "../../helpers/GlobalModal";
 // import DynamicForm from "../../helpers/form";
 
 function RegistrationStep1() {
@@ -32,6 +33,8 @@ function RegistrationStep1() {
 
   const [errors, setErrors] = useState<any>({});
   const [showTerms, setShowTerms] = useState(false);
+  
+    const { showModal } = useGlobalModalContext();
 
   const validate = () => {
     const nameRegex = /^[A-Za-z][A-Za-z0-9\s]*$/;
@@ -127,6 +130,12 @@ if (!formData.voucher) {
       setErrors(validationErrors);
     }
   };
+
+    const openModal = (type: string, props: any = {}) => {
+  showModal(type, props, () => {
+    console.log(`${type} modal closed ✅`);
+  });
+};
 
   return (
     <>
@@ -327,7 +336,11 @@ if (!formData.voucher) {
                 <button
                   type="button"
                   // onClick={() => setShowTerms(true)}
-                  onClick={() => navigate(`/termAndCondition`)}
+                  // onClick={() => navigate(`/termAndCondition`)}
+                  onClick={(e) => {
+                    openModal(MODAL_TYPES.TERMS_CONDITIONS)
+                     
+                    }}
                   className={styles.TermsConditionsBold}
                 >
                   Terms & Conditions
