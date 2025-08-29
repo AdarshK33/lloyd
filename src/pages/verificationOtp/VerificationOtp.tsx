@@ -8,12 +8,15 @@ import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 // import claro from "../../assets/images/Claro 3 JAR 1.png";
 // import v1 from "../../assets/images/Voucher 1.png";
 // import envp from "../../assets/images/envelop.png";
+import animation from "../../assets/animation/Cashback_and_Reward_Bundle.json";
+
 
 import API from "../../api";
 import {  setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
-import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
+// import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
 import ResendOtp from "./reSend";
+import { Player } from "@lottiefiles/react-lottie-player";
 // import { store } from "../../store/store";
 function OtpVerification() {
   // const navigate = useNavigate();
@@ -76,7 +79,7 @@ function OtpVerification() {
       }
      
     } else {
-      //  setShowTerms(true);
+        setShowTerms(true);
    
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
@@ -154,66 +157,50 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
     //  const state = store.getState();
       // const {reward} = state.auth;
   
-    
-  useEffect(() => {
-    if (!isOpen) return;
 
-    // Always start with reward when opened
-    setCurrentType("reward");
-
-    // Step 1: After 10 seconds → show cashback
+        const handleBtnClick = () => {
+           setCurrentType("cashback");
+      
     const rewardTimer = setTimeout(() => {
-      setCurrentType("cashback");
 
-      // Step 2: After 5 seconds of cashback → navigate
-      const cashbackTimer = setTimeout(() => {
+      
+     
      
         navigate("/redemption"); // 👈 replace with your route
       }, 5000);
-
-      return () => clearTimeout(cashbackTimer);
-    }, 10000);
-
-    return () => clearTimeout(rewardTimer);
+      
+      return () => clearTimeout(rewardTimer);
+  
+}
+    
+  useEffect(() => {
+    if (!isOpen) return;
+    setCurrentType("reward");
   }, [isOpen, navigate]);
 
   if (!isOpen) return null;
 
   return (
+    <>
     <div className={isOpen ? styles.show : styles.model}>
       {currentType === "reward" ? (
         <>
           <div className={styles.rewardContainer}>
             {/* Heading */}
-            <h2 className={styles.title}>Congratulations!</h2>
-            <div className={styles.subtitle}>
-  You have won Havells Juicer Mixer Grinder <br />
-  and a Reward Bundle of <br />
-  ₹25,000
-</div>
+     <Player
+        src={animation}
+        style={{ height: "97%", width: "100%" }}
+        keepLastFrame={true}
+        autoplay={true}
+      />
+             <div className={styles.buttonAcknowledgedSection}>
+       
+              <button  
+               onClick={() => handleBtnClick()}
+              >Acknowledged</button>
+           
+          </div>
 
-            {/* Reward Card */}
-
-            {/* <div className={styles.prizes}>
-              <div className={styles.envelope}>
-                <img
-                  src={claro}
-                  alt="Juicer Mixer Grinder"
-                  className={styles.juicer}
-                />
-                <img src={v1} alt="Reward Bundle" className={styles.reward} />
-              </div>
-            </div> */}
-            <EnvelopeAnimation /> 
-
-            <div className={styles.rewardCard}>
-              <div className={styles.left}>
-                Havells Juicer <br /> Mixer Grinder
-              </div>
-              <div className={styles.right}>
-                ₹25,000/- <br /> Reward Bundle
-              </div>
-            </div>
           </div>
         </>
       ) : (
@@ -237,6 +224,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
         </>
       )}
     </div>
+    </>
   );
 };
 

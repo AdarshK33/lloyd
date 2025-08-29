@@ -56,6 +56,13 @@ bottom: 4rem;
         }
     
 }
+.buttonAcknowledgedSection{    
+        button{
+            padding: 10px 40px;
+            background-color: #DA251D;
+            color: #ffff;
+        }
+}
 
     .conditionsNormal {
     font-weight: normal;
@@ -141,7 +148,8 @@ position: relative;
   text-align: center;
   padding: 20px;
   position: relative;
-  top: 5%;
+  // top: 5%;
+  bottom: 4rem;
 }
 
 .title {

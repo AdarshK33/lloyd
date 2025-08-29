@@ -314,7 +314,7 @@ if(res){
                 autoComplete="off"
               />
               {errors.name && (
-                <span className={styles.validation}>{errors.name}</span>
+                <p className={styles.validation}>{errors.name}</p>
               )}
             </div>
 
@@ -328,7 +328,7 @@ if(res){
                 autoComplete="off"
               />
               {errors.email && (
-                <span className={styles.validation}>{errors.email}</span>
+                <p className={styles.validation}>{errors.email}</p>
               )}
             </div>
 
@@ -342,7 +342,7 @@ if(res){
                 autoComplete="off"
               />
               {errors.add1 && (
-                <span className={styles.validation}>{errors.add1}</span>
+                <p className={styles.validation}>{errors.add1}</p>
               )}
             </div>
 
@@ -356,7 +356,7 @@ if(res){
                 autoComplete="off"
               />
               {errors.add2 && (
-                <span className={styles.validation}>{errors.add2}</span>
+                <p className={styles.validation}>{errors.add2}</p>
               )}
             </div>
 
@@ -393,7 +393,7 @@ if(res){
               />
 
               {errors.pinCode && (
-                <span className={styles.validation}>{errors.pinCode}</span>
+                <p className={styles.validation}>{errors.pinCode}</p>
               )}
             </div>
 
@@ -423,7 +423,7 @@ if(res){
               </div>
             </div>
 
-            <div className={styles.twoInputGroup}>
+            {/* <div className={styles.twoInputGroup}>
               <div className={styles.inputGroup}>
                 {errors.state && (
                   <span className={styles.validation}>{errors.state}</span>
@@ -435,7 +435,7 @@ if(res){
                   <span className={styles.validation}>{errors.city}</span>
                 )}
               </div>
-            </div>
+            </div> */}
 
             {panForm ? (
               <>
@@ -445,14 +445,18 @@ if(res){
                     name="panCard"
               
                     value={formData.panCard}
-                    onChange={handleChange}
+                    // onChange={handleChange}
+                     onChange={(e) => {
+    const upper = e.target.value.toUpperCase();
+    setFormData({ ...formData, panCard: upper });
+  }}
                   
                     maxLength={10}
                     placeholder="Enter pan card number"
                     autoComplete="off"
                   />
                   {errors.panCard && (
-                    <span className={styles.validation}>{errors.panCard}</span>
+                    <p className={styles.validation}>{errors.panCard}</p>
                   )}
                 </div>
                 <div className={styles.inputGroup}>
@@ -493,7 +497,7 @@ if(res){
                     )}
                   </Dropzone>
                   {errors.file3 && (
-                    <span className="validation">{errors.file3}</span>
+                    <p className="validation">{errors.file3}</p>
                   )}
                 </div>
               </>
@@ -537,7 +541,7 @@ if(res){
                 )}
               </Dropzone>
               {errors.file1 && (
-                <span className="validation">{errors.file1}</span>
+                <p className="validation">{errors.file1}</p>
               )}
             </div>
 
@@ -573,7 +577,7 @@ if(res){
                 )}
               </Dropzone>
               {errors.file2 && (
-                <span className="validation">{errors.file2}</span>
+                <p className="validation">{errors.file2}</p>
               )}
             </div>
 

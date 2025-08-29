@@ -16,9 +16,6 @@ const CashBack = lazy(() => import("./pages/cashBack/CashBack"));
 const KYC = lazy(() => import("./pages/kyc/kyc"));
 const RewardScreen = lazy(() => import("./pages/congrats/RewardScreen"));
 const OtpRedeemVerification = lazy(() => import("./pages/verificationRedeemOtp/VerificationRedeemOtp"));
-const EnvelopeAnimation = lazy(() => import("./pages/EnvelopeAnimation/EnvelopeAnimation"));
-// const ContactUs = lazy(() => import("./pages/contact/contactUs"));
-// const TermAndCondition  = lazy(() => import("./pages/term&condition/T&C"));
 
 
 
@@ -48,14 +45,7 @@ function App() {
         <Route path={ROUTES.KYC} element={<KYC />} />
         <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen />} />
         <Route path={ROUTES.VERIFICATIONREDEEMOTP} element={<OtpRedeemVerification />} />
-        <Route path="/EnvelopeAnimation" element={<EnvelopeAnimation />} />
-        {/* <Route path="/contactUs" element={<ContactUs hideModal={function (): void {
-          throw new Error("Function not implemented.");
-        } } />} />
-        <Route path="/termAndCondition" element={<TermAndCondition hideModal={function (): void {
-          throw new Error("Function not implemented.");
-        } }/>} /> */}
-
+      
 
       </Routes>
     </Suspense>

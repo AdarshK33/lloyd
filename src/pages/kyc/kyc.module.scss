@@ -57,21 +57,30 @@ input,select{
 // }
 
 
+// .twoInputGroup {
+//   display: flex;
+//   justify-content: space-between;
+// //   flex-wrap: wrap;
+//   gap: 0rem;
+
+//   .inputGroup {
+//     flex: 1 1 50%; // 48% to allow space between them
+//   }
+
+//   input {
+//     width: 77% !important;
+//   }
+// }
+
 .twoInputGroup {
-  display: flex;
-  justify-content: space-between;
-//   flex-wrap: wrap;
-  gap: 0rem;
+  display: grid;
+  grid-template-columns: 49% 46%;
+  // justify-content: space-between; 
+  text-align: end;
 
-  .inputGroup {
-    flex: 1 1 50%; // 48% to allow space between them
+  .inputGroup input {
+    width: 90%; // input width inside group
   }
-
-  input {
-    width: 77% !important;
-  }
-
-
 }
 .selected_section{
   position: relative;
@@ -153,12 +162,13 @@ input,select{
 }
 
 
-.inputGroup span{
+.inputGroup p{
    color: #DA251D !important;
 font-size: 10px;
 font-weight: 200;
 position: relative;
 top: .2rem;
+margin: 0px;
 }
 
 // dropzone start

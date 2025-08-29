@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../store/hooks";
 import API from "../../api";
 import { setAccessToken, setReward } from "../../store/slices/authSlice";
+import ResendOtp from "../verificationOtp/reSend";
 function OtpRedeemVerification() {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -106,12 +107,14 @@ function OtpRedeemVerification() {
             </span>
           )}
 
-          <div className={styles.resendOtp}>
-            <span className={styles.conditionsNormal}>
-              Didn’t receive OTP Yet?
-            </span>
-            <span className={styles.conditionsBold}> Resend OTP</span>
-          </div>
+        
+           <div className={styles.resendOtp}>
+                      {/* <span className={styles.conditionsNormal}>
+                        Didn’t receive OTP Yet?
+                      </span>
+                      <span className={styles.conditionsBold}> Resend OTP</span> */}
+                      <ResendOtp />
+                    </div>
           <div className={styles.buttonSection}>
             <div className={styles.buttonBottom}>
               <button type="submit">Verify Otp</button>
