@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./reSend.module.scss";
-import { Player } from "@lottiefiles/react-lottie-player";
+// import { Player } from "@lottiefiles/react-lottie-player";
 
 const ResendOtp: React.FC = () => {
   const DURATION = 10; // 10 seconds

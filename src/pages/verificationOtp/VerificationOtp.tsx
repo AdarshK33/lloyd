@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {  useEffect, useRef, useState } from "react";
 import styles from "./verificationOtp.module.scss"; // optional styling
 import CommonBase from "../../components/Popups/common/CommonBase";
 // import { toast } from "react-toastify";
@@ -8,7 +8,7 @@ import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 // import claro from "../../assets/images/Claro 3 JAR 1.png";
 // import v1 from "../../assets/images/Voucher 1.png";
 // import envp from "../../assets/images/envelop.png";
-import animation from "../../assets/animation/Cashback_and_Reward_Bundle.json";
+// import animation from "../../assets/animation/Cashback_and_Reward_Bundle.json";
 
 
 import API from "../../api";
@@ -18,6 +18,10 @@ import { useAppDispatch } from "../../store/hooks";
 import ResendOtp from "./reSend";
 import { Player } from "@lottiefiles/react-lottie-player";
 // import { store } from "../../store/store";
+const loadAnimation = async () => {
+  const data = await import("./../../assets/animation/Cashback_and_Reward_Bundle.json");
+  return data.default;
+};
 function OtpVerification() {
   // const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -86,6 +90,8 @@ function OtpVerification() {
     }
   };
 
+
+
   return (
     <>
       <TermsModal
@@ -150,8 +156,12 @@ type TermsModalProps = {
 };
 
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
+    if (!isOpen) return null;
   const [currentType, setCurrentType] = useState<"cashback" | "reward">(type);
   const navigate = useNavigate();
+    const [ animation, setAnimation] = useState<any>();
+
+
   // const dispatch = useAppDispatch();
   
     //  const state = store.getState();
@@ -178,7 +188,13 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
     setCurrentType("reward");
   }, [isOpen, navigate]);
 
-  if (!isOpen) return null;
+
+    useEffect(() => {
+  loadAnimation().then((anim): any => {
+    setAnimation(anim);
+  });
+}, []);
+
 
   return (
     <>
