@@ -337,7 +337,7 @@ if (!formData.voucher) {
                   type="button"
                   // onClick={() => setShowTerms(true)}
                   // onClick={() => navigate(`/termAndCondition`)}
-                  onClick={(e) => {
+                  onClick={() => {
                     openModal(MODAL_TYPES.TERMS_CONDITIONS)
                      
                     }}
