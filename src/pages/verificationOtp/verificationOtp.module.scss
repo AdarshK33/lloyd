@@ -141,14 +141,18 @@ position: relative;
 
 
 .rewardContainer {
-  height: 100vh;
+  // height: 100vh;
+  height: 100svh; 
+overflow-x: hidden; /* Prevent horizontal scroll */
+overflow-y: auto;   /* Allow vertical scroll */
+position: relative; /* Makes it possible to position child elements absolutely */
+
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   padding: 20px;
-  position: relative;
-  // top: 5%;
+
   bottom: 4rem;
 }
 

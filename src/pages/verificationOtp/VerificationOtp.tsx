@@ -186,28 +186,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
     switch (rewardType) {
       case ProductType.CASHBACK_300:
         return setAnimation(ANIMATIONS.Anim_Cashback_300);
-      case ProductType.HAVELLS_CLARO_JMG_600W:
-        return setAnimation(ANIMATIONS.Anim_HavellsJuicer_MixerGrinder);
-      case ProductType.LLOYD_AC_1_5TON_3STAR_GLS18V3KOGSY:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_AC_GLS18V3KOGSY);
-      case ProductType.LLOYD_AC_1_5TON_3STAR_GLS18V3KONMY:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_AC_GLS18V3KONMY);
-      case ProductType.LLOYD_FROSTFREE_FRIDGE:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_Frost_Free_Refrigerator);
-      case ProductType.LLOYD_LED_43IN_GL43F4K2DR:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_LED_43IN_GL43F4K2DR);
-      case ProductType.LLOYD_LED_43IN_GL43F4K2LR:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_LED_43IN_GL43F4K2LR);
-      case ProductType.LLOYD_RETRO_DC_FRIDGE_GLDF215SPYT4LC:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_Retro_DC_Fridge_GLDF215SPYT4LC);
-      case ProductType.LLOYD_RETRO_DC_FRIDGE_GLDF215SPGT4LC:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_Retro_DC_Fridge_GLDF215SPGT4LC);
-      case ProductType.LLOYD_WM_8KG_SEMI_AUTO:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_WM_8KG_SEMI_AUTO);
-      case ProductType.LLOYD_WM_8_5KG_IOT_AUTO:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_WM_8_5KG_IOT_AUTO);
-      case ProductType.LLOYD_STUNNAIR_AC:
-        return setAnimation(ANIMATIONS.Anim_Lloyd_StunnAir_AC);
+ 
       default:
         return null;
     }
