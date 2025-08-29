@@ -17,11 +17,9 @@ import { useAppDispatch } from "../../store/hooks";
 // import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
 import ResendOtp from "./reSend";
 import { Player } from "@lottiefiles/react-lottie-player";
-// import { store } from "../../store/store";
-const loadAnimation = async () => {
-  const data = await import("./../../assets/animation/Cashback_and_Reward_Bundle.json");
-  return data.default;
-};
+import { store } from "../../store/store";
+import { ANIMATIONS, ProductType } from "../../lib/consts";
+
 function OtpVerification() {
   // const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -77,13 +75,15 @@ function OtpVerification() {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
+      console.log("hello API Response: r1", res);
+
           dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
         }
       }
      
     } else {
-        setShowTerms(true);
+       // setShowTerms(true);
    
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
@@ -161,21 +161,14 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   const navigate = useNavigate();
     const [ animation, setAnimation] = useState<any>();
 
-
   // const dispatch = useAppDispatch();
   
-    //  const state = store.getState();
-      // const {reward} = state.auth;
-  
+     const state = store.getState();
+      const {reward} = state?.auth;
 
         const handleBtnClick = () => {
            setCurrentType("cashback");
-      
     const rewardTimer = setTimeout(() => {
-
-      
-     
-     
         navigate("/redemption"); // 👈 replace with your route
       }, 5000);
       
@@ -189,12 +182,43 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   }, [isOpen, navigate]);
 
 
-    useEffect(() => {
-  loadAnimation().then((anim): any => {
-    setAnimation(anim);
-  });
-}, []);
+ const handleImageCase = (rewardType: string) => {
+    switch (rewardType) {
+      case ProductType.CASHBACK_300:
+        return setAnimation(ANIMATIONS.Anim_Cashback_300);
+      case ProductType.HAVELLS_CLARO_JMG_600W:
+        return setAnimation(ANIMATIONS.Anim_HavellsJuicer_MixerGrinder);
+      case ProductType.LLOYD_AC_1_5TON_3STAR_GLS18V3KOGSY:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_AC_GLS18V3KOGSY);
+      case ProductType.LLOYD_AC_1_5TON_3STAR_GLS18V3KONMY:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_AC_GLS18V3KONMY);
+      case ProductType.LLOYD_FROSTFREE_FRIDGE:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_Frost_Free_Refrigerator);
+      case ProductType.LLOYD_LED_43IN_GL43F4K2DR:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_LED_43IN_GL43F4K2DR);
+      case ProductType.LLOYD_LED_43IN_GL43F4K2LR:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_LED_43IN_GL43F4K2LR);
+      case ProductType.LLOYD_RETRO_DC_FRIDGE_GLDF215SPYT4LC:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_Retro_DC_Fridge_GLDF215SPYT4LC);
+      case ProductType.LLOYD_RETRO_DC_FRIDGE_GLDF215SPGT4LC:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_Retro_DC_Fridge_GLDF215SPGT4LC);
+      case ProductType.LLOYD_WM_8KG_SEMI_AUTO:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_WM_8KG_SEMI_AUTO);
+      case ProductType.LLOYD_WM_8_5KG_IOT_AUTO:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_WM_8_5KG_IOT_AUTO);
+      case ProductType.LLOYD_STUNNAIR_AC:
+        return setAnimation(ANIMATIONS.Anim_Lloyd_StunnAir_AC);
+      default:
+        return null;
+    }
+  };
 
+
+    useEffect(() => {
+    if (reward) {
+      handleImageCase(reward);
+    }
+  }, [reward])
 
   return (
     <>
@@ -205,7 +229,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
             {/* Heading */}
      <Player
         src={animation}
-        style={{ height: "97%", width: "100%" }}
+        style={{ height: "97%", width: "85%" }}
         keepLastFrame={true}
         autoplay={true}
       />

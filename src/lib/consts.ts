@@ -88,3 +88,52 @@ export const formConfig: any = {
 };
 
 
+
+
+
+export enum ProductType {
+  LLOYD_LED_43IN_GL43F4K2LR = "lloyd_led_43in_GL43F4K2LR",
+  LLOYD_LED_43IN_GL43F4K2DR = "lloyd_led_43in_GL43F4K2DR",
+  LLOYD_AC_1_5TON_3STAR_GLS18V3KOGSY = "lloyd_ac_1_5ton_3star_GLS18V3KOGSY",
+  LLOYD_AC_1_5TON_3STAR_GLS18V3KONMY = "lloyd_ac_1_5ton_3star_GLS18V3KONMY",
+  LLOYD_STUNNAIR_AC = "lloyd_stunnair_ac",
+  LLOYD_WM_8KG_SEMI_AUTO = "lloyd_wm_8kg_semi_auto",
+  LLOYD_WM_8_5KG_IOT_AUTO = "lloyd_wm_8_5kg_iot_auto",
+  LLOYD_RETRO_DC_FRIDGE_GLDF215SPYT4LC = "lloyd_retro_dc_fridge_GLDF215SPYT4LC",
+  LLOYD_RETRO_DC_FRIDGE_GLDF215SPGT4LC = "lloyd_retro_dc_fridge_GLDF215SPGT4LC",
+  LLOYD_FROSTFREE_FRIDGE = "lloyd_frostfree_fridge",
+  HAVELLS_CLARO_JMG_600W = "havells_claro_jmg_600w",
+  CASHBACK_300 = "cashback_300",
+}
+
+
+
+import Anim_Cashback_300 from "../assets/lottie/Cashback_and_Reward_Bundle.json";
+import Anim_HavellsJuicer_MixerGrinder from "../assets/lottie/HavellsJuicer_MixerGrinder_and_Reward_Bundle.json";
+import Anim_Lloyd_AC_GLS18V3KOGSY from "../assets/lottie/Lloyd_AC_GLS18V3KOGSY.json";
+import Anim_Lloyd_AC_GLS18V3KONMY from "../assets/lottie/Lloyd_AC_GLS18V3KONMY.json";
+import Anim_Lloyd_Frost_Free_Refrigerator from "../assets/lottie/Lloyd_Frost_Free Refrigerator.json";
+import Anim_Lloyd_LED_43IN_GL43F4K2DR from "../assets/lottie/Lloyd_LED_TV_GL43F4K2DR.json";
+import Anim_Lloyd_LED_43IN_GL43F4K2LR from "../assets/lottie/Lloyd_LED_TV_GL43F4K2LR.json";
+import Anim_Lloyd_Retro_DC_Fridge_GLDF215SPYT4LC from "../assets/lottie/Lloyd_Refrigerator_GLDF215SPYT4LC.json";
+import Anim_Lloyd_Retro_DC_Fridge_GLDF215SPGT4LC from "../assets/lottie/Lloyd_Refrigerator_GLDF215SPGT4LC.json";
+import Anim_Lloyd_WM_8KG_SEMI_AUTO from "../assets/lottie/Lloyd_Semi_Automatic.json";
+import Anim_Lloyd_WM_8_5KG_IOT_AUTO from "../assets/lottie/Lloyd_Fully_Automatic.json";
+import Anim_Lloyd_StunnAir_AC from "../assets/lottie/Lloyd_StunnAir_AC.json";
+
+
+
+export const ANIMATIONS = {
+  Anim_Cashback_300,
+  Anim_HavellsJuicer_MixerGrinder,
+  Anim_Lloyd_AC_GLS18V3KOGSY,
+  Anim_Lloyd_AC_GLS18V3KONMY,
+  Anim_Lloyd_Frost_Free_Refrigerator,
+  Anim_Lloyd_LED_43IN_GL43F4K2DR,
+  Anim_Lloyd_LED_43IN_GL43F4K2LR,
+  Anim_Lloyd_Retro_DC_Fridge_GLDF215SPYT4LC,
+  Anim_Lloyd_Retro_DC_Fridge_GLDF215SPGT4LC,
+  Anim_Lloyd_WM_8KG_SEMI_AUTO,
+  Anim_Lloyd_WM_8_5KG_IOT_AUTO,
+  Anim_Lloyd_StunnAir_AC,
+};
