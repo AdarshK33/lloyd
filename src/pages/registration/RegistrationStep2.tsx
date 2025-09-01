@@ -22,93 +22,163 @@ function RegistrationStep2() {
   const [fileName1, setFileName1] = useState(""); // store selected file name
 
   const [newErrors, setError] = useState<any>({});
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
+
+
+   // ✅ Validators (like your registration form)
+  const validators: Record<string, (val: any) => string | null> = {
+    outletName: (val) => {
+      if (!val || !val.trim()) return "**Outlet name is required";
+      return null;
+    },
+      invoiceNumber: (val) => {
+        const strVal = String(val ?? "").trim();
+        if (!strVal) return "**Invoice number is required";
+        if (!/^\d+$/.test(strVal)) return "**Invoice number must be numeric";
+        return null;
+      },
+    file1: (val) => {
+      if (!val) return "**Invoice 1 is required";
+      return null;
+    },
+    file2: () => null, // optional
+  };
+
+  // Find first invalid field
+  const findFirstError = (data: typeof formData) => {
+    for (const key of Object.keys(validators)) {
+      const error = validators[key](data[key as keyof typeof formData]);
+      if (error) return { field: key, message: error };
+    }
+    return null;
+  };
+
+  const validateField = (name: string, val: any, updatedData: any) => {
+    const error = validators[name](val);
+    if (!error) {
+      // ✅ clear error
+      setError((prev: any) => ({ ...prev, [name]: null}));
+
+      // ✅ move to next invalid
+      const nextError = findFirstError(updatedData);
+      if (nextError) {
+        setCurrentStep(nextError.field);
+        setError({ [nextError.field]: nextError.message });
+      } else {
+        setCurrentStep(null);
+        setError({});
+      }
+    } else {
+      setError({ [name]: error });
+      setCurrentStep(name);
+    }
+  };
 
   const handleChange = (e: any) => {
-    const { name, type, value } = e.target;
+    const { name, type, value, files } = e.target;
+    const newValue = type === "file" ? files?.[0] : value;
 
-    const newValue = type === "file" ? e.target.files?.[0] : value;
+    // ✅ Reset invoiceNumber & file1 if outletName changes
+    let updatedData: any;
+    setFormData((prev: any) => {
+      updatedData = { ...prev, [name]: newValue };
+      return updatedData;
+    });
+
+    // live validation for currentStep
+    if (currentStep === name) {
+      validateField(name, newValue, { ...formData, [name]: newValue });
+    }
+
+    // clear error immediately when typing
+    setError((prev: any) => ({ ...prev, [name]: null}));
+  };
+
+  const handleKeyUp = (e: any) => {
+    const { name } = e.target;
+    if (currentStep === name) {
+      validateField(name, formData[name], formData);
+    }
+  };
+  
+
+const onDrop =
+  (field: string, setFileName: (name: string) => void) =>
+  (acceptedFiles: File[], fileRejections: any[]) => {
+    if (fileRejections.length > 0) {
+      // ❌ File rejected (size/type issue)
+      const errorMessage = "File is larger than 5 MB" //fileRejections[0].errors[0].message; 
+       setFormData((prev: any) => ({ ...prev, file1: null }));
+      setError((prev: any) => ({
+        ...prev,
+        [field]: errorMessage,
+      }));
+       setFileName("");
+      return; // don’t process accepted files
+    }
+
+    if (acceptedFiles.length > 0) {
+      setFileName(acceptedFiles[0].name); // ✅ show correct file name
+    }
 
     setFormData((prev: any) => ({
       ...prev,
-      [name]: newValue,
+      [field]: acceptedFiles, // ✅ store files
     }));
 
-    setError((prev: any) => ({
-      ...prev,
-      [name]: "",
-    }));
-  };
-  const validateForm = () => {
-    const errors: any = {};
+    // ✅ Clear error for this field once user uploads a valid file
+    setError((prev: any) => {
+      const updated = { ...prev };
+      delete updated[field];
+      return updated;
+    });
 
-    if (!formData.outletName.trim()) {
-      errors.outletName = "**Outlet name is required";
-    }
-    if (!formData.invoiceNumber.trim()) {
-      errors.invoiceNumber = "**Invoice number is required";
-    } else if (!/^\d+$/.test(formData.invoiceNumber)) {
-      errors.invoiceNumber = "**Invoice number must be numeric";
-    }
-    if (!formData.file1) {
-      errors.file1 = "**Invoice 1 is required";
-    }
-    // file2 is optional
-    return errors;
-  };
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    //
-    // const value = checkValidations();
-    // if(value==true){
-
-    // }
-    const validationErrors = validateForm();
-
-    if (Object.keys(validationErrors).length > 0) {
-      setError(validationErrors);
-    } else {
-      console.log("Form submitted", formData);
-
-      //   const info: any= {
-      //     outlet: formData.outletName,
-      //     invoiceNumber: formData.invoiceNumber,
-      //     invoice1: formData.file1,
-      //  invoice2: ""
-      // };
-      // console.log("hello API payload", info);
-      // api calling.......
-      const res: any = await API.registerStep2({
-        outlet: formData?.outletName,
-        invoiceNumber: formData?.invoiceNumber,
-        file: formData.file1?.[0],
+    // ✅ Progressive validation forward
+    if (currentStep === field) {
+      const nextError = findFirstError({
+        ...formData,
+        [field]: acceptedFiles,
       });
-      //
-      console.log("hello API Response: r1", res);
-      //  registerStep2
-      if (res) {
-        navigate("/verificationOtp");
+
+      if (nextError) {
+        setError({ [nextError.field]: nextError.message });
+        setCurrentStep(nextError.field);
+      } else {
+        setError({});
+        setCurrentStep(null);
       }
     }
   };
 
-  const onDrop = async (acceptedFiles: any) => {
-    if (acceptedFiles.length > 0) {
-      setFileName1(acceptedFiles[0].name); // store file name
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    const firstError = findFirstError(formData);
+    if (firstError) {
+      setCurrentStep(firstError.field);
+      setError({ [firstError.field]: firstError.message });
+      return;
     }
-    const formData = new FormData();
-    acceptedFiles.forEach((file: any) => {
-      formData.append("file", file);
+      console.log("Form submitted",newErrors, formData);
+
+   
+
+
+    // ✅ All valid → API call
+  
+    const res: any = await API.registerStep2({
+      outlet: formData.outletName,
+      invoiceNumber: formData.invoiceNumber,
+      file: formData?.file1?.[0]
     });
-    setFormData((prev: any) => ({
-      ...prev,
-      ["file1"]: acceptedFiles,
-    }));
-    setError((prev: any) => ({
-      ...prev,
-      ["file1"]: "",
-    }));
+
+    if (res) {
+      navigate("/verificationOtp");
+    }
   };
+
+
   return (
     <>
       <CommonBase>
@@ -126,6 +196,7 @@ function RegistrationStep2() {
                 placeholder="Outlet Name"
                 value={formData.outletName}
                 onChange={handleChange}
+                 onKeyUp={handleKeyUp}
                 onKeyDown={(e) => {
                   // Allow only letters, space, Backspace, Tab, and Arrow keys
                   if (
@@ -158,6 +229,7 @@ function RegistrationStep2() {
                 placeholder="Invoice number"
                 value={formData.invoiceNumber}
                 onChange={handleChange}
+                 onKeyUp={handleKeyUp}
                 onInput={(e: any) => {
                   e.target.value = e.target.value.replace(/[^0-9]/g, ""); // only numbers
                 }}
@@ -170,10 +242,10 @@ function RegistrationStep2() {
 
             <div className={styles.inputGroup}>
               <Dropzone
-                onDrop={onDrop}
+                onDrop={onDrop("file1", setFileName1)}
                 accept={{ "image/*": [] }}
                 maxFiles={1}
-                maxSize={2 * 1024 * 1024}
+                maxSize={ 4* 1024 * 1024}
               >
                 {({ getRootProps, getInputProps }) => (
                   <div
