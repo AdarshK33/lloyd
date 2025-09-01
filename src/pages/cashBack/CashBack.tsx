@@ -116,7 +116,7 @@ function CashBack() {
     if (Object.keys(validationErrors).length > 0) {
       setError(validationErrors);
     } else {
-      console.log("Form submitted ✅", formData);
+      // console.log("Form submitted ✅", formData);
 
       // Example API call
 

@@ -141,7 +141,7 @@ function RegistrationStep1() {
     }
 
     // ✅ all valid → submit form
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
 
     const info: any = {
       name: formData.name,
@@ -156,7 +156,7 @@ function RegistrationStep1() {
 
     dispatch(setMobile(formData.phoneNumber));
     const res: any = await API.register(info);
-    console.log("hello API Response: r1", res);
+    // console.log("hello API Response: r1", res);
     if (res) {
       navigate("/registrationStep2");
     }

@@ -15,7 +15,7 @@ export async function sendEncrytedData(
   headers = defaultHeaders,
 ) {
   const accessDetails: any = await store.getState().auth;
-  console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
+  // console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;
     const dataKey = accessDetails.dataKey;
@@ -60,7 +60,7 @@ export async function sendEncrytedData(
       options.body = new URLSearchParams(obj);
     }
     let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
-    console.log(url, "hello url");
+    // console.log(url, "hello url");
     if (
       url.includes("users") ||
       url.includes("redeem") ||
@@ -70,7 +70,7 @@ export async function sendEncrytedData(
       fullUrl += userKey;
     }
     fullUrl += "?t=" + new Date().getTime().toString();
-    console.log(fullUrl, "hello fullurl 2");
+    // console.log(fullUrl, "hello fullurl 2");
     return fetch(fullUrl, options);
   }
   return Promise.reject({
@@ -86,7 +86,7 @@ export async function sendGETEncrytedData(
   headers: any = defaultHeaders,
 ) {
   const accessDetails: any = await store.getState().auth;
-  console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
+  // console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;
     const dataKey = accessDetails.dataKey;
@@ -131,7 +131,7 @@ export async function sendGETEncrytedData(
       options.body = new URLSearchParams(obj);
     }
     let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
-    console.log(url, "hello url");
+    // console.log(url, "hello url");
     if (
       url.includes("users") ||
       url.includes("video/") ||
@@ -140,7 +140,7 @@ export async function sendGETEncrytedData(
       fullUrl += userKey;
     }
     fullUrl += "?t=" + new Date().getTime().toString();
-    console.log(fullUrl, "hello fullurl 2");
+    // console.log(fullUrl, "hello fullurl 2");
     return fetch(fullUrl, options);
   }
   return Promise.reject({

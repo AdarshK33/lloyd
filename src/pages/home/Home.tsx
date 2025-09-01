@@ -23,7 +23,7 @@ function Home() {
   const handleAuthorisedApiCall = async () => {
     try {
       const res: any = await API.createUser();
-      console.log("hello API Response:", res);
+      // console.log("hello API Response:", res);
 
       if (res?.statusCode === 200) {
         navigate("/registrationStep1");

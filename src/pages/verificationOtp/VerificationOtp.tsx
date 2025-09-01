@@ -69,12 +69,12 @@ function OtpVerification() {
       dispatch(setAccessToken(res?.accessToken));
       // let login = await API.authorisedApi(); //user login api
 
-      console.log("hello API Response: r1", res);
+      // console.log("hello API Response: r1", res);
       if (res) {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
-          console.log("hello API Response: r1", res);
+          // console.log("hello API Response: r1", res);
 
           dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);

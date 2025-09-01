@@ -401,7 +401,7 @@ function KYC() {
       return;
     }
 
-    console.log(formData);
+    // console.log(formData);
     try {
       // ✅ Prepare FormData for API
       const res: any = await API.addKYC({
@@ -420,7 +420,7 @@ function KYC() {
 
       if (res) {
         setShowTerms(true);
-        console.log("✅ KYC submitted successfully", res);
+        console.log("KYC submitted successfully", res);
       }
     } catch (err: any) {
       console.error(" KYC submission failed:", err);
@@ -479,7 +479,6 @@ function KYC() {
       }
     };
 
-  console.log(errors, "eeeeeeeeeeeeeeeeeeeeeeeeeeee");
 
   return (
     <>

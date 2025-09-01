@@ -17,7 +17,7 @@ function Redemption() {
   const state = store.getState();
   const { mobile } = state.auth;
 
-  console.log(mobile, "mmmmmmmmmmm");
+  // console.log(mobile, "mmmmmmmmmmm");
   const [formData, setFormData] = useState({
     mobile: mobile,
     code: "",
@@ -68,7 +68,7 @@ function Redemption() {
     const validationErrors = validate();
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log("Redemption submitted:", formData);
+      // console.log("Redemption submitted:", formData);
 
       //    const info: any= {
       //     mobile: formData.mobile,
@@ -79,7 +79,7 @@ function Redemption() {
         mobile: formData.mobile,
         code: formData.code,
       });
-      console.log("hello API Response:", res);
+      // console.log("hello API Response:", res);
       if (res.statusCode === 200) {
         navigate("/verificationRedeemOtp");
       }

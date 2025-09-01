@@ -157,7 +157,7 @@ function RegistrationStep2() {
       setError({ [firstError.field]: firstError.message });
       return;
     }
-    console.log("Form submitted", newErrors, formData);
+    // console.log("Form submitted", newErrors, formData);
 
     // ✅ All valid → API call
 

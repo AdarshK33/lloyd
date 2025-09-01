@@ -63,7 +63,7 @@ export async function sendKycEncryptedData(
     t: Date.now(),
   };
 
-  console.log(payload, "payload");
+  // console.log(payload, "payload");
 
   const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(payload));
   const dr = CryptoJS.enc.Base64.stringify(dAr);

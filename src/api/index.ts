@@ -250,7 +250,7 @@ class APIS {
 
   async getReward(): Promise<CreateUserResponse> {
     const accessDetails: any = await store.getState().auth;
-    console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
+    // console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
     const userKey = accessDetails.userKey;
     // const dataKey = accessDetails.dataKey;
     const headers = {
@@ -273,7 +273,7 @@ class APIS {
   }
   async getAllReward(): Promise<CreateUserResponse> {
     const accessDetails: any = await store.getState().auth;
-    console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
+    // console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
     const userKey = accessDetails.userKey;
     // const dataKey = accessDetails.dataKey;
     // ✅ Merge json headers with Authorization
