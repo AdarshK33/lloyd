@@ -57,6 +57,8 @@ padding-top: .5rem;
   .leftImage {
     justify-content: flex-end;
      padding-right: .5rem;
+       position: relative;
+  z-index:99; // Ensure it stays below the sidenav
   }
 
 }
@@ -193,6 +195,8 @@ input,select{
   .leftImage {
     justify-content: flex-end;
      padding-right: .5rem;
+      position: relative;
+  z-index:99; // Ensure it stays below the sidenav
   }
 
 }

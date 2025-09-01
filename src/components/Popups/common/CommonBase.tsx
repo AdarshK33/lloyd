@@ -72,22 +72,33 @@ function CommonBase({ children }: Props) {
 
             </div>
             <div className={styles.logo}>
-              <img src={logo} alt="logo"></img>
+              <img src={logo} alt="logo"
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              ></img>
             </div>
             {/* {isNavOpen && <div className={styles.overlay} onClick={closeNav}></div>} */}
             <div className={styles.leftImage}  onClick={toggleNav}>
               <img src={listIcon} alt="listIcon"  onClick={toggleNav}
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
               />
             </div>
           </div>
           <div className={styles.onaCircle}>
            
-              <img src={imageOnaCircle} alt="imageOnaCircle"></img>
+              <img src={imageOnaCircle} alt="imageOnaCircle"
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              ></img>
           
           </div>
           <div className={styles.itemSection}>
         
-              <img src={PersonWithItem} alt="PersonWithItem"></img>
+              <img src={PersonWithItem} alt="PersonWithItem" 
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              ></img>
          
           </div>
        {/* {children} */}

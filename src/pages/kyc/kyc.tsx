@@ -520,7 +520,10 @@ const onDrop =
                   You’ve won a Havells Product{" "}
                 </div>
                 <div className={styles.imageAssured}>
-                  <img src={Claro} alt="claro"></img>
+                  <img src={Claro} alt="claro" 
+                     decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                  ></img>
                 </div>
 
                 <div className={styles.amount}>Claro JMG 3 Jar 600W REF</div>
@@ -534,7 +537,10 @@ const onDrop =
                 // onClick={() => setActiveTab('reward')}
               >
                 <div className={styles.imageReward}>
-                  <img src={rewardBundle} alt="money"></img>
+                  <img src={rewardBundle} alt="money"
+                     decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                  ></img>
                 </div>
                 <div className="offer-title">Reward Bundle of</div>
                 <div className={styles.amount}>₹25,000</div>
@@ -747,6 +753,8 @@ const onDrop =
                               src={uploadIcon}
                               alt="upld"
                               className={styles.uploadIcon}
+                                 decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
                             />
                           </>
                         </div>
@@ -791,6 +799,8 @@ const onDrop =
                           src={uploadIcon}
                           alt="upld"
                           className={styles.uploadIcon}
+                             decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
                         />
                       </>
                     </div>
@@ -827,6 +837,8 @@ const onDrop =
                           src={uploadIcon}
                           alt="upld"
                           className={styles.uploadIcon}
+                             decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
                         />
                       </>
                     </div>
@@ -865,7 +877,8 @@ const TermsModal = ({ isOpen  }: TermsModalProps) => {
           <img src={close} alt="Close" />
         </span> */}
         <div>
-          <img src={sucessTickMark} alt="sucessTickMark" />
+          <img src={sucessTickMark} alt="sucessTickMark"    decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)} />
         </div>
         <h3>Thank you for your </h3>
         <h3>  Submission! </h3>

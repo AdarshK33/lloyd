@@ -153,7 +153,10 @@ function CashBack() {
                 onClick={() => setActiveTab("cashback")}
               >
                 <div className={styles.imageAssured}>
-                  <img src={gift} alt="money"></img>
+                  <img src={gift} alt="money"
+                   decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                  ></img>
                 </div>
                 <div className="offer-title">Assured Cashback of</div>
                 <div className={styles.amount}>
@@ -169,7 +172,10 @@ function CashBack() {
                 onClick={() => setActiveTab("reward")}
               >
                 <div className={styles.imageReward}>
-                  <img src={rewardBundle} alt="money"></img>
+                  <img src={rewardBundle} alt="money"
+                   decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                  ></img>
                 </div>
                 <div className="offer-title">Reward Bundle of</div>
                 <div className={styles.amount}>₹25,000</div>
@@ -189,7 +195,10 @@ function CashBack() {
                     onClick={() => setActiveVoucherTab("upi")}
                   >
                     <div className={styles.imageIcon}>
-                      <img src={UPI} alt="UPI" />
+                      <img src={UPI} alt="UPI"
+                       decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                      />
                     </div>
                     <div className="voucher-title">UPI</div>
                   </div>
@@ -203,9 +212,15 @@ function CashBack() {
                   >
                     <div className={styles.imageIcon}>
                       {activeVoucherTab === "zomato" ? (
-                        <img src={AZV} alt="Zomato Voucher active" />
+                        <img src={AZV} alt="Zomato Voucher active" 
+                         decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                        />
                       ) : (
-                        <img src={ZV} alt="Zomato Voucher not active" />
+                        <img src={ZV} alt="Zomato Voucher not active"
+                         decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                        />
                       )}
                     </div>
                     <div className="voucher-title">Zomato Voucher</div>
@@ -219,9 +234,15 @@ function CashBack() {
                   >
                     <div className={styles.imageIcon}>
                       {activeVoucherTab === "amazon" ? (
-                        <img src={AAV} alt="Amazon Voucher active" />
+                        <img src={AAV} alt="Amazon Voucher active" 
+                           decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                        />
                       ) : (
-                        <img src={AV} alt="Amazon Voucher not active" />
+                        <img src={AV} alt="Amazon Voucher not active" 
+                           decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                        />
                       )}
                     </div>
                     <div className="voucher-title">Amazon Voucher</div>
@@ -334,13 +355,19 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
         ) : (
           <>
             <span id="close" className={styles.close} onClick={onClose}>
-              <img src={close} alt="Close" />
+              <img src={close} alt="Close" 
+                 decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              />
             </span>
           </>
         )}
 
         <div>
-          <img src={sucessTickMark} alt="sucessTickMark" />
+          <img src={sucessTickMark} alt="sucessTickMark"
+             decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+          />
         </div>
         <h2>Congratulations!</h2>
         {type === "cashback" ? (
@@ -407,11 +434,14 @@ const VoucherMenuList = () => {
              style={{
                 opacity: isRedeemed ? 0.5 : 1, // 🔹 reduce opacity if redeemed
                 pointerEvents: isRedeemed ? "none" : "auto", // prevent clicks
+                background: isRedeemed ? "#b289f4ff" :"white"
               }}
             >
               <div className={styles.voucherMenuInfo}>
                 <img
                   src={item.logo}
+                   decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
                   alt={item.name}
                   className={styles.voucherMenuLogo}
                 />

@@ -237,7 +237,8 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
             </span>
 
             <div>
-              <img src={sucessTickMark} alt="sucessTickMark" />
+              <img src={sucessTickMark} alt="sucessTickMark"    decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}/>
             </div>
             {/* <h2>
           Congratulations!

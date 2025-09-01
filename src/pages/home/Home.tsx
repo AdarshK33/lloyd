@@ -89,31 +89,42 @@ const dispatch=  useAppDispatch();
         <div className={styles.bg}>
           <div className={styles.header}>
             <div className={styles.imagelist} onClick={toggleNav}>
-              <img src={listIcon} alt="option" />
+              <img src={listIcon} alt="option"  {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+  decoding="async"  />
             </div>
           </div>
 
           <div className={styles.logo}>
           
-              <img src={logo} alt="logo" />
+              <img src={logo} alt="logo"  {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+  decoding="async"  />
          
           </div>
 
           <div className={styles.onaCircle}>
            
-              <img src={imageOnaCircle} alt="imageOnaCircle" />
+              <img src={imageOnaCircle} alt="imageOnaCircle"
+                decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              />
             
           </div>
 
           <div className={styles.ticketSection}>
          
-              <img src={buyUnlock} alt="buyUnlock" />
+              <img src={buyUnlock} alt="buyUnlock"
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              />
         
           </div>
 
           <div className={styles.itemSection}>
         
-              <img src={PersonWithItem} alt="PersonWithItem" />
+              <img src={PersonWithItem} alt="PersonWithItem" 
+               decoding="async"
+               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}
+              />
            
           </div>
 
