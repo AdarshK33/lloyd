@@ -78,12 +78,12 @@ function OtpVerification() {
       console.log("hello API Response: r1", res);
 
           dispatch(setReward(resGet?.rewardType));
-          setShowTerms(true);
+          // setShowTerms(true);
         }
       }
      
     } else {
-       // setShowTerms(true);
+        setShowTerms(true);
    
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
@@ -131,18 +131,25 @@ function OtpVerification() {
             </span>
           )}
 
-          <div className={styles.resendOtp}>
+
+  {!showTerms ? (<>
+    <div className={styles.resendOtp}>
             {/* <span className={styles.conditionsNormal}>
               Didn’t receive OTP Yet?
             </span>
             <span className={styles.conditionsBold}> Resend OTP</span> */}
             <ResendOtp />
           </div>
+        
           <div className={styles.buttonSection}>
        
               <button type="submit">Verify Otp</button>
            
           </div>
+  </>):(<></>)
+          
+          }
+        
         </form>
       </CommonBase>
     </>
@@ -179,7 +186,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
   useEffect(() => {
     if (!isOpen) return;
     setCurrentType("reward");
-  }, [isOpen, navigate]);
+  }, [isOpen, navigate,animation]);
 
 
  const handleImageCase = (rewardType: string) => {
@@ -197,6 +204,7 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
     if (reward) {
       handleImageCase(reward);
     }
+    
   }, [reward])
 
   return (
@@ -204,23 +212,22 @@ const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
     <div className={isOpen ? styles.show : styles.model}>
       {currentType === "reward" ? (
         <>
-          <div className={styles.rewardContainer}>
-            {/* Heading */}
-     <Player
-        src={animation}
-        style={{ height: "97%", width: "85%" }}
-        keepLastFrame={true}
-        autoplay={true}
-      />
-             <div className={styles.buttonAcknowledgedSection}>
-       
-              <button  
-               onClick={() => handleBtnClick()}
-              >Acknowledged</button>
-           
-          </div>
+       <div className={styles.rewardContainer}>
+  {/* Animation + button wrapper */}
+  <div className={styles.animationWrapper}>
+    <Player
+      src={ANIMATIONS.Anim_Cashback_300}
+      style={{ height: "100%", width: "95%" }}
+      keepLastFrame={true}
+      autoplay={true}
+    />
 
-          </div>
+    {/* Button inside animation */}
+    <div className={styles.buttonAcknowledgedSection}>
+      <button onClick={() => handleBtnClick()}>Acknowledged</button>
+    </div>
+  </div>
+</div>
         </>
       ) : (
         <>

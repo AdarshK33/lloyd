@@ -212,6 +212,46 @@ if(res){
       }));
     };
 
+
+  // const onDrop =
+  // (field: string, setFileName: (name: string) => void) =>
+  // (acceptedFiles: File[], fileRejections: any[]) => {
+  //   // 🔴 Handle rejected files (invalid type / too large)
+  //   if (fileRejections.length > 0) {
+  //     const rejected = fileRejections[0];
+  //     let errorMessage = "Invalid file.";
+
+  //     if (rejected.errors.some((e: any) => e.code === "file-too-large")) {
+  //       errorMessage = "File size must be less than 5MB.";
+  //     } else if (rejected.errors.some((e: any) => e.code === "file-invalid-type")) {
+  //       errorMessage = "Invalid file type. Only images are allowed.";
+  //     }
+
+  //     setErrors((prev: any) => ({
+  //       ...prev,
+  //       [field]: errorMessage,
+  //     }));
+  //     return;
+  //   }
+
+  //   // ✅ Valid file case
+  //   if (acceptedFiles.length > 0) {
+  //     const file = acceptedFiles[0];
+  //     setFileName(file.name);
+
+  //     setFormData((prev: any) => ({
+  //       ...prev,
+  //       [field]: acceptedFiles, // store file(s)
+  //     }));
+
+  //     setErrors((prev: any) => ({
+  //       ...prev,
+  //       [field]: "",
+  //     }));
+  //   }
+  // };
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -465,7 +505,7 @@ if(res){
                     onDrop={onDrop("file3", setFileName3)}
                     accept={{ "image/*": [] }}
                     maxFiles={1}
-                    maxSize={2 * 1024 * 1024}
+                   maxSize={5 * 1024 * 1024}
                   >
                     {({ getRootProps, getInputProps }) => (
                       <div
