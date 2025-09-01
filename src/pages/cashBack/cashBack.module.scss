@@ -1,20 +1,8 @@
 .tabSection{
 position: relative;
-bottom:6rem
+bottom:4rem;
 }
 
-.formHeadline{
-        padding-bottom: .5rem;
-
-.redemptionHeadline{
-    font-size: 22px;
-    color: black;
-    margin: 0px  !important;
-    padding-bottom: .5rem;
-    font-style: bold;
-
-}
-}
 
 .inputGroup{
     input{
@@ -46,7 +34,8 @@ bottom:6rem
 font-size: 11px;
 font-weight: 200;
 position: relative;
-top: .2rem;
+// top: .2rem;
+margin-bottom: 0px;
 }
 
 

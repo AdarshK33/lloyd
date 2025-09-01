@@ -386,14 +386,29 @@ const VoucherMenuList = () => {
         logo: logos[key], // ✅ type safe
       };
     });
+       const [redeemed, setRedeemed] = useState<number[]>([]);
+     const handleRedeem = (id: number) => {
+    setRedeemed((prev: any) => [...prev, id]); // add to redeemed list
+  };
   return (
     <>
       <div className={styles.voucherMenuContainer}>
         {voucherMenus &&
           voucherMenus !== null &&
           voucherMenus !== undefined &&
-          voucherMenus.map((item: any) => (
-            <div className={styles.voucherMenuCard} key={item.id}>
+          voucherMenus.map((item: any) => 
+            
+            {
+                const isRedeemed = redeemed.includes(item.id);
+              
+              return(
+            
+            <div className={styles.voucherMenuCard} key={item.id} 
+             style={{
+                opacity: isRedeemed ? 0.5 : 1, // 🔹 reduce opacity if redeemed
+                pointerEvents: isRedeemed ? "none" : "auto", // prevent clicks
+              }}
+            >
               <div className={styles.voucherMenuInfo}>
                 <img
                   src={item.logo}
@@ -410,9 +425,17 @@ const VoucherMenuList = () => {
                   <div className={styles.voucherMenuValue}>{item.value}</div>
                 </div>
               </div>
-              <button className={styles.redeemButton}>Redeem Now</button>
+            <button
+                className={styles.redeemButton}
+                onClick={() => handleRedeem(item.id)}
+                disabled={isRedeemed} // disable button after redeem
+              >
+                {isRedeemed ? "Redeemed" : "Redeem Now"}
+              </button>
             </div>
-          ))}
+          )
+        
+})}
       </div>
     </>
   );
