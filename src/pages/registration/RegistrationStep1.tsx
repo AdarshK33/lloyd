@@ -33,16 +33,15 @@ function RegistrationStep1() {
 
   const [errors, setErrors] = useState<any>({});
   const [showTerms, setShowTerms] = useState(false);
-    const [currentStep, setCurrentStep] = useState<string | null>(null);
-  
-    const { showModal } = useGlobalModalContext();
+  const [currentStep, setCurrentStep] = useState<string | null>(null);
 
+  const { showModal } = useGlobalModalContext();
 
-    const openModal = (type: string, props: any = {}) => {
-  showModal(type, props, () => {
-    console.log(`${type} modal closed ✅`);
-  });
-};
+  const openModal = (type: string, props: any = {}) => {
+    showModal(type, props, () => {
+      console.log(`${type} modal closed ✅`);
+    });
+  };
 
   const validators: Record<string, (val: any) => string | null> = {
     name: (val) => {
@@ -99,9 +98,7 @@ function RegistrationStep1() {
     }
   };
 
-  const handleChange = (
-    e:any
-  ) => {
+  const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
     let val: any = type === "checkbox" ? checked : value;
 
@@ -109,25 +106,23 @@ function RegistrationStep1() {
     if (name === "phoneNumber") {
       val = val.replace(/\D/g, "").slice(0, 10);
     }
-  let updatedData: any;
-  setFormData((prev: any) => {
-    if (name === "state") {
-      updatedData = { ...prev, state: val, district: "" };
+    let updatedData: any;
+    setFormData((prev: any) => {
+      if (name === "state") {
+        updatedData = { ...prev, state: val, district: "" };
+        return updatedData;
+      }
+      updatedData = { ...prev, [name]: val };
       return updatedData;
-    }
-    updatedData = { ...prev, [name]: val };
-    return updatedData;
-  });
+    });
     // Validate only current step field live
     if (currentStep === name) {
       validateField(name, val, updatedData);
     }
-
-    
   };
 
   const handleKeyUp = (
-    e: React.KeyboardEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.KeyboardEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name } = e.currentTarget;
     if (currentStep === name) {
@@ -135,7 +130,7 @@ function RegistrationStep1() {
     }
   };
 
-  const handleSubmit = async(e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     const firstError = findFirstError(formData);
@@ -149,24 +144,23 @@ function RegistrationStep1() {
     console.log("Form submitted:", formData);
 
     const info: any = {
-        name: formData.name,
-        mobile: formData.phoneNumber,
-        code: formData.voucher,
-        state: formData.state,
-        district: formData.district,
-      };
-      // console.log("hello API payload", info);
+      name: formData.name,
+      mobile: formData.phoneNumber,
+      code: formData.voucher,
+      state: formData.state,
+      district: formData.district,
+    };
+    // console.log("hello API payload", info);
 
-      // api calling.......
+    // api calling.......
 
-      dispatch(setMobile(formData.phoneNumber));
-      const res: any = await API.register(info);
-      console.log("hello API Response: r1", res);
-      if (res) {
-        navigate("/registrationStep2");
-      }
+    dispatch(setMobile(formData.phoneNumber));
+    const res: any = await API.register(info);
+    console.log("hello API Response: r1", res);
+    if (res) {
+      navigate("/registrationStep2");
+    }
   };
-
 
   return (
     <>
@@ -199,11 +193,11 @@ function RegistrationStep1() {
                   // Remove special symbols but allow letters, numbers, and spaces
                   e.target.value = e.target.value.replace(
                     /[^a-zA-Z0-9\s]/g,
-                    ""
+                    "",
                   );
                 }}
                 autoComplete="off"
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
               />
               {errors.name && (
                 <p className={styles.validation}>{errors.name}</p>
@@ -256,10 +250,10 @@ function RegistrationStep1() {
                 maxLength={10}
                 placeholder="Enter mobile number"
                 autoComplete="off"
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
               />
               {errors.phoneNumber && (
-                 <p  className={styles.validation}>{errors.phoneNumber}</p>
+                <p className={styles.validation}>{errors.phoneNumber}</p>
               )}
             </div>
 
@@ -270,12 +264,12 @@ function RegistrationStep1() {
                 placeholder="Voucher Code"
                 value={formData.voucher}
                 // onChange={handleChange}
-                 onChange={(e) => {
-    const upper = e.target.value.toUpperCase();
-    setFormData({ ...formData, voucher: upper });
-  }}
+                onChange={(e) => {
+                  const upper = e.target.value.toUpperCase();
+                  setFormData({ ...formData, voucher: upper });
+                }}
                 maxLength={12}
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
                 autoComplete="off"
               />
               {errors.voucher && (
@@ -297,7 +291,7 @@ function RegistrationStep1() {
                 name="state"
                 value={formData.state}
                 onChange={handleChange}
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
                 className={styles.customSelect}
               >
                 <option value="" selected>
@@ -329,7 +323,7 @@ function RegistrationStep1() {
                 name="district"
                 value={formData.district}
                 onChange={handleChange}
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
                 id="SD"
                 className={styles.customSelect}
                 disabled={!formData.state}
@@ -359,7 +353,7 @@ function RegistrationStep1() {
                       name="agreedToTerms"
                       checked={formData.agreedToTerms}
                       onChange={handleChange}
-                       onKeyUp={handleKeyUp}
+                      onKeyUp={handleKeyUp}
                     />
                     <span className={styles.customCheckbox}></span>
                   </label>
@@ -373,32 +367,30 @@ function RegistrationStep1() {
                 <button
                   type="button"
                   onClick={() => {
-                    openModal(MODAL_TYPES.TERMS_CONDITIONS)
-                     
-                    }}
+                    openModal(MODAL_TYPES.TERMS_CONDITIONS);
+                  }}
                   className={styles.TermsConditionsBold}
                 >
                   Terms & Conditions
                 </button>
               </div>
             </div>
-         
-              {errors.agreedToTerms && (
-                <p
-                  className={styles.validation}
-                  style={{
-                    color: "#ea0c0cff",
-                    fontSize: "10px",
-                    fontWeight: 200,
-                  }}
-                >
-                  {errors.agreedToTerms}
-                </p>
-              )}
+
+            {errors.agreedToTerms && (
+              <p
+                className={styles.validation}
+                style={{
+                  color: "#ea0c0cff",
+                  fontSize: "10px",
+                  fontWeight: 200,
+                }}
+              >
+                {errors.agreedToTerms}
+              </p>
+            )}
             <div className={styles.buttonSection}>
-                <button type="submit">Next</button>
-              </div>
-          
+              <button type="submit">Next</button>
+            </div>
           </form>
         </div>
         {/* <DynamicForm

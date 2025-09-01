@@ -1,10 +1,8 @@
-
-.container{
- width: 100%;         
-  max-width: 450px;     
- height: auto;
+.container {
+  width: 100%;
+  max-width: 450px;
+  height: auto;
 }
-
 
 .bg,
 .bg_custom {
@@ -12,141 +10,117 @@
   z-index: 1; // Ensure it stays below the sidenav
 }
 
-.bg{
-background-image:url("../../../assets/images/BG.png");
- background-size:100%100%;
-background-position: center;
-background-repeat: no-repeat;
-height: auto;
-height: 100svh; 
-overflow-x: hidden; /* Prevent horizontal scroll */
-overflow-y: auto;   /* Allow vertical scroll */
-position: relative; /* Makes it possible to position child elements absolutely */
-
+.bg {
+  background-image: url("../../../assets/images/BG.png");
+  background-size: 100%100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: auto;
+  height: 100svh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Allow vertical scroll */
+  position: relative; /* Makes it possible to position child elements absolutely */
 }
 
-.bg_custom{
-  background-image:url("../../../assets/images/BG.png");
-background-size:100%100%;
-background-position: center;
-background-repeat: no-repeat;
-// height: 105vh;
-height: 100vh;     /* Full viewport height (browser viewport height) */
-height: 100svh;    /* Safer viewport height (accounts for mobile browser bars) */
-overflow-x: hidden; /* Prevent horizontal scroll */
-overflow-y: auto;   /* Allow vertical scroll */
-position: relative; /* Makes it possible to position child elements absolutely */
-
-
+.bg_custom {
+  background-image: url("../../../assets/images/BG.png");
+  background-size: 100%100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  // height: 105vh;
+  height: 100vh; /* Full viewport height (browser viewport height) */
+  height: 100svh; /* Safer viewport height (accounts for mobile browser bars) */
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Allow vertical scroll */
+  position: relative; /* Makes it possible to position child elements absolutely */
 }
-
-
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-padding-top: .5rem;
+  padding-top: 0.5rem;
   .logo,
   .leftImage {
-    width: 50%; 
+    width: 50%;
     display: flex;
     // align-items: center;
   }
 
   .leftImage {
     justify-content: flex-end;
-     padding-right: .5rem;
-       position: relative;
-  z-index:99; // Ensure it stays below the sidenav
+    padding-right: 0.5rem;
+    position: relative;
+    z-index: 99; // Ensure it stays below the sidenav
   }
-
 }
-
-
 
 .logo {
- justify-content: flex-start;
-    padding-left: .5rem;
+  justify-content: flex-start;
+  padding-left: 0.5rem;
 
-img{
+  img {
     width: 60%;
-}
-}
-
-.imageOnaCircle img{
-width: 35%;
+  }
 }
 
-
-
-
-
-
-
-form{
-    text-align: -webkit-center
+.imageOnaCircle img {
+  width: 35%;
 }
 
+form {
+  text-align: -webkit-center;
+}
 
-.checkboxInputGroup{
-    display: flex;
-    /* justify-content: space-around; */
-    justify-content: center;
+.checkboxInputGroup {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: center;
 
-    .checkboxInputBox{
-        padding-right: 1rem;
-    }
-    label{
-        color: black;
-    
-    }
+  .checkboxInputBox {
+    padding-right: 1rem;
+  }
+  label {
+    color: black;
+  }
   .TermsConditionsNormal {
-  font-weight: normal;
-  color: #333; // or your default text color
-  font-size: 14px;
-}
+    font-weight: normal;
+    color: #333; // or your default text color
+    font-size: 14px;
+  }
 
-.TermsConditionsBold {
-  font-weight: bold;
-  color: #000; // or your highlight color like #DEA3B7
-  font-size: 14px;
-//   margin-left: 4px;
+  .TermsConditionsBold {
+    font-weight: bold;
+    color: #000; // or your highlight color like #DEA3B7
+    font-size: 14px;
+    //   margin-left: 4px;
     text-decoration: underline;
+  }
 }
-
-}
-.inputGroup{
-    input{
-          background: white;
-           color: #010101;
-        border-radius: 12px !important;
-    }
-    padding-bottom: 10px;
+.inputGroup {
+  input {
+    background: white;
+    color: #010101;
+    border-radius: 12px !important;
+  }
+  padding-bottom: 10px;
   input::placeholder {
-  
-  color: #010101;
- 
+    color: #010101;
+  }
 }
 
-}
-
-
-select{
-
+select {
   // color: #010101 !important;
   background: white !important;
-
 }
 
-input,select{
-    width: 90% !important;
-    font-size: 12px !important;
-      // color: 010101;
-        box-shadow: 0 4px 4px #0000001f inset;
+input,
+select {
+  width: 90% !important;
+  font-size: 12px !important;
+  // color: 010101;
+  box-shadow: 0 4px 4px #0000001f inset;
 }
-
-
 
 // select start
 
@@ -168,7 +142,6 @@ input,select{
   //
 }
 
-
 // .customSelect:focus {
 //   border-color: #007bff;
 // }
@@ -180,97 +153,79 @@ input,select{
 
 // select end
 @media screen and (max-width: 768px) {
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  .logo,
-  .leftImage {
-    width: 50%; 
+  .header {
     display: flex;
-    // align-items: center;
-  }
+    justify-content: space-between;
+    align-items: center;
 
-  .leftImage {
-    justify-content: flex-end;
-     padding-right: .5rem;
+    .logo,
+    .leftImage {
+      width: 50%;
+      display: flex;
+      // align-items: center;
+    }
+
+    .leftImage {
+      justify-content: flex-end;
+      padding-right: 0.5rem;
       position: relative;
-  z-index:99; // Ensure it stays below the sidenav
+      z-index: 99; // Ensure it stays below the sidenav
+    }
   }
 
-}
+  .logo {
+    justify-content: flex-start;
+    padding-left: 0.5rem;
 
+    img {
+      width: 60%;
+    }
+  }
 
+  .onaCircle {
+    position: relative;
+    bottom: 2rem;
+    img {
+      width: 55%;
+    }
+  }
 
-.logo {
- justify-content: flex-start;
-    padding-left: .5rem;
+  .itemSection {
+    position: relative;
+    bottom: 3rem;
+    img {
+      width: 90%;
+    }
+  }
 
-img{
-    width: 60%;
-}
-}
+  .formSection {
+    position: relative;
+    top: -6rem;
+  }
+  form {
+    text-align: -webkit-center;
+  }
 
+  .formHeadline {
+    padding-bottom: 0.5rem;
 
-.onaCircle{
-        position: relative;
-   bottom: 2rem;
-     img{
-width:55%;
-    
-}
-}
+    .registration {
+      font-size: 22px;
+      color: black;
+      margin: 0px !important;
+      padding-bottom: 0.5rem;
+      font-style: bold;
+    }
+    .step {
+      color: black;
+      font-size: 10px;
+    }
+  }
 
-
-
-
-.itemSection{
-
-        position: relative;
-      bottom: 3rem;
-        img{
-            width: 90%;
-        }
-
-}
-
-
-.formSection{
-     position: relative;
-        top: -6rem;
-}
-form{
-    text-align: -webkit-center
-}
-
-
-.formHeadline{
-        padding-bottom: .5rem;
-
-.registration{
-    font-size: 22px;
-    color: black;
-    margin: 0px  !important;
-    padding-bottom: .5rem;
-    font-style: bold;
-
-}
-.step{
-    color: black;
-    font-size: 10px;
-}
-}
-
-.inputSelectState
-{
+  .inputSelectState {
     width: 80%;
+  }
 }
-
-
-
-}
-
 
 // @media only screen and (min-width: 375px) and (min-height: 667px) {
 // .logo .imagelogo img{

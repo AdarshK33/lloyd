@@ -58,7 +58,7 @@
 //                          name={field.name}
 //                   checked={formData[field.name]}
 //               onChange={handleChange}
-              
+
 //                 />
 //                 <span className={styles.customCheckbox}></span>
 //                 <span className={styles.TermsConditionsNormal}>
@@ -72,7 +72,6 @@
 //                 </span>
 //               </label>
 
-               
 //             </div>
 //             ) : (
 //               <input
@@ -97,6 +96,5 @@
 //     </div>
 //   );
 // };
-
 
 // export default DynamicForm;

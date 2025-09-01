@@ -101,7 +101,7 @@ export function trackEvent(
     fbPixel?: any;
     cdsPixel?: any;
     upaPixel?: any;
-  }
+  },
 ) {
   const gaEvent = GA_EVENTS[event];
   const flEvent = FLOODLIGHT_EVENTS[event];

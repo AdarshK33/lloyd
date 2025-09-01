@@ -24,19 +24,18 @@ function RegistrationStep2() {
   const [newErrors, setError] = useState<any>({});
   const [currentStep, setCurrentStep] = useState<string | null>(null);
 
-
-   // ✅ Validators (like your registration form)
+  // ✅ Validators (like your registration form)
   const validators: Record<string, (val: any) => string | null> = {
     outletName: (val) => {
       if (!val || !val.trim()) return "**Outlet name is required";
       return null;
     },
-      invoiceNumber: (val) => {
-        const strVal = String(val ?? "").trim();
-        if (!strVal) return "**Invoice number is required";
-        if (!/^\d+$/.test(strVal)) return "**Invoice number must be numeric";
-        return null;
-      },
+    invoiceNumber: (val) => {
+      const strVal = String(val ?? "").trim();
+      if (!strVal) return "**Invoice number is required";
+      if (!/^\d+$/.test(strVal)) return "**Invoice number must be numeric";
+      return null;
+    },
     file1: (val) => {
       if (!val) return "**Invoice 1 is required";
       return null;
@@ -57,7 +56,7 @@ function RegistrationStep2() {
     const error = validators[name](val);
     if (!error) {
       // ✅ clear error
-      setError((prev: any) => ({ ...prev, [name]: null}));
+      setError((prev: any) => ({ ...prev, [name]: null }));
 
       // ✅ move to next invalid
       const nextError = findFirstError(updatedData);
@@ -91,7 +90,7 @@ function RegistrationStep2() {
     }
 
     // clear error immediately when typing
-    setError((prev: any) => ({ ...prev, [name]: null}));
+    setError((prev: any) => ({ ...prev, [name]: null }));
   };
 
   const handleKeyUp = (e: any) => {
@@ -100,56 +99,54 @@ function RegistrationStep2() {
       validateField(name, formData[name], formData);
     }
   };
-  
 
-const onDrop =
-  (field: string, setFileName: (name: string) => void) =>
-  (acceptedFiles: File[], fileRejections: any[]) => {
-    if (fileRejections.length > 0) {
-      // ❌ File rejected (size/type issue)
-      const errorMessage = "File is larger than 5 MB" //fileRejections[0].errors[0].message; 
-       setFormData((prev: any) => ({ ...prev, file1: null }));
-      setError((prev: any) => ({
+  const onDrop =
+    (field: string, setFileName: (name: string) => void) =>
+    (acceptedFiles: File[], fileRejections: any[]) => {
+      if (fileRejections.length > 0) {
+        // ❌ File rejected (size/type issue)
+        const errorMessage = "File is larger than 5 MB"; //fileRejections[0].errors[0].message;
+        setFormData((prev: any) => ({ ...prev, file1: null }));
+        setError((prev: any) => ({
+          ...prev,
+          [field]: errorMessage,
+        }));
+        setFileName("");
+        return; // don’t process accepted files
+      }
+
+      if (acceptedFiles.length > 0) {
+        setFileName(acceptedFiles[0].name); // ✅ show correct file name
+      }
+
+      setFormData((prev: any) => ({
         ...prev,
-        [field]: errorMessage,
+        [field]: acceptedFiles, // ✅ store files
       }));
-       setFileName("");
-      return; // don’t process accepted files
-    }
 
-    if (acceptedFiles.length > 0) {
-      setFileName(acceptedFiles[0].name); // ✅ show correct file name
-    }
-
-    setFormData((prev: any) => ({
-      ...prev,
-      [field]: acceptedFiles, // ✅ store files
-    }));
-
-    // ✅ Clear error for this field once user uploads a valid file
-    setError((prev: any) => {
-      const updated = { ...prev };
-      delete updated[field];
-      return updated;
-    });
-
-    // ✅ Progressive validation forward
-    if (currentStep === field) {
-      const nextError = findFirstError({
-        ...formData,
-        [field]: acceptedFiles,
+      // ✅ Clear error for this field once user uploads a valid file
+      setError((prev: any) => {
+        const updated = { ...prev };
+        delete updated[field];
+        return updated;
       });
 
-      if (nextError) {
-        setError({ [nextError.field]: nextError.message });
-        setCurrentStep(nextError.field);
-      } else {
-        setError({});
-        setCurrentStep(null);
-      }
-    }
-  };
+      // ✅ Progressive validation forward
+      if (currentStep === field) {
+        const nextError = findFirstError({
+          ...formData,
+          [field]: acceptedFiles,
+        });
 
+        if (nextError) {
+          setError({ [nextError.field]: nextError.message });
+          setCurrentStep(nextError.field);
+        } else {
+          setError({});
+          setCurrentStep(null);
+        }
+      }
+    };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -160,24 +157,20 @@ const onDrop =
       setError({ [firstError.field]: firstError.message });
       return;
     }
-      console.log("Form submitted",newErrors, formData);
-
-   
-
+    console.log("Form submitted", newErrors, formData);
 
     // ✅ All valid → API call
-  
+
     const res: any = await API.registerStep2({
       outlet: formData.outletName,
       invoiceNumber: formData.invoiceNumber,
-      file: formData?.file1?.[0]
+      file: formData?.file1?.[0],
     });
 
     if (res) {
       navigate("/verificationOtp");
     }
   };
-
 
   return (
     <>
@@ -196,7 +189,7 @@ const onDrop =
                 placeholder="Outlet Name"
                 value={formData.outletName}
                 onChange={handleChange}
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
                 onKeyDown={(e) => {
                   // Allow only letters, space, Backspace, Tab, and Arrow keys
                   if (
@@ -212,9 +205,12 @@ const onDrop =
                 }}
                 // required
                 onInput={(e: any) => {
-    // Remove special symbols but allow letters, numbers, and spaces
-    e.target.value = e.target.value.replace(/[^a-zA-Z0-9\s]/g, "");
-  }}
+                  // Remove special symbols but allow letters, numbers, and spaces
+                  e.target.value = e.target.value.replace(
+                    /[^a-zA-Z0-9\s]/g,
+                    "",
+                  );
+                }}
                 autoComplete="off"
               />
               {newErrors.outletName && (
@@ -229,7 +225,7 @@ const onDrop =
                 placeholder="Invoice number"
                 value={formData.invoiceNumber}
                 onChange={handleChange}
-                 onKeyUp={handleKeyUp}
+                onKeyUp={handleKeyUp}
                 onInput={(e: any) => {
                   e.target.value = e.target.value.replace(/[^0-9]/g, ""); // only numbers
                 }}
@@ -245,7 +241,7 @@ const onDrop =
                 onDrop={onDrop("file1", setFileName1)}
                 accept={{ "image/*": [] }}
                 maxFiles={1}
-                maxSize={ 4* 1024 * 1024}
+                maxSize={4 * 1024 * 1024}
               >
                 {({ getRootProps, getInputProps }) => (
                   <div
@@ -318,8 +314,7 @@ const onDrop =
             </div>
 
             <div className={styles.buttonSection}>
-                <button type="submit">Get Otp</button>
-             
+              <button type="submit">Get Otp</button>
             </div>
           </form>
         </div>

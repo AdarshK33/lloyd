@@ -8,10 +8,12 @@
     "build:dev": "tsc && vite build --mode development",
     "build:prod": "tsc && vite build --mode production",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
     "@atlaskit/tooltip": "^20.4.1",
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "@reduxjs/toolkit": "^2.2.5",
     "crypto-js": "^4.2.0",
     "i18next": "^23.11.5",
@@ -26,8 +28,7 @@
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.5",
     "redux": "^5.0.1",
-    "redux-persist": "^6.0.0",
-     "@lottiefiles/react-lottie-player": "^3.6.0"
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
@@ -40,6 +41,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "prettier": "^3.6.2",
     "sass": "^1.77.4",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"

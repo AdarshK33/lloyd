@@ -144,7 +144,7 @@ export function dataURItoBlob(dataURI: string) {
 export async function shareImage(
   link: string,
   text: string,
-  fallback?: (text: string, link: string) => void
+  fallback?: (text: string, link: string) => void,
 ) {
   if (
     navigator.userAgent.match(/iPhone/i) ||
@@ -202,7 +202,7 @@ export async function shareImage(
 
 export function nativeShareText(
   text: string,
-  fallback?: (text: string) => void
+  fallback?: (text: string) => void,
 ) {
   const shareData = {
     title: "Thumsup",
@@ -232,8 +232,8 @@ export function shareOnInstagram() {
 export function shareOnFacebook(text: string, url: string) {
   openInNewTab(
     `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${encodeURIComponent(
-      text
-    )}`
+      text,
+    )}`,
   );
 }
 

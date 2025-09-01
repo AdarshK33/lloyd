@@ -66,14 +66,15 @@ const ResendOtp: React.FC = () => {
         <span className={styles.timeText}>{formatTime(counter)}</span>
       </div>
 
-      <p className={styles.conditionsNormal}>
-        Didn’t receive OTP yet?
-      </p>
+      <p className={styles.conditionsNormal}>Didn’t receive OTP yet?</p>
 
       <p
         className={styles.conditionsBold}
         onClick={handleResend}
-        style={{ cursor: canResend ? "pointer" : "not-allowed", opacity: canResend ? 1 : 0.5 }}
+        style={{
+          cursor: canResend ? "pointer" : "not-allowed",
+          opacity: canResend ? 1 : 0.5,
+        }}
       >
         Resend OTP
       </p>

@@ -6,11 +6,12 @@ interface ContactUsPopupProps {
 }
 
 const ContactUs: React.FC<ContactUsPopupProps> = ({ hideModal }) => {
-   
   return (
     <div className="contact-container">
       {/* Back Arrow */}
-      <div className="back-arrow" onClick={() => hideModal()}>←</div>
+      <div className="back-arrow" onClick={() => hideModal()}>
+        ←
+      </div>
 
       {/* Title */}
       <h1 className="title">Contact Us</h1>
@@ -28,9 +29,7 @@ const ContactUs: React.FC<ContactUsPopupProps> = ({ hideModal }) => {
           <p>
             <strong>Support Email:</strong>
           </p>
-          <p className="highlight">
-            lloydfortunefestivesupport@pinelabs.com
-          </p>
+          <p className="highlight">lloydfortunefestivesupport@pinelabs.com</p>
         </div>
       </div>
     </div>

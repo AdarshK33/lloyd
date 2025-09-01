@@ -22,7 +22,7 @@ export const ipInfoSlice = createSlice({
     setIpDetails: create.reducer(
       (state, action: PayloadAction<IpLookupData>) => {
         state = { ...state, ...action.payload };
-      }
+      },
     ),
     clearIpDetails: create.reducer(() => {
       return { ...initialState };

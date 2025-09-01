@@ -12,12 +12,10 @@ export async function sendEncrytedData(
   url: string,
   data?: any,
   method = "POST",
-  headers = defaultHeaders
+  headers = defaultHeaders,
 ) {
-
-
   const accessDetails: any = await store.getState().auth;
-    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
+  console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;
     const dataKey = accessDetails.dataKey;
@@ -30,7 +28,7 @@ export async function sendEncrytedData(
     const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
     const dr = CryptoJS.enc.Base64.stringify(dAr);
     const hd = CryptoJS.enc.Base64.stringify(
-      CryptoJS.enc.Utf8.parse(t.toString())
+      CryptoJS.enc.Utf8.parse(t.toString()),
     );
 
     const shaObj = new jsSHA("SHA-256", "TEXT");
@@ -62,18 +60,17 @@ export async function sendEncrytedData(
       options.body = new URLSearchParams(obj);
     }
     let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
-     console.log(url,"hello url")
+    console.log(url, "hello url");
     if (
       url.includes("users") ||
       url.includes("redeem") ||
       url.includes("video/") ||
       url.includes("outlet/")
-    )
-    {
+    ) {
       fullUrl += userKey;
     }
     fullUrl += "?t=" + new Date().getTime().toString();
-     console.log(fullUrl,"hello fullurl 2")
+    console.log(fullUrl, "hello fullurl 2");
     return fetch(fullUrl, options);
   }
   return Promise.reject({
@@ -85,13 +82,11 @@ export async function sendEncrytedData(
 export async function sendGETEncrytedData(
   url: string,
   data?: any,
-  method : any= "GET",
-  headers: any = defaultHeaders
+  method: any = "GET",
+  headers: any = defaultHeaders,
 ) {
-
-
   const accessDetails: any = await store.getState().auth;
-    console.log(accessDetails,"hello 1 aaaaaaaaaaaaa")
+  console.log(accessDetails, "hello 1 aaaaaaaaaaaaa");
   if (accessDetails && accessDetails.userKey && accessDetails.dataKey) {
     const userKey = accessDetails.userKey;
     const dataKey = accessDetails.dataKey;
@@ -104,7 +99,7 @@ export async function sendGETEncrytedData(
     const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
     const dr = CryptoJS.enc.Base64.stringify(dAr);
     const hd = CryptoJS.enc.Base64.stringify(
-      CryptoJS.enc.Utf8.parse(t.toString())
+      CryptoJS.enc.Utf8.parse(t.toString()),
     );
 
     const shaObj = new jsSHA("SHA-256", "TEXT");
@@ -136,17 +131,16 @@ export async function sendGETEncrytedData(
       options.body = new URLSearchParams(obj);
     }
     let fullUrl = `${import.meta.env.VITE_API_BASE_URL}${url}`;
-     console.log(url,"hello url")
+    console.log(url, "hello url");
     if (
       url.includes("users") ||
       url.includes("video/") ||
       url.includes("redeem/")
-    )
-    {
+    ) {
       fullUrl += userKey;
     }
     fullUrl += "?t=" + new Date().getTime().toString();
-     console.log(fullUrl,"hello fullurl 2")
+    console.log(fullUrl, "hello fullurl 2");
     return fetch(fullUrl, options);
   }
   return Promise.reject({
@@ -154,10 +148,6 @@ export async function sendGETEncrytedData(
     message: "Session not found! Please refresh",
   });
 }
-
-
-
-
 
 export function decryptData(response: any) {
   try {
@@ -191,7 +181,7 @@ export function decryptData(response: any) {
 export async function authorisedEncrytedApiCall(
   url: string,
   data?: any,
-  method = "POST"
+  method = "POST",
 ) {
   const accessDetails: any = await store.getState().auth;
   const headers = {

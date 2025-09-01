@@ -1,4 +1,4 @@
-import React, {  useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./verificationOtp.module.scss"; // optional styling
 import CommonBase from "../../components/Popups/common/CommonBase";
 // import { toast } from "react-toastify";
@@ -10,9 +10,8 @@ import sucessTickMark from "../../assets/images/sucessTickMark.svg";
 // import envp from "../../assets/images/envelop.png";
 // import animation from "../../assets/animation/Cashback_and_Reward_Bundle.json";
 
-
 import API from "../../api";
-import {  setAccessToken, setReward } from "../../store/slices/authSlice";
+import { setAccessToken, setReward } from "../../store/slices/authSlice";
 import { useAppDispatch } from "../../store/hooks";
 // import EnvelopeAnimation from "../EnvelopeAnimation/EnvelopeAnimation";
 import ResendOtp from "./reSend";
@@ -43,7 +42,7 @@ function OtpVerification() {
 
   const handleKeyDown = (
     index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (e.key === "Backspace" && otp[index] === "") {
       if (index > 0) {
@@ -60,37 +59,34 @@ function OtpVerification() {
 
     if (finalOtp.length === 6) {
       setError("");
-     
+
       // Perform verification
       // navigate("/cashBack");
- 
+
       const res: any = await API.verifyOTP(finalOtp);
       //  save accesstoken authorisedApi
-  
-  dispatch(setAccessToken(res?.accessToken))
+
+      dispatch(setAccessToken(res?.accessToken));
       // let login = await API.authorisedApi(); //user login api
-      
+
       console.log("hello API Response: r1", res);
       if (res) {
         //GET API CALLLING
         let resGet: any = await API.getReward();
         if (resGet) {
-      console.log("hello API Response: r1", res);
+          console.log("hello API Response: r1", res);
 
           dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
         }
       }
-     
     } else {
-        // setShowTerms(true);
-   
+      // setShowTerms(true);
+
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
     }
   };
-
-
 
   return (
     <>
@@ -131,25 +127,23 @@ function OtpVerification() {
             </span>
           )}
 
-
-  {!showTerms ? (<>
-    <div className={styles.resendOtp}>
-            {/* <span className={styles.conditionsNormal}>
+          {!showTerms ? (
+            <>
+              <div className={styles.resendOtp}>
+                {/* <span className={styles.conditionsNormal}>
               Didn’t receive OTP Yet?
             </span>
             <span className={styles.conditionsBold}> Resend OTP</span> */}
-            <ResendOtp />
-          </div>
-        
-          <div className={styles.buttonSection}>
-       
-              <button type="submit">Verify Otp</button>
-           
-          </div>
-  </>):(<></>)
-          
-          }
-        
+                <ResendOtp />
+              </div>
+
+              <div className={styles.buttonSection}>
+                <button type="submit">Verify Otp</button>
+              </div>
+            </>
+          ) : (
+            <></>
+          )}
         </form>
       </CommonBase>
     </>
@@ -163,94 +157,96 @@ type TermsModalProps = {
 };
 
 const TermsModal = ({ isOpen, onClose, type }: TermsModalProps) => {
-    if (!isOpen) return null;
+  if (!isOpen) return null;
   const [currentType, setCurrentType] = useState<"cashback" | "reward">(type);
   const navigate = useNavigate();
-    const [ animation, setAnimation] = useState<any>();
+  const [animation, setAnimation] = useState<any>();
 
   // const dispatch = useAppDispatch();
-  
-     const state = store.getState();
-      const {reward} = state?.auth;
 
-        const handleBtnClick = () => {
-           setCurrentType("cashback");
+  const state = store.getState();
+  const { reward } = state?.auth;
+
+  const handleBtnClick = () => {
+    setCurrentType("cashback");
     const rewardTimer = setTimeout(() => {
-        navigate("/redemption"); // 👈 replace with your route
-      }, 5000);
-      
-      return () => clearTimeout(rewardTimer);
-  
-}
-    
+      navigate("/redemption"); // 👈 replace with your route
+    }, 5000);
+
+    return () => clearTimeout(rewardTimer);
+  };
+
   useEffect(() => {
     if (!isOpen) return;
     setCurrentType("reward");
-  }, [isOpen, navigate,animation]);
+  }, [isOpen, navigate, animation]);
 
-
- const handleImageCase = (rewardType: string) => {
+  const handleImageCase = (rewardType: string) => {
     switch (rewardType) {
       case ProductType.CASHBACK_300:
         return setAnimation(ANIMATIONS.Anim_Cashback_300);
- 
+
       default:
         return null;
     }
   };
 
-
-    useEffect(() => {
+  useEffect(() => {
     if (reward) {
       handleImageCase(reward);
     }
-    
-  }, [reward])
+  }, [reward]);
 
   return (
     <>
-    <div className={isOpen ? styles.show : styles.model}>
-      {currentType === "reward" ? (
-        <>
-       <div className={styles.rewardContainer}>
-  {/* Animation + button wrapper */}
-  <div className={styles.animationWrapper}>
-    <Player
-      src={ANIMATIONS.Anim_Cashback_300}
-      style={{ height: "100%", width: "95%" }}
-      keepLastFrame={true}
-      autoplay={true}
-    />
+      <div className={isOpen ? styles.show : styles.model}>
+        {currentType === "reward" ? (
+          <>
+            <div className={styles.rewardContainer}>
+              {/* Animation + button wrapper */}
+              <div className={styles.animationWrapper}>
+                <Player
+                  src={ANIMATIONS.Anim_Cashback_300}
+                  style={{ height: "100%", width: "95%" }}
+                  keepLastFrame={true}
+                  autoplay={true}
+                />
 
-    {/* Button inside animation */}
-    <div className={styles.buttonAcknowledgedSection}>
-      <button onClick={() => handleBtnClick()}>Acknowledged</button>
-    </div>
-  </div>
-</div>
-        </>
-      ) : (
-        <>
-          <div className={styles.notice}>
-            <span id="close" className={styles.close} onClick={onClose}>
-              {/* <img src={close} alt="Close" /> */}
-            </span>
-
-            <div>
-              <img src={sucessTickMark} alt="sucessTickMark"    decoding="async"
-               {...({ fetchpriority: "high" } as React.ImgHTMLAttributes<HTMLImageElement>)}/>
+                {/* Button inside animation */}
+                <div className={styles.buttonAcknowledgedSection}>
+                  <button onClick={() => handleBtnClick()}>Acknowledged</button>
+                </div>
+              </div>
             </div>
-            {/* <h2>
+          </>
+        ) : (
+          <>
+            <div className={styles.notice}>
+              <span id="close" className={styles.close} onClick={onClose}>
+                {/* <img src={close} alt="Close" /> */}
+              </span>
+
+              <div>
+                <img
+                  src={sucessTickMark}
+                  alt="sucessTickMark"
+                  decoding="async"
+                  {...({
+                    fetchpriority: "high",
+                  } as React.ImgHTMLAttributes<HTMLImageElement>)}
+                />
+              </div>
+              {/* <h2>
           Congratulations!
         </h2> */}
 
-            <h4>Thank you for completing the registration process. </h4>
+              <h4>Thank you for completing the registration process. </h4>
 
-            <h5>We will validate the details within 48 working hours.</h5>
-          </div>
-        </>
-      )}
-    </div>
+              <h5>We will validate the details within 48 working hours.</h5>
+            </div>
+          </>
+        )}
+      </div>
     </>
   );
 };

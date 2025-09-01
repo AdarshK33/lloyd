@@ -29,7 +29,7 @@ function OtpRedeemVerification() {
 
   const handleKeyDown = (
     index: number,
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     if (e.key === "Backspace" && otp[index] === "") {
       if (index > 0) {
@@ -47,26 +47,21 @@ function OtpRedeemVerification() {
     if (finalOtp.length === 6) {
       setError("");
       // Perform verification
-       const res: any = await API.verifyRedeemOTP(finalOtp);
+      const res: any = await API.verifyRedeemOTP(finalOtp);
       //  save accesstoken authorisedApi
-        // dispatch(setAccessToken(res?.accessToken));
-        dispatch(setAccessToken(res?.accessToken));
+      // dispatch(setAccessToken(res?.accessToken));
+      dispatch(setAccessToken(res?.accessToken));
 
-      if(res){
-           let resGetAll: any = await API.getAllReward(); //get all rewars api for redeem
-        if (resGetAll?.statusCode==200) {
-              dispatch(setReward(resGetAll?.rewardDetails));
-      navigate("/cashBack");
+      if (res) {
+        let resGetAll: any = await API.getAllReward(); //get all rewars api for redeem
+        if (resGetAll?.statusCode == 200) {
+          dispatch(setReward(resGetAll?.rewardDetails));
+          navigate("/cashBack");
         }
-
       }
-
 
       //  save accesstoken authorisedApi
-    
-      }
-     else {
-    
+    } else {
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
     }
@@ -74,7 +69,6 @@ function OtpRedeemVerification() {
 
   return (
     <>
-   
       <CommonBase>
         <form onSubmit={handleSubmit} className={styles.otpForm}>
           <h2 className={styles.verificationHeadline}>Verification</h2>
@@ -107,14 +101,13 @@ function OtpRedeemVerification() {
             </span>
           )}
 
-        
-           <div className={styles.resendOtp}>
-                      {/* <span className={styles.conditionsNormal}>
+          <div className={styles.resendOtp}>
+            {/* <span className={styles.conditionsNormal}>
                         Didn’t receive OTP Yet?
                       </span>
                       <span className={styles.conditionsBold}> Resend OTP</span> */}
-                      <ResendOtp />
-                    </div>
+            <ResendOtp />
+          </div>
           <div className={styles.buttonSection}>
             <div className={styles.buttonBottom}>
               <button type="submit">Verify Otp</button>
@@ -125,6 +118,5 @@ function OtpRedeemVerification() {
     </>
   );
 }
-
 
 export default OtpRedeemVerification;

@@ -1,50 +1,41 @@
-.formSection{
-position: relative;
-bottom: 4rem
+.formSection {
+  position: relative;
+  bottom: 4rem;
 }
 
+.formHeadline {
+  padding-bottom: 0.5rem;
 
-
-.formHeadline{
-        padding-bottom: .5rem;
-
-.redemptionHeadline{
+  .redemptionHeadline {
     font-size: 22px;
     color: black;
-    margin: 0px  !important;
-    padding-bottom: .5rem;
+    margin: 0px !important;
+    padding-bottom: 0.5rem;
     font-style: bold;
-
+  }
 }
-}
 
-
-.inputGroup{
-    input{
-          background: white;
-           color:#797979;
-        border-radius: 12px !important;
-         border: 1px solid #57C732;
-    }
-    padding-bottom: 10px;
+.inputGroup {
+  input {
+    background: white;
+    color: #797979;
+    border-radius: 12px !important;
+    border: 1px solid #57c732;
+  }
+  padding-bottom: 10px;
   input::placeholder {
-  
-  color: #797979;
- 
+    color: #797979;
+  }
 }
 
-}
-
-.buttonSection{
-   
-          position: relative;
-        top: 1rem;
-        button{
-            padding: 10px 40px;
-            background-color: #DA251D;
-            color: #ffff;
-        }
-    
+.buttonSection {
+  position: relative;
+  top: 1rem;
+  button {
+    padding: 10px 40px;
+    background-color: #da251d;
+    color: #ffff;
+  }
 }
 
 .validation {
@@ -55,5 +46,4 @@ bottom: 4rem
 }
 
 @media screen and (max-width: 768px) {
-
 }

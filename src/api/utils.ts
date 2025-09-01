@@ -130,12 +130,14 @@ export const defaultCatch = (err: any): Promise<any> => {
     toast.error(
       isOnline
         ? "Something went wrong, try again after some time"
-        : "You are offline"
+        : "You are offline",
     );
   } else if (!ignoreMessageKeys.includes(messageId)) {
     if (message === "Failed to fetch") {
       toast.error(
-        isOnline ? "Please check your network and try again" : "You are offline"
+        isOnline
+          ? "Please check your network and try again"
+          : "You are offline",
       );
     } else if (statusCode === 401) {
       logoutUser();

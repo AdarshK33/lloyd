@@ -1,16 +1,14 @@
 .contact-container {
-   max-width:430px !important;
- 
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    background: transparent;
-    height: 100svh; 
-overflow-x: hidden; /* Prevent horizontal scroll */
-overflow-y: auto;   /* Allow vertical scroll */
-position: relative; /* Makes it possible to position child elements absolutely */
+  max-width: 430px !important;
 
-
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  background: transparent;
+  height: 100svh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Allow vertical scroll */
+  position: relative; /* Makes it possible to position child elements absolutely */
 }
 
 .back-arrow {
@@ -22,50 +20,43 @@ position: relative; /* Makes it possible to position child elements absolutely *
 }
 
 .title {
-font-family: Corda;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    margin: 0;
+  font-family: Corda;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
   margin-bottom: 3rem;
 }
 
 .contact-info {
-padding: 0;
-    overflow-x: hidden;
-    width: 100%;
-    text-align: start;
-
-
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  text-align: start;
 }
 
-.contact-info ol{
+.contact-info ol {
   padding-left: 1.2rem;
 }
 
 .roman {
-  list-style-type: upper-roman; 
-  padding-left: 2rem;         
+  list-style-type: upper-roman;
+  padding-left: 2rem;
   margin: 1rem 0;
-  font-size: 1rem;             
-  line-height: 1.6;          
-  color: #333;              
-
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
 }
 
 .roman li {
-  margin-bottom: 0.75rem;      
+  margin-bottom: 0.75rem;
 }
 
 .roman ol {
-  list-style-type: lower-roman; 
+  list-style-type: lower-roman;
   margin-top: 0.5rem;
-  padding-left: 1.5rem;        
+  padding-left: 1.5rem;
 }
 
-
 @media (max-width: 768px) {
-
-
-   
 }

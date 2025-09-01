@@ -31,15 +31,13 @@ export async function sendKycEncryptedData(
     city: string;
     panNumber: string;
     pan: File;
-    selfieImage:File;
+    selfieImage: File;
     nocForm: File;
   },
-   
+
   method = "POST",
-//   headers = defaultHeaders
+  //   headers = defaultHeaders
 ) {
-
-
   const accessDetails: any = await store.getState().auth;
   if (!accessDetails?.userKey || !accessDetails?.dataKey) {
     return Promise.reject({
@@ -60,17 +58,17 @@ export async function sendKycEncryptedData(
     pincode: formData.pincode,
     state: formData.state,
     city: formData.city,
-    panNumber:formData.panNumber,
+    panNumber: formData.panNumber,
     userKey,
     t: Date.now(),
   };
 
-  console.log(payload,"payload")
+  console.log(payload, "payload");
 
   const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(payload));
   const dr = CryptoJS.enc.Base64.stringify(dAr);
   const hd = CryptoJS.enc.Base64.stringify(
-    CryptoJS.enc.Utf8.parse(payload.t.toString())
+    CryptoJS.enc.Utf8.parse(payload.t.toString()),
   );
 
   const shaObj = new jsSHA("SHA-256", "TEXT");
@@ -87,8 +85,7 @@ export async function sendKycEncryptedData(
   const r2 = Math.floor(Math.random() * 7) + 2;
   for (let i = 0; i < r2; i++)
     text += possible.charAt(Math.floor(Math.random() * possible.length));
-  const f_str =
-    String(r2) + String(r1) + k2.slice(0, r1) + text + k2.slice(r1);
+  const f_str = String(r2) + String(r1) + k2.slice(0, r1) + text + k2.slice(r1);
 
   const out = hd + "." + dr + "." + f_str;
 
@@ -101,8 +98,8 @@ export async function sendKycEncryptedData(
   if (formData.pan) {
     fd.append("pan", formData.pan, formData.pan.name);
   }
-   fd.append("selfieImage", formData.selfieImage, formData.selfieImage.name);
-   fd.append("nocForm", formData.nocForm, formData.nocForm.name);
+  fd.append("selfieImage", formData.selfieImage, formData.selfieImage.name);
+  fd.append("nocForm", formData.nocForm, formData.nocForm.name);
 
   let headers = await getAuthHeaders();
 

@@ -22,7 +22,7 @@ export const userSlice = createSlice({
     setUserDetails: create.reducer(
       (state, action: PayloadAction<UserSliceState>) => {
         return { ...state, ...action.payload };
-      }
+      },
     ),
     clearUserDetails: create.reducer(() => {
       return { ...initialState };

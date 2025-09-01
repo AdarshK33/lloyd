@@ -1,11 +1,10 @@
 .contact-container {
-   max-width:430px !important;
-    height: 105vh;
-    position: relative;
-    z-index: 1;
-    padding: 20px;
-    background: transparent;
-
+  max-width: 430px !important;
+  height: 105vh;
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  background: transparent;
 }
 
 .back-arrow {
@@ -17,11 +16,11 @@
 }
 
 .title {
-font-family: Corda;
-    font-size: 26px;
-    font-style: normal;
-    font-weight: 400;
-    margin: 0;
+  font-family: Corda;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  margin: 0;
   margin-bottom: 3rem;
 }
 
@@ -45,9 +44,5 @@ font-family: Corda;
   }
 }
 
-
 @media (max-width: 768px) {
-
-
-   
 }

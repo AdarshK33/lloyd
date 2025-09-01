@@ -4,30 +4,22 @@ import React, { useState, createContext, useContext } from "react";
 import TermsConditionsPopup from "../pages/term&condition/T&C";
 import ContactUs from "../pages/contact/contactUs";
 
-
-
-
-
-
-
 export const MODAL_TYPES = {
   CONTACT_US: "CONTACT_US",
   TERMS_CONDITIONS: "TERMS_CONDITIONS",
-
 };
 
 const MODAL_COMPONENTS = {
   // [MODAL_TYPES.CONTACT_US]: popups.ContactUsPopup,
   [MODAL_TYPES.TERMS_CONDITIONS]: TermsConditionsPopup,
   [MODAL_TYPES.CONTACT_US]: ContactUs,
-
 };
 
 type ContextType = {
   showModal: (
     modalType: string,
     modalProps?: any,
-    onClose?: () => void
+    onClose?: () => void,
   ) => void;
   hideModal: (blockOnClose?: boolean) => void;
   store: any;
@@ -60,7 +52,7 @@ export const GlobalModal: React.FC<{ children: React.ReactNode }> = ({
   const showModal = (
     modalType: string,
     modalProps: any = {},
-    onClose: () => void = () => {}
+    onClose: () => void = () => {},
   ) => {
     setStore({
       ...store,

@@ -15,11 +15,8 @@ export default function Popup(props: PopupProps) {
     <div className={"popup " + props.className}>
       <div className="popup-bg"></div>
       <div className={"popup-modal " + props.modalBgClass}>
-
-          <div className="header">
-              {<p className="title">{props.title}</p>}
-          </div>
-          {/* <img
+        <div className="header">{<p className="title">{props.title}</p>}</div>
+        {/* <img
               src={CloseIcon}
               alt="Popup close"
               className="closeBtn"

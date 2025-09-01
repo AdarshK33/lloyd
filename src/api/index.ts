@@ -63,7 +63,7 @@ class APIS {
 
   initialize(
     showLoader: (loaderTitle?: string | undefined) => void,
-    hideLoader: () => void
+    hideLoader: () => void,
   ) {
     this.showLoader = showLoader;
     this.hideLoader = hideLoader;
@@ -158,7 +158,7 @@ class APIS {
 
   sendRedeemOTP(payload: any): Promise<BaseResponse> {
     this.showLoader("Seding OTP...");
-    return sendEncrytedData("redeem/getOTP/", {...payload })
+    return sendEncrytedData("redeem/getOTP/", { ...payload })
       .then(fetchHandlerText)
       .then(decryptData)
       .then(responseHelper)
@@ -263,7 +263,7 @@ class APIS {
       {
         method: "GET",
         headers,
-      }
+      },
     )
       .then(fetchHandlerText)
       .then(decryptData)
@@ -288,7 +288,7 @@ class APIS {
       {
         method: "GET",
         headers,
-      }
+      },
     )
       .then(fetchHandlerText)
       .then(decryptData)
@@ -318,7 +318,7 @@ class APIS {
   //     .finally(this.hideLoader);
   // }
 
-  addKYC(payload:any): Promise<any> {
+  addKYC(payload: any): Promise<any> {
     // console.log(payload);
     this.showLoader("Saving details...");
     return sendKycEncryptedData("redeem/kyc/", payload)

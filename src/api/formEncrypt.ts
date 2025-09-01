@@ -11,7 +11,7 @@ export async function sendMultipartEncryptedData(
   url: string,
   formData: { outlet: string; invoiceNumber: string; file?: File },
   method = "POST",
-  headers = defaultHeaders
+  headers = defaultHeaders,
 ) {
   const accessDetails: any = await store.getState().auth;
   if (!accessDetails?.userKey || !accessDetails?.dataKey) {
@@ -34,7 +34,9 @@ export async function sendMultipartEncryptedData(
 
   const dAr = CryptoJS.enc.Utf8.parse(JSON.stringify(payload));
   const dr = CryptoJS.enc.Base64.stringify(dAr);
-  const hd = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(payload.t.toString()));
+  const hd = CryptoJS.enc.Base64.stringify(
+    CryptoJS.enc.Utf8.parse(payload.t.toString()),
+  );
 
   const shaObj = new jsSHA("SHA-256", "TEXT");
   shaObj.setHMACKey(dataKey.substr(4, 14), "TEXT");
@@ -44,7 +46,8 @@ export async function sendMultipartEncryptedData(
   const k2 = CryptoJS.enc.Base64.stringify(k1);
 
   let text = "";
-  const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const possible =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const r1 = Math.floor(Math.random() * 6) + 1;
   const r2 = Math.floor(Math.random() * 7) + 2;
   for (let i = 0; i < r2; i++)
@@ -72,7 +75,3 @@ export async function sendMultipartEncryptedData(
     body: fd, // ✅ multipart/form-data with encryption + raw file
   });
 }
-
-
-
-

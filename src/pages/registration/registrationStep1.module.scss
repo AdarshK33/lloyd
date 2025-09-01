@@ -1,91 +1,82 @@
-
-
-.buttonSection{
-          position: relative;
-        top: 1rem;
-        button{
-            padding: 10px 40px;
-            background-color: #DA251D;
-        }
-    
+.buttonSection {
+  position: relative;
+  top: 1rem;
+  button {
+    padding: 10px 40px;
+    background-color: #da251d;
+  }
 }
-form{
-    text-align: -webkit-center
+form {
+  text-align: -webkit-center;
 }
 
-.formSection{
-     position: relative;
-    bottom: 2rem;
+.formSection {
+  position: relative;
+  bottom: 2rem;
 }
-.checkboxInputGroup{
-    display: flex;
-    /* justify-content: space-around; */
-    justify-content: center;
+.checkboxInputGroup {
+  display: flex;
+  /* justify-content: space-around; */
+  justify-content: center;
 
-    .checkboxInputBox{
-        padding-right: 1rem;
-    }
-    label{
-        color: black;
-    
-    }
+  .checkboxInputBox {
+    padding-right: 1rem;
+  }
+  label {
+    color: black;
+  }
   .TermsConditionsNormal {
-  font-weight: normal;
-  color: #333; // or your default text color
-  font-size: 14px;
-}
+    font-weight: normal;
+    color: #333; // or your default text color
+    font-size: 14px;
+  }
 
-.TermsConditionsBold {
-  all: unset; /* remove button default style */
-  font-weight: bold;
-  color: #000 !important; // or your highlight color like #DEA3B7
-  font-size: 14px;
-//   margin-left: 4px;
+  .TermsConditionsBold {
+    all: unset; /* remove button default style */
+    font-weight: bold;
+    color: #000 !important; // or your highlight color like #DEA3B7
+    font-size: 14px;
+    //   margin-left: 4px;
     text-decoration: underline;
+  }
 }
-
-}
-.inputGroup{
-    input{
-          background: white;
-           color:#797979;
-        border-radius: 12px !important;
-    }
-    padding-bottom: 10px;
-  input::placeholder {
-  text-align: start;
-  color: #797979;
- 
-}
-
-}
-.reactSelect{
-  width: 90%;
+.inputGroup {
+  input {
     background: white;
-           color:#797979;
-        border-radius: 12px !important;
+    color: #797979;
+    border-radius: 12px !important;
+  }
+  padding-bottom: 10px;
+  input::placeholder {
+    text-align: start;
+    color: #797979;
+  }
+}
+.reactSelect {
+  width: 90%;
+  background: white;
+  color: #797979;
+  border-radius: 12px !important;
 }
 
-select{
-
+select {
   // color: #797979 !important;
   background: white !important;
-
 }
 
-input,select{
-    width: 90% !important;
-    font-size: 12px !important;
-      // color: 010101;
-       border: 1px solid #57C732 !important;
-       text-align: start;
-         box-shadow: 0 4px 4px #0000001f inset;
-       
+input,
+select {
+  width: 90% !important;
+  font-size: 12px !important;
+  // color: 010101;
+  border: 1px solid #57c732 !important;
+  text-align: start;
+  box-shadow: 0 4px 4px #0000001f inset;
 }
 .customSelect {
-  text-align: left;          /* align selected value */
-  text-align-last: left;     /* align placeholder and selected value */
-  direction: ltr;            /* make sure it's not overridden by RTL */
+  text-align: left; /* align selected value */
+  text-align-last: left; /* align placeholder and selected value */
+  direction: ltr; /* make sure it's not overridden by RTL */
   padding: 8px;
 }
 
@@ -94,9 +85,7 @@ input,select{
 //     justify-content: center;
 // }
 
-
 // checkbox
-
 
 .checkboxLabel {
   display: flex;
@@ -128,39 +117,39 @@ input,select{
     border: 2px solid #ccc;
     border-radius: 20px;
     background-color: white;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease;
     position: relative;
     z-index: 1;
   }
 
   input[type="checkbox"]:checked + .customCheckbox {
-  border-color: #000;
-  background-color: transparent;
+    border-color: #000;
+    background-color: transparent;
 
-  &::after {
-  //   content: "✔";
-  //   position: absolute;
-  //   top: 0.0625rem !important;
-  //    left: 0.0625rem !important;
-  //   color: #010101;
-  //   font-size: 0.75rem; /* 12px = 0.75rem */
-  //   font-family: inherit !important;
-  // line-height: 1 !important;
+    &::after {
+      //   content: "✔";
+      //   position: absolute;
+      //   top: 0.0625rem !important;
+      //    left: 0.0625rem !important;
+      //   color: #010101;
+      //   font-size: 0.75rem; /* 12px = 0.75rem */
+      //   font-family: inherit !important;
+      // line-height: 1 !important;
 
-   content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 12px;
-  height: 12px;
-  background: url('../../assets//images/tick.svg') no-repeat center center;
-  background-size: contain;
-  transform: translate(-50%, -50%);
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 12px;
+      height: 12px;
+      background: url("../../assets//images/tick.svg") no-repeat center center;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+    }
   }
 }
-}
-
-
 
 /* end checkbox */
 
@@ -185,7 +174,6 @@ input,select{
   //
 }
 
-
 // .customSelect:focus {
 //   border-color: #007bff;
 // }
@@ -196,33 +184,31 @@ input,select{
   text-align: start !important;
 }
 
-.optionStart{
+.optionStart {
   text-align: end !important;
 }
 
 // select end
 
-
 // dropzone start
 /* This class mimics an input field */
 .inputLike {
-   width: 90%;
+  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 10px;
   background: white;
-           color:#797979;
-        border-radius: 12px !important;
+  color: #797979;
+  border-radius: 12px !important;
   cursor: pointer;
-  overflow: hidden;   /* Prevents overflow */
+  overflow: hidden; /* Prevents overflow */
   position: relative; /* Avoid z-index issues */
-  z-index: 1;          /* Keep it within normal flow */
- 
+  z-index: 1; /* Keep it within normal flow */
 }
 
 .activeDrop {
-   border-color: #57C732 !important;
+  border-color: #57c732 !important;
   background-color: #f5fdfd;
 }
 
@@ -237,178 +223,155 @@ input,select{
   display: flex;
   justify-content: space-between;
   align-items: center;
-    font-weight: 400 !important;
-  .text_bulk_upload {
- color:#797979;
-  text-decoration: none;
-  font-size: 11px;
   font-weight: 400 !important;
-}
-}
-
-
-.inputGroup p{
-   color: #DA251D !important;
-font-size: 11px;
-font-weight: 200;
-position: relative;
-margin: 0px;
-top: .2rem;
+  .text_bulk_upload {
+    color: #797979;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 400 !important;
+  }
 }
 
-
-
+.inputGroup p {
+  color: #da251d !important;
+  font-size: 11px;
+  font-weight: 200;
+  position: relative;
+  margin: 0px;
+  top: 0.2rem;
+}
 
 //dropzone end
 
-
 // modal start
 .model {
-    display: none;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #000000ad;
-    z-index: 999;
-    text-align: center;
+  display: none;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #000000ad;
+  z-index: 999;
+  text-align: center;
 }
-
 
 .show {
-    display: block;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    background: #000000ad;
-    background-image:url("../../assets/images/congratulation_Modal.png");
-    background-size:100%50%;
-    background-repeat: no-repeat;
-    height: 100vh;
-    z-index: 999;
-    text-align: center;
+  display: block;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: #000000ad;
+  background-image: url("../../assets/images/congratulation_Modal.png");
+  background-size: 100%50%;
+  background-repeat: no-repeat;
+  height: 100vh;
+  z-index: 999;
+  text-align: center;
 }
 .show .notice {
-    width: 80%;
-    margin:0 auto;
-    margin-top: 230px;
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 230px;
   background-image:
-  repeating-linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.05) 0px,
-    rgba(255, 255, 255, 0.05) 10px,
-    rgba(255, 255, 255, 0.08) 10px,
-    rgba(255, 255, 255, 0.08) 20px
-  ),
-  linear-gradient(
-    to bottom,
-    #fff89c,
-    #fef082,
-    #f7e18c,
-    #f3ce70,
-    #e6b750,
-    #dfa53e,
-    #c28525,
-    #a56319
-  );
-    color: #000;
-    padding: 20px;
+    repeating-linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.05) 0px,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.08) 10px,
+      rgba(255, 255, 255, 0.08) 20px
+    ),
+    linear-gradient(
+      to bottom,
+      #fff89c,
+      #fef082,
+      #f7e18c,
+      #f3ce70,
+      #e6b750,
+      #dfa53e,
+      #c28525,
+      #a56319
+    );
+  color: #000;
+  padding: 20px;
 }
 
 #close,
 #check {
-    cursor: pointer;
+  cursor: pointer;
 }
-.close{
+.close {
   display: flex;
   justify-content: end;
 }
 //moddal end
 @media screen and (max-width: 768px) {
+  .buttonSection {
+    position: relative;
+  }
 
-
-.buttonSection{
-     position: relative;
-    
-}
-
-.formSection{
-     position: relative;
+  .formSection {
+    position: relative;
     bottom: 3rem;
-}
-form{
-    text-align: -webkit-center
-}
+  }
+  form {
+    text-align: -webkit-center;
+  }
 
+  .formHeadline {
+    padding-bottom: 0.5rem;
 
-.formHeadline{
-        padding-bottom: .5rem;
+    .registration {
+      font-size: 22px;
+      color: black;
+      margin: 0px !important;
+      padding-bottom: 0.5rem;
+      font-style: bold;
+    }
+    .step {
+      color: black;
+      font-size: 10px;
+    }
+  }
 
-.registration{
-    font-size: 22px;
-    color: black;
-    margin: 0px  !important;
-    padding-bottom: .5rem;
-    font-style: bold;
-
-}
-.step{
-    color: black;
-    font-size: 10px;
-}
-}
-
-.inputSelectState
-{
+  .inputSelectState {
     width: 80%;
+  }
+
+  .checkboxWrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px; /* spacing between "I agree to" and button */
+  }
+
+  .customCheckbox {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .TermsConditionsNormal {
+    font-size: 14px;
+    color: #333;
+  }
+
+  .TermsConditionsBold {
+    all: unset; /* remove button default style */
+    font-size: 14px;
+    font-weight: bold;
+    color: #010101;
+    text-decoration: underline;
+    cursor: pointer;
+  }
 }
-
-
-
-.checkboxWrapper {
-  display: flex;
-  align-items: center;
-  gap: 4px; /* spacing between "I agree to" and button */
-}
-
-
-.customCheckbox {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.TermsConditionsNormal {
-  font-size: 14px;
-  color: #333;
-}
-
-.TermsConditionsBold {
-  all: unset; /* remove button default style */
-  font-size: 14px;
-  font-weight: bold;
-  color: #010101;
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-
-}
-
-
-
-
-
-
 
 @media only screen and (max-width: 768px) {
   input[type="checkbox"]:checked + .customCheckbox::after {
-    font-size: 14px;   /* slightly bigger for readability */
-    top: -1px;         /* adjust vertical alignment */
-    left: 2px;         /* adjust horizontal alignment */
+    font-size: 14px; /* slightly bigger for readability */
+    top: -1px; /* adjust vertical alignment */
+    left: 2px; /* adjust horizontal alignment */
   }
 }
 

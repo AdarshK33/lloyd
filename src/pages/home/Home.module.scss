@@ -1,78 +1,67 @@
-
-.container{
-   max-width:430px;
-    height: auto;
+.container {
+  max-width: 430px;
+  height: auto;
 }
 
-.bg{
-background-image:url("../../assets/images/BG.png");
-background-size:100%100%;
-background-repeat: no-repeat;
-background-position: center;
-height: 100svh; 
-overflow-x: hidden; /* Prevent horizontal scroll */
-overflow-y: auto;   /* Allow vertical scroll */
-position: relative; /* Makes it possible to position child elements absolutely */
-
+.bg {
+  background-image: url("../../assets/images/BG.png");
+  background-size: 100%100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100svh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-y: auto; /* Allow vertical scroll */
+  position: relative; /* Makes it possible to position child elements absolutely */
 }
 
-.logo  img{
-    width: 20%;
+.logo img {
+  width: 20%;
 }
-.header{
+.header {
   position: relative;
 }
 
-.imagelist{
-padding-top: 10px; 
-display: flex;
-justify-content: end;
-padding-right: 10px;
+.imagelist {
+  padding-top: 10px;
+  display: flex;
+  justify-content: end;
+  padding-right: 10px;
 }
-.onaCircle{
-    position: relative;
-   bottom: 1rem;
-   img{
-width: 45%;
-}
+.onaCircle {
+  position: relative;
+  bottom: 1rem;
+  img {
+    width: 45%;
+  }
 }
 
-.ticketSection{
-        position: relative;
-        bottom: 2rem;
-  
-img{
+.ticketSection {
+  position: relative;
+  bottom: 2rem;
+
+  img {
     width: 40%;
+  }
 }
-}
 
-
-
-
-.buttonSection{
+.buttonSection {
   position: relative;
-       
-       
-        button{
-            padding: 10px 40px;
-            background-color: #DA251D;
-            color: #ffff;
-        }
-    
+
+  button {
+    padding: 10px 40px;
+    background-color: #da251d;
+    color: #ffff;
+  }
 }
-
-
 
 // @media only screen and (max-width: 414px) {
 //   /* iPhone XR*/
 
 // }
 
-
 // @media only screen and (width: 390px) and (height: 844px) {
 //   /* iPhone 12 & iPhone 14 */
 // }
-
 
 // @media screen and (max-width: 768px) {
 
@@ -84,37 +73,31 @@ img{
 // width: 80%;
 // }
 
-.ticketSection{
-  
-        position: relative;
-      
-img{
-    width: 70%;
+.ticketSection {
+  position: relative;
 
+  img {
+    width: 70%;
   }
 }
 
-.itemSection{
-   
-        position: relative;
-        top: 0rem;
-        img{
-            width: 100%;
-        }
-    
-
+.itemSection {
+  position: relative;
+  top: 0rem;
+  img {
+    width: 100%;
+  }
 }
 
 // .buttonSection{
 //     .buttonBottom{
 //           position: relative;
 //       bottom: .5rem;
-      
+
 //     }
 // }
 
 // }
-
 
 // // @media only screen and (min-width: 375px) and (min-height: 667px) {
 // // .logo .imagelogo img{
@@ -128,51 +111,85 @@ img{
 // // }
 // // }
 
-
-
-
-
-
 // start //
 /* iPhone 6,7,8, X, 11 Pro (375px wide) */
 @media only screen and (width: 375px) {
-  .bg { background-size: cover; }
-  .logo img { width: 40%; }
-  .onaCircle img { width: 80%; }
-  .ticketSection img { width: 70%; }
+  .bg {
+    background-size: cover;
+  }
+  .logo img {
+    width: 40%;
+  }
+  .onaCircle img {
+    width: 80%;
+  }
+  .ticketSection img {
+    width: 70%;
+  }
 }
 
 /* iPhone 12, 13, 14 (390px wide) */
 @media only screen and (width: 390px) {
-  .bg { background-size: cover; }
-  .logo  img { width: 38%; }
-  .onaCircle img { width: 78%; }
-  .ticketSection img { width: 68%; }
+  .bg {
+    background-size: cover;
+  }
+  .logo img {
+    width: 38%;
+  }
+  .onaCircle img {
+    width: 78%;
+  }
+  .ticketSection img {
+    width: 68%;
+  }
 }
 
 /* iPhone 14 Pro (393px wide) */
 @media only screen and (width: 393px) {
-  .bg { background-size: cover; }
-  .logo  img { width: 37%; }
-  .onaCircle img { width: 66%; }
-  .ticketSection img { width: 50%; }
+  .bg {
+    background-size: cover;
+  }
+  .logo img {
+    width: 37%;
+  }
+  .onaCircle img {
+    width: 66%;
+  }
+  .ticketSection img {
+    width: 50%;
+  }
 }
 
 /* iPhone 6/7/8 Plus, XR, XS Max, 11, 11 Pro Max (414px wide) */
 @media only screen and (width: 414px) {
-  .bg { background-size: cover; }
-  .logo  img { width: 35%; }
-  .onaCircle img { width: 60%; }
-  .ticketSection img { width: 50%; }
+  .bg {
+    background-size: cover;
+  }
+  .logo img {
+    width: 35%;
+  }
+  .onaCircle img {
+    width: 60%;
+  }
+  .ticketSection img {
+    width: 50%;
+  }
 }
 
 /* iPhone 12, 13, 14 Pro Max (430px wide) */
 @media only screen and (width: 430px) {
-  .bg { background-size: cover; }
-  .logo img { width: 33%; }
-  .onaCircle img { width: 50%; }
-  .ticketSection img { width: 50%; }
+  .bg {
+    background-size: cover;
+  }
+  .logo img {
+    width: 33%;
+  }
+  .onaCircle img {
+    width: 50%;
+  }
+  .ticketSection img {
+    width: 50%;
+  }
 }
-
 
 // end //
