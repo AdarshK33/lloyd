@@ -78,12 +78,12 @@ function OtpVerification() {
       console.log("hello API Response: r1", res);
 
           dispatch(setReward(resGet?.rewardType));
-          // setShowTerms(true);
+          setShowTerms(true);
         }
       }
      
     } else {
-        setShowTerms(true);
+        // setShowTerms(true);
    
       //   alert("Please enter all 6 digits.");
       setError("Please enter all 6 digits");
