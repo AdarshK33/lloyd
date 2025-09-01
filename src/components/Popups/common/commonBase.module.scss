@@ -41,26 +41,37 @@ position: relative; /* Makes it possible to position child elements absolutely *
 }
 
 
-.logo  img{
-    width: 60%;
-}
-.header{
-    position: relative;
-display: flex;
-justify-content:space-between;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 padding-top: .5rem;
-}
-.leftImage {
-      position: relative; 
-    z-index: 99;
-.imagelist{
-padding-top: 0px; 
-display: block;
-justify-content: end;
-padding-right: 10px;
-}
+  .logo,
+  .leftImage {
+    width: 50%; 
+    display: flex;
+    // align-items: center;
+  }
+
+  .leftImage {
+    justify-content: flex-end;
+     padding-right: .5rem;
+  }
 
 }
+
+
+
+.logo {
+ justify-content: flex-start;
+    padding-left: .5rem;
+
+img{
+    width: 60%;
+}
+}
+
 .imageOnaCircle img{
 width: 35%;
 }
@@ -130,6 +141,7 @@ input,select{
     width: 90% !important;
     font-size: 12px !important;
       // color: 010101;
+        box-shadow: 0 4px 4px #0000001f inset;
 }
 
 
