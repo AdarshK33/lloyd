@@ -86,8 +86,8 @@ function RegistrationStep1() {
       // ✅ move to next invalid field
       const nextError = findFirstError(updatedData);
       if (nextError) {
-        setCurrentStep(nextError.field);
-        setErrors({ [nextError.field]: nextError.message });
+        setCurrentStep(nextError?.field);
+        setErrors({ [nextError?.field]: nextError.message });
       } else {
         setCurrentStep(null);
         setErrors({});
@@ -99,7 +99,7 @@ function RegistrationStep1() {
   };
 
   const handleChange = (e: any) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked } = e?.target;
     let val: any = type === "checkbox" ? checked : value;
 
     // phone only digits
@@ -124,7 +124,7 @@ function RegistrationStep1() {
   const handleKeyUp = (
     e: React.KeyboardEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name } = e.currentTarget;
+    const { name } = e?.currentTarget;
     if (currentStep === name) {
       validateField(name, formData[name as keyof typeof formData], formData);
     }
@@ -135,8 +135,8 @@ function RegistrationStep1() {
 
     const firstError = findFirstError(formData);
     if (firstError) {
-      setCurrentStep(firstError.field);
-      setErrors({ [firstError.field]: firstError.message });
+      setCurrentStep(firstError?.field);
+      setErrors({ [firstError?.field]: firstError?.message });
       return;
     }
 
@@ -144,17 +144,17 @@ function RegistrationStep1() {
     // console.log("Form submitted:", formData);
 
     const info: any = {
-      name: formData.name,
-      mobile: formData.phoneNumber,
-      code: formData.voucher,
-      state: formData.state,
-      district: formData.district,
+      name: formData?.name,
+      mobile: formData?.phoneNumber,
+      code: formData?.voucher,
+      state: formData?.state,
+      district: formData?.district,
     };
     // console.log("hello API payload", info);
 
     // api calling.......
 
-    dispatch(setMobile(formData.phoneNumber));
+    dispatch(setMobile(formData?.phoneNumber));
     const res: any = await API.register(info);
     // console.log("hello API Response: r1", res);
     if (res) {

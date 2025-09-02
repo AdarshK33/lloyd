@@ -61,8 +61,8 @@ function RegistrationStep2() {
       // ✅ move to next invalid
       const nextError = findFirstError(updatedData);
       if (nextError) {
-        setCurrentStep(nextError.field);
-        setError({ [nextError.field]: nextError.message });
+        setCurrentStep(nextError?.field);
+        setError({ [nextError?.field]: nextError?.message });
       } else {
         setCurrentStep(null);
         setError({});
@@ -74,7 +74,7 @@ function RegistrationStep2() {
   };
 
   const handleChange = (e: any) => {
-    const { name, type, value, files } = e.target;
+    const { name, type, value, files } = e?.target;
     const newValue = type === "file" ? files?.[0] : value;
 
     // ✅ Reset invoiceNumber & file1 if outletName changes
@@ -94,7 +94,7 @@ function RegistrationStep2() {
   };
 
   const handleKeyUp = (e: any) => {
-    const { name } = e.target;
+    const { name } = e?.target;
     if (currentStep === name) {
       validateField(name, formData[name], formData);
     }
@@ -103,7 +103,7 @@ function RegistrationStep2() {
   const onDrop =
     (field: string, setFileName: (name: string) => void) =>
     (acceptedFiles: File[], fileRejections: any[]) => {
-      if (fileRejections.length > 0) {
+      if (fileRejections?.length > 0) {
         // ❌ File rejected (size/type issue)
         const errorMessage = "File is larger than 5 MB"; //fileRejections[0].errors[0].message;
         setFormData((prev: any) => ({ ...prev, file1: null }));
@@ -116,7 +116,7 @@ function RegistrationStep2() {
       }
 
       if (acceptedFiles.length > 0) {
-        setFileName(acceptedFiles[0].name); // ✅ show correct file name
+        setFileName(acceptedFiles[0]?.name); // ✅ show correct file name
       }
 
       setFormData((prev: any) => ({
@@ -139,8 +139,8 @@ function RegistrationStep2() {
         });
 
         if (nextError) {
-          setError({ [nextError.field]: nextError.message });
-          setCurrentStep(nextError.field);
+          setError({ [nextError?.field]: nextError?.message });
+          setCurrentStep(nextError?.field);
         } else {
           setError({});
           setCurrentStep(null);
@@ -153,8 +153,8 @@ function RegistrationStep2() {
 
     const firstError = findFirstError(formData);
     if (firstError) {
-      setCurrentStep(firstError.field);
-      setError({ [firstError.field]: firstError.message });
+      setCurrentStep(firstError?.field);
+      setError({ [firstError?.field]: firstError?.message });
       return;
     }
     // console.log("Form submitted", newErrors, formData);
@@ -162,8 +162,8 @@ function RegistrationStep2() {
     // ✅ All valid → API call
 
     const res: any = await API.registerStep2({
-      outlet: formData.outletName,
-      invoiceNumber: formData.invoiceNumber,
+      outlet: formData?.outletName,
+      invoiceNumber: formData?.invoiceNumber,
       file: formData?.file1?.[0],
     });
 
