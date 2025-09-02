@@ -1,13 +1,13 @@
-@font-face {
-  font-family: "Poppins";
-  src: url("../assets/font/poppins.medium.ttf") format("truetype");
-  font-style: medium;
-}
-@font-face {
-  font-family: "Poppins";
-  src: url("../assets/font/poppins.bold.ttf") format("truetype");
-  font-style: bold;
-}
+// @font-face {
+//   font-family: "Poppins";
+//   src: url("../assets/font/poppins.medium.ttf") format("truetype");
+//   font-style: medium;
+// }
+// @font-face {
+//   font-family: "Poppins";
+//   src: url("../assets/font/poppins.bold.ttf") format("truetype");
+//   font-style: bold;
+// }
 
 // @font-face {
 //   font-family: 'Poppins';
@@ -15,10 +15,45 @@
 //   font-style: regular;
 // }
 
+
+/* global.scss */
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./../assets/font//corda/Corda-Regular.otf") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./../assets/font/corda/Corda-Light.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./../assets/font/corda/Corda-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("./assets/font/corda/Corda-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins";
+ font-family: "MyCustomFont" !important;
   line-height: 100%;
 }
 

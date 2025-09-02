@@ -78,6 +78,7 @@ function OtpVerification() {
 
           dispatch(setReward(resGet?.rewardType));
           setShowTerms(true);
+          setOtp([])
         }
       }
     } else {
