@@ -266,7 +266,9 @@ export function logoutUser() {
 export const preloadAnimations = () => {
   Object.values(ANIMATIONS).forEach((anim) => {
     if (typeof anim === "string") {
-      fetch(anim).catch(() => {});
+      fetch(anim).catch((err) => {
+        console.log(err,"helloooooooooo")
+      });
     }
   });
 };
