@@ -10,30 +10,57 @@
   z-index: 1; // Ensure it stays below the sidenav
 }
 
-.bg {
-  background-image: url("../../../assets/images/BG.png");
-  background-size: 100%100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: auto;
-  height: 100svh;
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  overflow-y: auto; /* Allow vertical scroll */
-  position: relative; /* Makes it possible to position child elements absolutely */
-}
+// .bg {
+//   background-image: url("../../../assets/images/BG.png");
+//   background-size: 100%100%;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   height: auto;
+//   height: 100svh;
+//   overflow-x: hidden; /* Prevent horizontal scroll */
+//   overflow-y: auto; /* Allow vertical scroll */
+//   position: relative; /* Makes it possible to position child elements absolutely */
+// }
 
-.bg_custom {
-  background-image: url("../../../assets/images/BG.png");
-  background-size: 100%100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  // height: 105vh;
-  height: 100vh; /* Full viewport height (browser viewport height) */
-  height: 100svh; /* Safer viewport height (accounts for mobile browser bars) */
-  overflow-x: hidden; /* Prevent horizontal scroll */
-  overflow-y: auto; /* Allow vertical scroll */
-  position: relative; /* Makes it possible to position child elements absolutely */
-}
+// .bg_custom {
+//   background-image: url("../../../assets/images/BG.png");
+//   background-size: 100%100%;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   // height: 105vh;
+//   height: 100vh; /* Full viewport height (browser viewport height) */
+//   height: 100svh; /* Safer viewport height (accounts for mobile browser bars) */
+//   overflow-x: hidden; /* Prevent horizontal scroll */
+//   overflow-y: auto; /* Allow vertical scroll */
+//   position: relative; /* Makes it possible to position child elements absolutely */
+// }
+
+
+// .bg {
+//   background: url(../../../assets/images/bg/chakra-lb.svg) no-repeat top left,
+//     url(../../../assets/images/bg/chakra-rb.svg) no-repeat bottom 22% right,
+//     url(../../../assets/images/bg/chakra-t.svg) no-repeat bottom 32% left,
+//     url(../../../assets/images/bg/flower.svg) no-repeat top 18% left 10%,
+//     url(../../../assets/images/bg/flower.svg) no-repeat top 15% right 5%,
+//     url(../../../assets/images/bg/flower.svg) no-repeat top 50% right 20%,
+//     url(../../../assets/images/bg/flower.svg) no-repeat bottom 30% left 20%,
+//     url(../../../assets/images/bg/Palm-tree-l.png) no-repeat bottom left,
+//     url(../../../assets/images/bg/Palm-tree-r.png) no-repeat top 30% right,
+//     url(../../../assets/images/bg/bg.png) no-repeat center center;
+//   background-size: auto, auto, auto, auto, auto, auto, auto, 18%, 25%, 100%100%;
+//   height: 100vh;
+//   height: 100svh;
+//   overflow-x: hidden;
+//   overflow-y: auto;
+//   position: relative;
+//   // z-index: 0;
+//   @media screen and (min-width: 768px) {
+//     display: block;
+//     margin: 0 auto;
+//     max-width: 450px;
+//   }
+// }
+
 
 .header {
   display: flex;

@@ -44,6 +44,7 @@ function App() {
   }, []);
 
   return (
+      <div className="App">
     <Suspense fallback={<div className="loader">Loading...</div>}>
       <Routes>
         <Route path={ROUTES.HOME} element={<Home />} />
@@ -66,6 +67,7 @@ function App() {
         />
       </Routes>
     </Suspense>
+    </div>
   );
 }
 
