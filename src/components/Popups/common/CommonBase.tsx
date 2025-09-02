@@ -7,7 +7,7 @@ import imageOnaCircle from "../../../assets/images/CircleOna.png";
 import PersonWithItem from "../../../assets/images/PersonWithItem.png";
 
 import styles from "./commonBase.module.scss";
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import {
   MODAL_TYPES,
   useGlobalModalContext,
