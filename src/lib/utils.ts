@@ -267,7 +267,7 @@ export const preloadAnimations = () => {
   Object.values(ANIMATIONS).forEach((anim) => {
     if (typeof anim === "string") {
       fetch(anim).catch((err) => {
-        console.log(err,"helloooooooooo")
+        console.log(err, "helloooooooooo");
       });
     }
   });

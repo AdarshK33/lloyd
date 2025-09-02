@@ -8,9 +8,9 @@
   // }
 }
 
-
 .App {
-  background: url(./assets/images/bg/chakra-lb.svg) no-repeat top left,
+  background:
+    url(./assets/images/bg/chakra-lb.svg) no-repeat top left,
     url(./assets/images/bg/chakra-rb.svg) no-repeat bottom 22% right,
     url(./assets/images/bg/chakra-t.svg) no-repeat bottom 32% left,
     url(./assets/images/bg/flower.svg) no-repeat top 18% left 10%,
@@ -20,20 +20,29 @@
     url(./assets/images/bg/Palm-tree-l.png) no-repeat bottom left,
     url(./assets/images/bg/Palm-tree-r.png) no-repeat top 30% right,
     url(./assets/images/bg/bg.png) no-repeat center center;
-  background-size: auto, auto, auto, auto, auto, auto, auto, 18%, 25%, 100% 100%;
+  background-size:
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    auto,
+    18%,
+    25%,
+    100% 100%;
   height: 100vh;
   height: 100svh;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
-   z-index: 0;
+  z-index: 0;
   @media screen and (min-width: 768px) {
     display: block;
     margin: 0 auto;
     max-width: 450px;
   }
 }
-
 
 // switch button
 

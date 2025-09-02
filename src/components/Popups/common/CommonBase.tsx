@@ -44,7 +44,7 @@ function CommonBase({ children }: Props) {
       <div className={styles.container}>
         {/* <div className={location.pathname === "/verificationOtp" ||"/redemption"  ? styles.bg_custom : styles.bg}> */}
         <div
-         className={styles.bg}
+          className={styles.bg}
           // className={
           //   location.pathname === "/verificationOtp" ||
           //   location.pathname === "/redemption" ||

@@ -16,11 +16,11 @@
   height: 50px;
   font-size: 24px;
   text-align: center;
-  border: .08rem solid #57c732;
+  border: 0.08rem solid #57c732;
   border-radius: 8px;
   outline: none;
   transition: border 0.3s;
- box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12) inset;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.12) inset;
   //   &:focus {
   //     border-color: #007bff;
   //   }
@@ -29,11 +29,9 @@
 .otpInputs {
   text-align: center;
   input {
-    
     background: white;
     color: black;
     text-align: center !important;
-   
   }
 }
 

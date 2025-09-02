@@ -44,29 +44,29 @@ function App() {
   }, []);
 
   return (
-      <div className="App">
-    <Suspense fallback={<div className="loader">Loading...</div>}>
-      <Routes>
-        <Route path={ROUTES.HOME} element={<Home />} />
-        <Route
-          path={ROUTES.RegistrationStep1}
-          element={<RegistrationStep1 />}
-        />
-        <Route
-          path={ROUTES.RegistrationStep2}
-          element={<RegistrationStep2 />}
-        />
-        <Route path={ROUTES.VerificationOtp} element={<VerificationOtp />} />
-        <Route path={ROUTES.Redemption} element={<Redemption />} />
-        <Route path={ROUTES.CashBack} element={<CashBack />} />
-        <Route path={ROUTES.KYC} element={<KYC />} />
-        <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen />} />
-        <Route
-          path={ROUTES.VERIFICATIONREDEEMOTP}
-          element={<OtpRedeemVerification />}
-        />
-      </Routes>
-    </Suspense>
+    <div className="App">
+      <Suspense fallback={<div className="loader">Loading...</div>}>
+        <Routes>
+          <Route path={ROUTES.HOME} element={<Home />} />
+          <Route
+            path={ROUTES.RegistrationStep1}
+            element={<RegistrationStep1 />}
+          />
+          <Route
+            path={ROUTES.RegistrationStep2}
+            element={<RegistrationStep2 />}
+          />
+          <Route path={ROUTES.VerificationOtp} element={<VerificationOtp />} />
+          <Route path={ROUTES.Redemption} element={<Redemption />} />
+          <Route path={ROUTES.CashBack} element={<CashBack />} />
+          <Route path={ROUTES.KYC} element={<KYC />} />
+          <Route path={ROUTES.REWARDSCREEN} element={<RewardScreen />} />
+          <Route
+            path={ROUTES.VERIFICATIONREDEEMOTP}
+            element={<OtpRedeemVerification />}
+          />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
