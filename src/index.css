@@ -1,7 +1,7 @@
 /* global.scss */
 
 @font-face {
-  font-family: "MyCustomFont";
+  font-family: "Corda";
   src: url("./assets/fonts/MyCustomFont-Light.woff2") format("woff2");
   font-weight: 300;
   font-style: normal;
@@ -9,7 +9,7 @@
 }
 
 @font-face {
-  font-family: "MyCustomFont";
+  font-family: "Corda";
   src: url("./assets/font/corda/Corda-Light.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
@@ -17,7 +17,7 @@
 }
 
 @font-face {
-  font-family: "MyCustomFont";
+  font-family: "Corda";
   src: url("./assets/font/corda/Corda-Medium.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
@@ -25,7 +25,7 @@
 }
 
 @font-face {
-  font-family: "MyCustomFont";
+  font-family: "Corda";
   src: url("./assets/font/corda/Corda-Bold.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
@@ -33,7 +33,7 @@
 }
 
 :root {
-  font-family: "MyCustomFont" !important;
+  font-family: "Corda" !important;
   line-height: 1.5;
   font-weight: 400;
 
@@ -62,7 +62,7 @@ body {
 
   margin: 0;
   padding: 0;
-  font-family: "MyCustomFont" !important;
+  font-family: "Corda" !important;
   font-weight: 500;
   line-height: 100%;
   overflow: hidden;
@@ -79,6 +79,7 @@ button {
   border: 1px solid transparent;
   padding: 0.6em 1.2em ;
   font-size: 1em;
+  outline: none;
   font-weight: 400;
   font-family: inherit;
   background-color: #1a1a1a;

@@ -25,7 +25,7 @@ const ResendOtp: React.FC = () => {
     setCanResend(false);
   };
 
-  const radius = 10;
+  const radius = 12;
   const circumference = 2 * Math.PI * radius;
   const progress = ((DURATION - counter) / DURATION) * circumference;
 
@@ -34,13 +34,10 @@ const ResendOtp: React.FC = () => {
   };
 
   return (
-    <div className={styles.resendOtp}>
-      {/* Circle timer always rendered, but hidden via CSS if needed */}
-      <div
-        className={`${styles.circleTimer} ${
-          counter === 0 ? styles.hidden : ""
-        }`}
-      >
+     <div className={styles.resendOtp}>
+    {counter > 0 ? (
+      // Circle timer view
+      <div className={styles.circleTimer}>
         <svg className={styles.progressRing} width="50" height="50">
           <circle
             className={styles.backgroundCircle}
@@ -65,20 +62,17 @@ const ResendOtp: React.FC = () => {
         </svg>
         <span className={styles.timeText}>{formatTime(counter)}</span>
       </div>
+    ) : (
+      // Centered message when timer ends
+      // <p className={styles.centerMessage}>Didn’t receive OTP yet?</p>
+      <></>
+    )}
 
-      <p className={styles.conditionsNormal}>Didn’t receive OTP yet?</p>
-
-      <p
-        className={styles.conditionsBold}
-        onClick={handleResend}
-        style={{
-          cursor: canResend ? "pointer" : "not-allowed",
-          opacity: canResend ? 1 : 0.5,
-        }}
-      >
-        Resend OTP
-      </p>
-    </div>
+<p className={styles.conditionsNormal}>Didn’t receive OTP yet?</p> 
+<p className={styles.conditionsBold} onClick={handleResend}
+ style={{ cursor: canResend ? "pointer" : "not-allowed", opacity: canResend ? 1 : 0.5, }} >
+   Resend OTP </p>
+  </div>
   );
 };
 

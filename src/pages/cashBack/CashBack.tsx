@@ -439,7 +439,7 @@ const VoucherMenuList = () => {
   const voucherMenus: any =
     reward &&
     reward !== null &&
-    reward?.bundleRewards.map((item: any, index: number) => {
+    (reward?.bundleRewards ?? []).map((item: any, index: number) => {
       const key = item.rewardName as RewardName;
       return {
         id: index + 1,
@@ -447,7 +447,7 @@ const VoucherMenuList = () => {
         value: `₹${item.isClaimed}`, // or some other value if API has "amount"
         logo: logos[key], // ✅ type safe
       };
-    });
+    })
   const [redeemed, setRedeemed] = useState<number[]>([]);
   const handleRedeem = (id: number) => {
     setRedeemed((prev: any) => [...prev, id]); // add to redeemed list

@@ -3,12 +3,13 @@
   justify-content: center;
   align-items: center;
   gap: 9px;
-  margin-top: 12px;
+  // margin-top: 10px;
   font-size: 14px;
 }
 
 .conditionsNormal {
-  color: #555;
+  color: #000000;
+  font-weight: 200;
 }
 
 .conditionsBold {
@@ -53,4 +54,11 @@
   font-family: "Courier New", monospace;
   font-weight: bold;
   color: #333;
+}
+
+
+.centerMessage {
+  text-align: center;
+  font-size: 16px;
+  margin: 10px 0;
 }

@@ -17,7 +17,6 @@ function Redemption() {
   const state = store.getState();
   const { mobile } = state.auth;
 
-  // console.log(mobile, "mmmmmmmmmmm");
   const [formData, setFormData] = useState({
     mobile: mobile,
     code: "",

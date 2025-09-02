@@ -100,7 +100,7 @@ function OtpVerification() {
         <form onSubmit={handleSubmit} className={styles.otpForm}>
           <h2 className={styles.verificationHeadline}>Verification</h2>
           <div className={styles.otpInputs}>
-            {otp.map((digit, index) => (
+            {(otp??[]).map((digit, index) => (
               <input
                 key={index}
                 type="text"
