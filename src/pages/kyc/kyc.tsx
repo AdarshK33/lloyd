@@ -657,7 +657,7 @@ function KYC() {
                   onChange={handleChange}
                   onKeyUp={handleKeyUp}
                   autoComplete="off"
-                  disabled
+               
                 />
               </div>
 
@@ -670,7 +670,7 @@ function KYC() {
                   onChange={handleChange}
                   onKeyUp={handleKeyUp}
                   autoComplete="off"
-                  disabled
+                
                 />
               </div>
             </div>
@@ -714,7 +714,13 @@ function KYC() {
                   <Dropzone
                     // onDrop={onDrop}
                     onDrop={onDrop("file3", setFileName3)}
-                    accept={{ "image/*": [] }}
+                     accept={{
+    "image/jpeg": [".jpeg", ".jpg"],
+    "image/png": [".png"],
+    "image/heic": [".heic"],
+    "image/heif": [".heif"],
+    "application/pdf": [".pdf"],
+  }}
                     maxFiles={1}
                     maxSize={4 * 1024 * 1024}
                   >
@@ -760,7 +766,13 @@ function KYC() {
             <div className={styles.inputGroup}>
               <Dropzone
                 onDrop={onDrop("file1", setFileName1)}
-                accept={{ "image/*": [] }}
+                 accept={{
+    "image/jpeg": [".jpeg", ".jpg"],
+    "image/png": [".png"],
+    "image/heic": [".heic"],
+    "image/heif": [".heif"],
+    "application/pdf": [".pdf"],
+  }}
                 maxFiles={1}
                 maxSize={4 * 1024 * 1024}
               >
@@ -804,7 +816,13 @@ function KYC() {
               <Dropzone
                 // onDrop={onDrop}
                 onDrop={onDrop("file2", setFileName2)}
-                accept={{ "image/*": [] }}
+                 accept={{
+    "image/jpeg": [".jpeg", ".jpg"],
+    "image/png": [".png"],
+    "image/heic": [".heic"],
+    "image/heif": [".heif"],
+    "application/pdf": [".pdf"],
+  }}
                 maxFiles={1}
                 maxSize={4 * 1024 * 1024}
               >

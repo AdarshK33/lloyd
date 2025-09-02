@@ -1,19 +1,19 @@
-// @font-face {
-//   font-family: "Poppins";
-//   src: url("../assets/font/poppins.medium.ttf") format("truetype");
-//   font-style: medium;
-// }
-// @font-face {
-//   font-family: "Poppins";
-//   src: url("../assets/font/poppins.bold.ttf") format("truetype");
-//   font-style: bold;
-// }
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/font/poppins.medium.ttf") format("truetype");
+  font-style: medium;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../assets/font/poppins.bold.ttf") format("truetype");
+  font-style: bold;
+}
 
-// @font-face {
-//   font-family: 'Poppins';
-//   src: url('../assets/font/poppins.regular.ttf') format('truetype');
-//   font-style: regular;
-// }
+@font-face {
+  font-family: 'Poppins';
+  src: url('../assets/font/poppins.regular.ttf') format('truetype');
+  font-style: regular;
+}
 
 
 /* global.scss */
@@ -57,6 +57,9 @@ body {
   line-height: 100%;
 }
 
+form .input-group input{
+   font-family: "Poppins" !important;
+}
 * {
   box-sizing: border-box;
 }
