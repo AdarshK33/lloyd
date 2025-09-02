@@ -10,11 +10,10 @@
 }
 
 @font-face {
-  font-family: 'Poppins';
-  src: url('../assets/font/poppins.regular.ttf') format('truetype');
+  font-family: "Poppins";
+  src: url("../assets/font/poppins.regular.ttf") format("truetype");
   font-style: regular;
 }
-
 
 /* global.scss */
 
@@ -53,12 +52,12 @@
 body {
   margin: 0;
   padding: 0;
- font-family: "Corda" !important;
+  font-family: "Corda" !important;
   line-height: 100%;
 }
 
-form .input-group input{
-   font-family: "Poppins" !important;
+form .input-group input {
+  font-family: "Poppins" !important;
 }
 * {
   box-sizing: border-box;
@@ -173,7 +172,7 @@ img {
 }
 
 select {
-    line-height: 1.1rem;
+  line-height: 1.1rem;
   padding: 10px 10px;
   //padding: 15px 10px ;
   text-align: center;

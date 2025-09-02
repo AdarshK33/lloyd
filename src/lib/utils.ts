@@ -263,7 +263,6 @@ export function logoutUser() {
   store.dispatch(clearUserDetails());
 }
 
-
 export const preloadAnimations = () => {
   Object.values(ANIMATIONS).forEach((anim) => {
     if (typeof anim === "string") {

@@ -302,9 +302,7 @@ function CashBack() {
                   </div>
 
                   <div className={styles.buttonSection}>
-                 
-                      <button type="submit">Submit</button>
-                  
+                    <button type="submit">Submit</button>
                   </div>
                 </form>
               </div>
@@ -312,33 +310,29 @@ function CashBack() {
           ) : activeVoucherTab === "zomato" && activeTab === "cashback" ? (
             <>
               <div className={styles.buttonSection}>
-             
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      setModalType("reward");
-                      setShowTerms(true);
-                    }}
-                  >
-                    Claim now
-                  </button>
-                </div>
-             
+                <button
+                  type="submit"
+                  onClick={() => {
+                    setModalType("reward");
+                    setShowTerms(true);
+                  }}
+                >
+                  Claim now
+                </button>
+              </div>
             </>
           ) : activeVoucherTab === "amazon" && activeTab === "cashback" ? (
             <>
               <div className={styles.buttonSection}>
-            
-                  <button
-                    type="submit"
-                    onClick={() => {
-                      setModalType("reward");
-                      setShowTerms(true);
-                    }}
-                  >
-                    Claim now
-                  </button>
-               
+                <button
+                  type="submit"
+                  onClick={() => {
+                    setModalType("reward");
+                    setShowTerms(true);
+                  }}
+                >
+                  Claim now
+                </button>
               </div>
             </>
           ) : (
@@ -447,7 +441,7 @@ const VoucherMenuList = () => {
         value: `₹${item.isClaimed}`, // or some other value if API has "amount"
         logo: logos[key], // ✅ type safe
       };
-    })
+    });
   const [redeemed, setRedeemed] = useState<number[]>([]);
   const handleRedeem = (id: number) => {
     setRedeemed((prev: any) => [...prev, id]); // add to redeemed list

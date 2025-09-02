@@ -123,9 +123,7 @@ export enum ProductType {
 
 // import Anim_Cashback_300 from "../assets/lottie/Cashback_and_Reward_Bundle.json";
 // import  Anim_Cashback_300 from "../assets/lottie/Lloyd_Refrigerator_GLDF215SPGT4LC.json";
- import  Anim_Cashback_300 from "../assets/lottie/HavellsJuicer_MixerGrinder_and_Reward_Bundle.json";
-
-
+import Anim_Cashback_300 from "../assets/lottie/HavellsJuicer_MixerGrinder_and_Reward_Bundle.json";
 
 export const ANIMATIONS = {
   Anim_Cashback_300,

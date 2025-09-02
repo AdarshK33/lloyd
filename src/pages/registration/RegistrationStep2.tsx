@@ -239,13 +239,13 @@ function RegistrationStep2() {
             <div className={styles.inputGroup}>
               <Dropzone
                 onDrop={onDrop("file1", setFileName1)}
-               accept={{
-    "image/jpeg": [".jpeg", ".jpg"],
-    "image/png": [".png"],
-    "image/heic": [".heic"],
-    "image/heif": [".heif"],
-    "application/pdf": [".pdf"],
-  }}
+                accept={{
+                  "image/jpeg": [".jpeg", ".jpg"],
+                  "image/png": [".png"],
+                  "image/heic": [".heic"],
+                  "image/heif": [".heif"],
+                  "application/pdf": [".pdf"],
+                }}
                 maxFiles={1}
                 maxSize={4 * 1024 * 1024}
               >

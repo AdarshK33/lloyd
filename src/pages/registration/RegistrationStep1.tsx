@@ -297,8 +297,8 @@ function RegistrationStep1() {
                 <option value="" selected>
                   Select State
                 </option>
-              
-                {(STATES??[]).map((name, i) => {
+
+                {(STATES ?? []).map((name, i) => {
                   return (
                     <option key={i} value={name}>
                       {name}
@@ -333,7 +333,7 @@ function RegistrationStep1() {
                   Select District
                 </option>
 
-                {(DISTRICT??[]).map((name, i) => (
+                {(DISTRICT ?? []).map((name, i) => (
                   <option key={i} value={name}>
                     {name}
                   </option>
@@ -356,11 +356,11 @@ function RegistrationStep1() {
                       onChange={handleChange}
                       onKeyUp={handleKeyUp}
                     />
-                   <span className={styles.customCheckbox}>
-  <svg viewBox="0 0 12 9">
-    <polyline points="1 5 4 8 11 1"></polyline>
-  </svg>
-</span>
+                    <span className={styles.customCheckbox}>
+                      <svg viewBox="0 0 12 9">
+                        <polyline points="1 5 4 8 11 1"></polyline>
+                      </svg>
+                    </span>
                   </label>
 
                   <span className={styles.TermsConditionsNormal}>

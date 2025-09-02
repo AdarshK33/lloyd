@@ -73,8 +73,7 @@ function OtpRedeemVerification() {
         <form onSubmit={handleSubmit} className={styles.otpForm}>
           <h2 className={styles.verificationHeadline}>Verification</h2>
           <div className={styles.otpInputs}>
-           
-            {(otp??[]).map((digit, index) => (
+            {(otp ?? []).map((digit, index) => (
               <input
                 key={index}
                 type="text"
@@ -110,9 +109,7 @@ function OtpRedeemVerification() {
             <ResendOtp />
           </div>
           <div className={styles.buttonSection}>
-          
-              <button type="submit">Verify Otp</button>
-          
+            <button type="submit">Verify Otp</button>
           </div>
         </form>
       </CommonBase>
