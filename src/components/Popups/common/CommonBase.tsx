@@ -20,7 +20,7 @@ function CommonBase({ children }: Props) {
   const { showModal } = useGlobalModalContext();
 
   //  const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
 
   const [isNavOpen, setIsNavOpen] = useState(false);
 
