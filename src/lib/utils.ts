@@ -4,6 +4,7 @@
 import { setAccessToken } from "../store/slices/authSlice";
 import { clearUserDetails } from "../store/slices/userSlice";
 import { store } from "../store/store";
+import { ANIMATIONS } from "./consts";
 
 export function addCaptchaScript(cb?: () => void): void {
   const script = document.getElementById("grecaptcha-script");
@@ -261,3 +262,12 @@ export function logoutUser() {
   store.dispatch(setAccessToken(""));
   store.dispatch(clearUserDetails());
 }
+
+
+export const preloadAnimations = () => {
+  Object.values(ANIMATIONS).forEach((anim) => {
+    if (typeof anim === "string") {
+      fetch(anim).catch(() => {});
+    }
+  });
+};

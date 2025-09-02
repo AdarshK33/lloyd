@@ -4,6 +4,7 @@ import { useEffect, Suspense, lazy } from "react";
 import { useGlobalLoaderContext } from "./helpers/GlobalLoader";
 import API from "./api";
 import { ROUTES } from "./lib/consts";
+import { preloadAnimations } from "./lib/utils";
 
 // Lazy load pages
 const Home = lazy(() => import("./pages/home/Home"));
@@ -37,6 +38,11 @@ function App() {
       API.setIsOnline(false);
     });
   }, [showLoader, hideLoader]);
+
+  
+  useEffect(() => {
+    preloadAnimations();
+  }, []);
 
   return (
     <Suspense fallback={<div className="loader">Loading...</div>}>

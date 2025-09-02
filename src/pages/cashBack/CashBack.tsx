@@ -302,9 +302,9 @@ function CashBack() {
                   </div>
 
                   <div className={styles.buttonSection}>
-                    <div className={styles.buttonBottom}>
+                 
                       <button type="submit">Submit</button>
-                    </div>
+                  
                   </div>
                 </form>
               </div>
@@ -312,7 +312,7 @@ function CashBack() {
           ) : activeVoucherTab === "zomato" && activeTab === "cashback" ? (
             <>
               <div className={styles.buttonSection}>
-                <div className={styles.buttonBottom}>
+             
                   <button
                     type="submit"
                     onClick={() => {
@@ -323,12 +323,12 @@ function CashBack() {
                     Claim now
                   </button>
                 </div>
-              </div>
+             
             </>
           ) : activeVoucherTab === "amazon" && activeTab === "cashback" ? (
             <>
               <div className={styles.buttonSection}>
-                <div className={styles.buttonBottom}>
+            
                   <button
                     type="submit"
                     onClick={() => {
@@ -338,7 +338,7 @@ function CashBack() {
                   >
                     Claim now
                   </button>
-                </div>
+               
               </div>
             </>
           ) : (

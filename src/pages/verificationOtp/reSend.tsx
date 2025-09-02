@@ -20,7 +20,7 @@ const ResendOtp: React.FC = () => {
 
   const handleResend = () => {
     if (!canResend) return;
-    console.log("Resending OTP...");
+    console.log("Resendig OTP...");
     setCounter(DURATION);
     setCanResend(false);
   };

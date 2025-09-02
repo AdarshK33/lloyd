@@ -109,9 +109,9 @@ function OtpRedeemVerification() {
             <ResendOtp />
           </div>
           <div className={styles.buttonSection}>
-            <div className={styles.buttonBottom}>
+          
               <button type="submit">Verify Otp</button>
-            </div>
+          
           </div>
         </form>
       </CommonBase>
